@@ -42,6 +42,8 @@ babel-lang: french
 \tableofcontents
 \newpage
 
-!include ./chapters/intro.md
+!include ./chapters/00-presentation.md
+
+!include ./chapters/01-specifications.md
 
 # Bibliographie
