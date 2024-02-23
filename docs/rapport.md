@@ -46,4 +46,8 @@ babel-lang: french
 
 !include ./chapters/01-specifications.md
 
+!include ./chapters/02-functional-analysis.md
+
+!include ./chapters/03-technical-analysis.md
+
 # Bibliographie
