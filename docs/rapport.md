@@ -1,4 +1,5 @@
 ---
+# Thanks to Sermeus Steven for his pandoc template
 title: "Programmation des Systèmes Mobiles - Escape Museum Game"
 author:
   [

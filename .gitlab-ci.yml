@@ -1,0 +1,14 @@
+convert-rapport:
+  # This stage was written by Sermeus Steven in an other project and is used here with his permission
+  image:
+    name: mfreeze/pandoc-iesn:mermaid-latest-ubuntu
+    entrypoint: [""]
+  script:
+    - echo "Converting Markdown to PDF..."
+    - echo "Using pandoc version $(pandoc --version)"
+    - cd $(pwd)/docs
+    - /usr/local/bin/build.sh -p xelatex -m -l -M -e -N -c -I -T -s IEEE.csl pdf rapport.md
+    - mv ./rapport.pdf ../rapport.pdf
+  artifacts:
+    paths:
+      - ./rapport.pdf
