@@ -1,9 +1,10 @@
 # Analyse fonctionnelle
 ## Cas d'utilisation
-```md
-- Diagramme usecase
-```
+Dans cette partie, nous allons décrire les cas d'utilisation de l'application. Cela nous permettra de comprendre les fonctionnalités que l'application doit offrir aux différents utilisateurs et acteurs.
 
+![Usecase diagram](../assets/images/Usecase.png)
+
+Dans le diagramme ci-dessus, nous pouvons observer qu'il n'y a qu'un acteur qui correspond aux utilisateur de l'application, ceux qui joueront à l'escape game. Ces utilisateurs pourront participer au jeu d'évasion. Cela nécessite (inclus) de scanner un QR code. Ils pourront également participer aux 3 étapes du jeu en scanant un QR code mais il faut impérativement qu'il ait réussi l'étape précédente.
 
 ## Fonctionnement général
 ```md
