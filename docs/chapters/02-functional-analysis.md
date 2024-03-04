@@ -2,15 +2,18 @@
 ## Cas d'utilisation
 Dans cette partie, nous allons décrire les cas d'utilisation de l'application. Cela nous permettra de comprendre les fonctionnalités que l'application doit offrir aux différents utilisateurs et acteurs.
 
-![Usecase diagram](../assets/images/Usecase.png)
+![Diagramme de cas d'utilisation](../assets/images/Usecase.png)
 
 Dans le diagramme ci-dessus, nous pouvons observer qu'il n'y a qu'un acteur qui correspond aux utilisateur de l'application, ceux qui joueront à l'escape game. Ces utilisateurs pourront participer au jeu d'évasion. Cela nécessite (inclus) de scanner un QR code. Ils pourront également participer aux 3 étapes du jeu en scanant un QR code mais il faut impérativement qu'il ait réussi l'étape précédente.
 
 ## Fonctionnement général
-```md
-- Schéma activité (scénario game)
-```
+![Diagramme d'activité du jeu complet](../assets/images/Activity-full-game.png)
 
+Le diagramme ci-dessus présente le fonctionnement du jeu d'évasion depuis le début. C'est le cas classique d'utilisation où les joueurs scannent le QR code de début à l'entrée du jeu et réalisent toutes les étapes sans devoir rescanner un QR code.
+
+![Diagramme d'activité de la reprise d'une étape](../assets/images/Activity-step-game.png)
+
+Le diagramme ci-dessus présente le fonctionnement du jeu d'évasion lorsqu'un joueur reprend le jeu à une étape précise. Cela peut arriver s'il a quitté le jeu avant de le terminer ou s'il a rencontré un problème. Dans ce cas, il doit scanner le QR code de l'étape à laquelle il veut reprendre le jeu. Il pourra y jouer uniquement s'il a réussi l'étape précédente. Puis il pourra continuer le jeu jusqu'à la fin.
 
 ## Maquettes d'écrans
 ```md
