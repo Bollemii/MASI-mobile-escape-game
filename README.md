@@ -1,9 +1,11 @@
 # mobile-escape-game
-Application mobile développée dans le cadre du cours de Programmation des Systèmes Mobiles du Master en Architecture des Systèmes Informatiques. Cette application est un jeu d'évasion qui utilise les capteurs du téléphone et utilisé dans l'exposition temporaire "Pirates de l'île Bourbon" du musée de l'Escape Museum.
-
+## Présentation
+Cette application mobile a été développée dans le cadre du cours de Programmation des Systèmes Mobiles du Master en Architecture des Systèmes Informatiques.  
 Membres du groupe :
 - BOLLE Emilien
 - PIRE Victor
+
+Cette application a été développée par l'entreprise Escape Museum et est utilisée dans l'exposition temporaire "Pirates de l'île Bourbon" d'un musée. C'est un jeu d'évasion qui utilise les capteurs du téléphone pour résoudre des énigmes.
 
 ## Documentation
 La documentation de l'analyse de l'application est disponible dans le dossier `docs/`. Elle est rédigée en LaTeX et Markdown et est compilée dans un [document PDF](./docs/rapport.pdf).
