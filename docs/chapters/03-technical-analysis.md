@@ -25,14 +25,48 @@ L'application doit être portable sur les deux systèmes d'exploitation mobiles 
 ### Technologie mobile
 Pour répondre aux besoins techniques de l'application énoncés précédemment, nous allons déterminer dans cette partie la technologie mobile la plus adaptée pour le développement de l'application.
 
-```md
-- Choix techno
-  - hybride, natif, web
-  - React Native, Flutter, Android...
-    - Matrice évaluation
+Nous avons besoin d'une technologie qui soit compatible avec Android et IOS. Elle doit également permettre l'accès aux fonctionnalités natives du téléphone. Notre choix de technologie doit donc commencer par le type de technologie mobile que nous allons utiliser : hybride, natif, PWA ou web.
 
-- => Matrice de décision avec critères
-- Justification choix
+Pour diriger notre choix, nous allons établir une matrice de décision avec des critères de choix. Dans cette matrice, nous allons pondérer chaque critère avec une valeur de 1 à 3 selon son importance.
+
+| **Critère** | **Hybride** | **Natif** | **PWA** | **Web** |
+|---|---|---|---|---|
+| Multiplateforme (3) | Oui | Non | Oui | Oui |
+| Fonctionnalités natives (3) | Limité à celles prises en charge par le framework | Oui | Limité à celles prises en charge par le navigateur | Non |
+| Connaissances requises (2) | Langage / framework Web | Langage spécifique à chaque plateforme | Langage / framework Web | Langage / framework Web |
+| Performance (1) | + | +++ | ++ | ++ |
+
+Avec cette matrice, nous pouvons voir qu'avec le critère de multiplateforme, le développement natif est écarté. En effet, le développement natif ne permet pas de développer une application pour les deux systèmes d'exploitation en même temps. Ensuite, le critère de fonctionnalités natives écarte le développement web. En effet, le développement web ne permet pas d'accéder aux fonctionnalités natives du téléphone. Enfin, les PWA sont écartées car elles ont un accès plus limité aux fonctionnalités natives du téléphone que les applications hybrides. L'indice de performance pour les applications hybrides ne pose pas de problème pour notre application car elle n'est pas prévue pour être très gourmande en ressources.
+
+Maintenant que nous avons déterminé que le développement hybride est la meilleure solution pour notre application, nous allons choisir un framework pour le développement hybride. Nous avons le choix entre plusieurs frameworks : React Native, Flutter, Ionic, Xamarin, etc.
+
+Tout comme précédemment, pour diriger notre choix, nous allons établir une matrice de décision avec des critères de choix. Dans cette matrice, nous allons pondérer chaque critère avec une valeur de 1 à 3 selon son importance.
+
+| **Critères** | **React Native** | **Flutter** | **Ionic** |
+|---|---|---|---|
+| Langage de programmation (3) | Javascript<br>React | Dart | Javascript<br>React ou Vue ou Angular |
+| Documentation (2) | Complète avec exemples | Très complète avec vidéos explicatives | Complète avec exemples |
+| Emulation (2) | Expo Go | Flutter doctor | Capacitor ou navigateur web |
+| Performance (1) | Moyenne | Elevée | Moyenne |
+| Communauté (1) | Grande | En croissance | Grande |
+
+Le tableau qui suit vérifie que les fonctionnalités natives dont nous avons besoin sont prises en charge par les frameworks que nous comparons.
+
+| **Fonctionnalités natives (3)** | **React Native** | **Flutter** | **Ionic** |
+|---|---|---|---|
+| Scan QR code | Oui | Oui | Oui |
+| Lampe | ? | ? | ? |
+| Accéléromètre | Oui | Oui | Oui |
+| Gyroscope | Oui | Oui | Oui |
+| Géolocalisation | Oui | Oui | Oui |
+| Compteur de pas | Oui | Oui | Oui |
+
+Avec cette matrice, Flutter parait être un framework parfait à utiliser. Cependant, l'équipe de développement n'a aucune connaissance de Dart, le langage de programmation de Flutter. En effet, l'équipe de développement a une connaissance avancée de Javascript et de React, React Native et Ionic sont donc des choix plus adaptés pour l'équipe de développement.
+
+Concernant les fonctionnalités natives, Flutter n'est pas le plus simple à utiliser pour accéder aux fonctionnalités natives du téléphone. En effet, il faut écrire des portions de code natif pour y accéder. React Native et Ionic sont plus simples d'utilisation car ils proposent des plugins intégrés à leur moteur de rendu (Expo Go et Capacitor) pour accéder aux fonctionnalités natives du téléphone commme la géolocalisation ou le gyroscope.
+
+```md
+Choix techno dépend questions et accès lampe
 ```
 
 ### Stockage de données
