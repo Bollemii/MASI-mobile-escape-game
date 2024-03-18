@@ -33,7 +33,7 @@ deploy-rapport:
     - echo "Deploying to GitLab Pages"
     - mkdir .public
     #- cp ./rapport.pdf .public/index.pdf
-    - cp index.pdf .public/index.pdf
+    - cp index.html .public/index.html
     - mv .public public
   artifacts:
     paths:
