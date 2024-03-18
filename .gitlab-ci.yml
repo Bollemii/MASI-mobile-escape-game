@@ -10,6 +10,7 @@ stages:
   - deploy-rapport
 
 convert-rapport:
+  stage: convert-rapport
   # This stage was written by Sermeus Steven in an other project and is used here with his permission
   image:
     name: mfreeze/pandoc-iesn:mermaid-latest-ubuntu
@@ -24,7 +25,7 @@ convert-rapport:
     paths:
       - ./rapport.pdf
 
-pages:
+deploy-rapport:
   stage: deploy-rapport
   dependencies:
     - convert-rapport
