@@ -1,4 +1,16 @@
+# .gitlab-ci.yml
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+stages:
+  - convert-rapport
+  - deploy-rapport
+
 convert-rapport:
+  stage: convert-rapport
   # This stage was written by Sermeus Steven in an other project and is used here with his permission
   image:
     name: mfreeze/pandoc-iesn:mermaid-latest-ubuntu
@@ -12,3 +24,19 @@ convert-rapport:
   artifacts:
     paths:
       - ./rapport.pdf
+
+deploy-rapport:
+  stage: deploy-rapport
+  dependencies:
+    - convert-rapport
+  script:
+    - echo "Deploying to GitLab Pages"
+    - mkdir .public
+    - cp ./rapport.pdf .public/index.pdf
+    - mv .public public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
+
