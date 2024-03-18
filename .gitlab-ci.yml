@@ -31,7 +31,8 @@ deploy-rapport:
     - convert-rapport
   script:
     - echo "Deploying to GitLab Pages"
-    - mv rapport.pdf public/index.pdf
+    - ls -la
+    - mv ./rapport.pdf public/index.pdf
   artifacts:
     paths:
       - public
