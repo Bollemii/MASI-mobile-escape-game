@@ -1,4 +1,8 @@
+# Temporary files
 .minted_output
 .puppeteer.json
-rapport.pdf
 mermaid-filter.err
+
+# Converted files
+rapport.pdf
+rapport.html
