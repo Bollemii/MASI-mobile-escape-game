@@ -6,11 +6,11 @@ workflow:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 stages:
-  - convert-rapport
-  - deploy-rapport
+  - build
+  - deploy
 
-convert-rapport:
-  stage: convert-rapport
+convert-pdf:
+  stage: build
   # This stage was written by Sermeus Steven in an other project and is used here with his permission
   image:
     name: mfreeze/pandoc-iesn:mermaid-latest-ubuntu
@@ -25,18 +25,33 @@ convert-rapport:
     paths:
       - ./rapport.pdf
 
+convert-html:
+  stage: build
+  # This stage was written by Sermeus Steven in an other project and is used here with his permission
+  image:
+    name: mfreeze/pandoc-iesn:mermaid-latest-ubuntu
+    entrypoint: [""]
+  script:
+    - echo "Converting Markdown to PDF..."
+    - echo "Using pandoc version $(pandoc --version)"
+    - cd $(pwd)/docs
+    - /usr/local/bin/build.sh -p xelatex -m -l -M -e -N -c -I -T -s IEEE.csl html rapport.md
+    - mv ./rapport.html ../rapport.html
+  artifacts:
+    paths:
+      - rapport.html
+
 deploy-rapport:
-  stage: deploy-rapport
+  stage: deploy
   dependencies:
-    - convert-rapport
+    - convert-html
   script:
     - echo "Deploying to GitLab Pages"
     - mkdir .public
-    - cp ./rapport.pdf .public/index.pdf
+    - cp ./rapport.html .public/index.html
     - mv .public public
   artifacts:
     paths:
       - public
-  only:
-    - main
-
+  # only:
+  #   - main
