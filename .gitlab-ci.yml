@@ -41,7 +41,7 @@ convert-html:
     paths:
       - rapport.html
 
-deploy-rapport:
+pages:
   stage: deploy
   dependencies:
     - convert-html
