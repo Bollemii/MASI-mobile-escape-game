@@ -53,5 +53,5 @@ deploy-rapport:
   artifacts:
     paths:
       - public
-  # only:
-  #   - main
+  only:
+    - main
