@@ -3,21 +3,21 @@
 ### Besoins techniques
 **Stockage de données**  
 L'application a besoin de stocker les données de jeu pour assurer le suivi et le bon fonctionnement. En effet, l'application a besoin de retenir les étapes réussies par le joueur pour lui permettre de reprendre le jeu à l'étape où il s'est arrêté en scannant un QR code.  
-Les données de jeu sont les suivantes :
-- la date et l'heure de début de jeu
-- la date et l'heure de fin de jeu (si le jeu est terminé)
-- la dernière épreuve réussie
-- le pseudo du joueur
+Les données de jeu sont les suivantes :  
+- la date et l'heure de début de jeu  
+- la date et l'heure de fin de jeu (si le jeu est terminé)  
+- la dernière épreuve réussie  
+- le pseudo du joueur  
 
 L'application n'a pas de nécessité de retenir d'autres données dans son état actuel et n'a pas besoin de retenir toutes les tentatives de jeu du joueur. Pour son fonctionnement, elle n'a besoin que de la dernière tentative pour savoir si le joueur a réussi ou non le jeu et pour lui permettre de reprendre le jeu à l'étape où il s'est arrêté.  
 
 **Accès à des fonctionnalités natives du téléphone**  
-L'application se base sur des fonctionnalités natives du téléphone pour offrir une expérience immersive.
-Elle a besoin de :
-- la caméra pour scanner les QR codes
-- la lampe torche pour éclairer la cale du bateau (épreuve 1)
-- l'accéléromètre et le gyroscope pour simuler le chargement des canons (épreuve 2)
-- la géolocalisation pour simuler le déplacement vers la cabine du capitaine (épreuve 3)
+L'application se base sur des fonctionnalités natives du téléphone pour offrir une expérience immersive.  
+Elle a besoin de :  
+- la caméra pour scanner les QR codes  
+- la lampe torche pour éclairer la cale du bateau (épreuve 1)  
+- l'accéléromètre et le gyroscope pour simuler le chargement des canons (épreuve 2)  
+- la géolocalisation pour simuler le déplacement vers la cabine du capitaine (épreuve 3)  
 
 **Evolutivité / portabilité**  
 L'application doit être portable sur les deux systèmes d'exploitation mobiles les plus utilisés : Android et iOS.
@@ -32,9 +32,9 @@ Pour diriger notre choix, nous allons établir une matrice de décision avec des
 | **Critère** | **Hybride** | **Natif** | **PWA** | **Web** |
 |---|---|---|---|---|
 | Multiplateforme (3) | Oui | Non | Oui | Oui |
-| Fonctionnalités natives (3) | Limité à celles prises en charge par le framework | Oui | Limité à celles prises en charge par le navigateur | Non |
+| Fonctionnalités natives (3) | Oui | Oui | Limité à celles prises en charge par le navigateur | Limité à celles prises en charge par le navigateur |
 | Connaissances requises (2) | Langage / framework Web | Langage spécifique à chaque plateforme | Langage / framework Web | Langage / framework Web |
-| Performance (1) | + | +++ | ++ | ++ |
+| Maintenabilité (2) | Facile | Pour chaque plateforme | Facile | Facile |
 
 Avec cette matrice, nous pouvons voir qu'avec le critère de multiplateforme, le développement natif est écarté. En effet, le développement natif ne permet pas de développer une application pour les deux systèmes d'exploitation en même temps. Ensuite, le critère de fonctionnalités natives écarte le développement web. En effet, le développement web ne permet pas d'accéder aux fonctionnalités natives du téléphone. Enfin, les PWA sont écartées car elles ont un accès plus limité aux fonctionnalités natives du téléphone que les applications hybrides. L'indice de performance pour les applications hybrides ne pose pas de problème pour notre application car elle n'est pas prévue pour être très gourmande en ressources.
 
@@ -55,7 +55,7 @@ Le tableau qui suit vérifie que les fonctionnalités natives dont nous avons be
 | **Fonctionnalités natives (3)** | **React Native** | **Flutter** | **Ionic** |
 |---|---|---|---|
 | Scan QR code | Oui | Oui | Oui |
-| Lampe | ? | ? | ? |
+| Lampe | Oui | Oui | Oui |
 | Accéléromètre | Oui | Oui | Oui |
 | Gyroscope | Oui | Oui | Oui |
 | Géolocalisation | Oui | Oui | Oui |
@@ -84,17 +84,18 @@ Les données à retenir sont les suivantes :
 Elles seront stockées dans un fichier JSON pour avoir une structure et une manipulation aisée dans l'application.  
 
 Le pseudo du joueur sera stocké dans un fichier à part car il peut être utilisé pour plusieurs parties. Il sera enregistré dans un fichier JSON également.  
-Voici un exemple de structure de fichier JSON pour les données de jeu :
+Voici un exemple de structure de fichier JSON pour les données de jeu.  
+Un premier fichier nommé `gameData.json` :
 ```json
-// gameData.json
 {
   "start": "2021-05-01T14:00:00",
   "end": "2021-05-01T14:30:00",
   "lastStep": 2
 }
 ```
+
+Un second fichier nommé `playerData.json` :
 ```json
-// playerData.json
 {
   "pseudo": "JohnDoe"
 }
@@ -105,4 +106,7 @@ Voici un exemple de structure de fichier JSON pour les données de jeu :
 - Schémas séquence et activité spécifiques
 ```
 
-
+## Structure de l'application
+```md
+- Schéma de l'architecture de l'application
+```
