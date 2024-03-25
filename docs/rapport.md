@@ -10,7 +10,7 @@ academicyear: 2023-2024
 category: MASI
 fontsize: 12pt
 titlepage: true
-code-block-font-size: \large
+code-block-font-size: \small
 default-language: python
 minted:
   block_attributes:
@@ -49,5 +49,7 @@ babel-lang: french
 !include ./chapters/02-functional-analysis.md
 
 !include ./chapters/03-technical-analysis.md
+
+!include ./chapters/04-improvements.md
 
 # Bibliographie
