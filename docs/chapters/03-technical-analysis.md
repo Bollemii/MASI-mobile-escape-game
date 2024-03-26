@@ -63,7 +63,7 @@ Le tableau qui suit vérifie que les fonctionnalités natives dont nous avons be
 | Géolocalisation                 | Oui              | Oui         | Oui       |
 | Compteur de pas                 | Oui              | Oui         | Oui       |
 
-Avec cette matrice, Flutter parait être un framework parfait à utiliser. Cependant, l'équipe de développement n'a aucune connaissance de Dart, le langage de programmation de Flutter. En effet, l'équipe de développement a une connaissance avancée de Javascript et de React, React Native et Ionic sont donc des choix plus adaptés pour l'équipe de développement.
+Avec cette matrice, Flutter parait être un framework parfait à utiliser. Cependant, l'équipe de développement n'a aucune connaissance de Dart, le langage de programmation de Flutter. Elle a une connaissance avancée de Javascript ainsi que des frameworks React, React Native et Ionic. Ces technologies seraient donc des choix plus adaptés pour l'équipe de développement.
 
 Concernant les fonctionnalités natives, Flutter n'est pas le plus simple à utiliser pour accéder aux fonctionnalités natives du téléphone. En effet, il faut écrire des portions de code natif pour y accéder. React Native et Ionic sont plus simples d'utilisation car ils proposent des plugins intégrés à leur moteur de rendu (Expo Go et Capacitor) pour accéder aux fonctionnalités natives du téléphone commme la géolocalisation ou le gyroscope.
 
@@ -107,5 +107,5 @@ Un second fichier nommé `playerData.json` :
 
 ## Structure de l'application
 ```md
-- Schéma de l'architecture de l'application
+- Schéma de l'architecture logicielle de l'application
 ```

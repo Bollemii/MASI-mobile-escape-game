@@ -25,28 +25,5 @@ Cette fonctionnalité nécessiterait, en plus de la centralisation des données,
 Pour faire un lien avec la fonctionnalité d'inclure de nouveaux jeux d'évasion, le changement de stockage des données vers une base de données permettrait une transition plus facile vers cette centralisation des données. De plus, la centralisation du stockage des données de fonctionnement des jeux d'évasion permettrait de ne pas surcharger les appareils mobiles des utilisateurs.
 
 Ainsi, les appareils des joueurs communiqueraient avec le serveur pour récupérer les données de jeu (fonctionnement étapes etc) et pour enregistrer et récupérer leur progression. Les échanges entre l'application et le serveur se dérouleraient comme illustré dans le diagramme suivant :
-```mermaid
-sequenceDiagram
-    actor P as Player
-    participant S as Server
-    participant D as Database
-    
-    note over P : Scan QR code
-    loop while game is not finished
-        P ->>+ S : getGameStep
-        S ->>+ D : getPlayerGameProgress
-        D -->>- S : playerGameProgress
-        alt can play gameStep
-            S ->>+ D : getGameStep
-            D -->>- S : gameStep
-            S -->> P : gameStep
-        else
-            S -->>- P : exception unautorized
-        end
-        note over P : Play game step
-        P ->>+ S : sendNewGameStepProgress
-        S ->>+ D : writeNewGameStepProgress
-        D -->>- S : ack
-        S -->>- P : ack
-    end
-```
+
+![Diagramme de séquence des communications avec les données centralisées](../assets/images/Sequence-centralized-data-communications.png)
