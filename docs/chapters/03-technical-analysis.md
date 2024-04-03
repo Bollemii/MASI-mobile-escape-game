@@ -31,41 +31,54 @@ Nous avons besoin d'une technologie qui soit compatible avec Android et IOS. Ell
 
 Pour diriger notre choix, nous allons établir une matrice de décision avec des critères de choix. Dans cette matrice, nous allons pondérer chaque critère avec une valeur de 1 à 3 selon son importance.
 
-| **Critère**                 | **Hybride**             | **Natif**                              | **PWA**                                            | **Web**                                            |
-|-----------------------------|-------------------------|----------------------------------------|----------------------------------------------------|----------------------------------------------------|
-| Multiplateforme (3)         | Oui                     | Non                                    | Androïd                                            | Oui                                                |
-| Fonctionnalités natives (3) | Oui                     | Oui                                    | Limité à celles prises en charge par le navigateur | Limité à celles prises en charge par le navigateur |
-| Connaissances requises (2)  | Langage / framework Web | Langage spécifique à chaque plateforme | Langage / framework Web                            | Langage / framework Web                            |
-| Maintenabilité (2)          | Facile                  | Pour chaque plateforme                 | Facile                                             | Facile                                             |
+| **Critère**                 | **Hybride/Cross-plateforme** | **Natif**                              | **PWA**                       | **Web**                       |
+|-----------------------------|-----------------------------|----------------------------------------|-------------------------------|-------------------------------|
+| Multiplateforme (3)         | Oui                         | Non                                    | Androïd                       | Oui                           |
+| Fonctionnalités natives (3) | Oui                         | Oui                                    | Limité par le navigateur [^1] | Limité par le navigateur [^1] |
+| Connaissances requises (2)  | Langage / framework Web     | Langage spécifique à chaque plateforme | Langage / framework Web       | Langage / framework Web       |
+| Maintenabilité (2)          | Facile                      | Pour chaque plateforme                 | Facile                        | Facile                        |
 
-Avec cette matrice, nous pouvons voir qu'avec le critère de multiplateforme, le développement natif est écarté. En effet, le développement natif ne permet pas de développer une application pour les deux systèmes d'exploitation en même temps. Ensuite, le critère de fonctionnalités natives écarte le développement web. En effet, le développement web ne permet pas d'accéder aux fonctionnalités natives du téléphone. Enfin, les PWA sont écartées car elles ont un accès plus limité aux fonctionnalités natives du téléphone que les applications hybrides. L'indice de performance pour les applications hybrides ne pose pas de problème pour notre application car elle n'est pas prévue pour être très gourmande en ressources.
+[^1]: Le navigateur prend en charge certaines fonctionnalités natives du téléphone. Les applications PWA et Web n'ont donc accès qu'à ces fonctionnalités.
 
-Maintenant que nous avons déterminé que le développement hybride est la meilleure solution pour notre application, nous allons choisir un framework pour le développement hybride. Nous avons le choix entre plusieurs frameworks : React Native, Flutter, Ionic, Xamarin, etc.
+Avec cette matrice, nous pouvons voir qu'avec le critère de multiplateforme, le développement natif doit écarté pour correspondre aux besoins de l'application. En effet, le développement natif ne permet pas de développer une application pour les deux systèmes d'exploitation en même temps. Ensuite, le critère de fonctionnalités natives écarte le développement web et PWA. En effet, ces développements n'ont qu'un accès restreint aux fonctionnalités natives du téléphone dépendamment du navigateur sur lequel l'application est exécutée. Le développement hybride/cross-plateforme est donc le choix le plus adapté pour notre application.
 
-Tout comme précédemment, pour diriger notre choix, nous allons établir une matrice de décision avec des critères de choix. Dans cette matrice, nous allons pondérer chaque critère avec une valeur de 1 à 3 selon son importance.
+Maintenant que nous avons déterminé que le développement hybride est la meilleure solution pour notre application, nous allons choisir un framework pour le développement. Nous avons le choix entre plusieurs frameworks : React Native, Flutter, Ionic, Xamarin, WinDev, etc.
 
-| **Critères**                 | **React Native**       | **Flutter**                            | **Ionic**                             |
-|------------------------------|------------------------|----------------------------------------|---------------------------------------|
-| Langage de programmation (3) | Javascript<br>React    | Dart                                   | Javascript<br>React ou Vue ou Angular |
-| Documentation (2)            | Complète avec exemples | Très complète avec vidéos explicatives | Complète avec exemples                |
-| Emulation (2)                | Expo Go                | Flutter doctor                         | Capacitor ou navigateur web           |
-| Performance (1)              | Moyenne                | Elevée                                 | Moyenne                               |
-| Communauté (1)               | Grande                 | En croissance                          | Grande                                |
+Généralement les frameworks hybrides et cross-plateforme sont équivalents. C'est pourquoi notre choix se base dans un premier temps sur le langage de programmation qu'ils utilisent. Pour ce choix de langage, nous allons prendre en compte les connaissances de l'équipe de développement. Voici les langages de programmation utilisés par les frameworks que nous comparons :
+
+| **Framework** | **Langage de programmation**    |
+|---------------|---------------------------------|
+| Flutter       | Dart                            |
+| Ionic         | Javascript - React/Angular/Vue3 |
+| Native Script | Javascript - React/Angular/Vue3 |
+| React Native  | Javascript - React              |
+| WinDev        | WLanguage                       |
+| Xamarin       | C#                              |
+
+L'équipe de développement a une connaissance avancée de Javascript et du framework web React. Elle a une connaissance de base de C# et elle n'a aucune connaissance de Dart et WLanguage. Les frameworks Flutter, Xamarin et WinDev sont donc écartés pour des raisons de connaissances de l'équipe de développement.
+
+La suite de notre décision va se base sur divers critères que nous allons pondérer pour établir une matrice de décision. Comme précédemment, la pondération des critères se fera de 1 à 3 selon leur importance. Voici les critères que nous allons prendre en compte :
+
+| **Critères**     | **Ionic**        | **Native Script** | **React Native** |
+|------------------|------------------|-------------------|------------------|
+| Emulation (2)    | Capacitor ou web | Stackblitz        | Expo Go          |
+| Popularité (1)   | 50.3k            | 23.6k             | 115k             |
+| Appréciation (3) | ++               | +                 | +++              |
+
+Pour la matrice de décision précédente, la popularité du framework correspond au nombre d'étoiles sur le dépôt Github du framework. L'appréciation correspond à la connaissance, l'expérience et l'appréciation de l'équipe de développement pour le framework.
 
 Le tableau qui suit vérifie que les fonctionnalités natives dont nous avons besoin sont prises en charge par les frameworks que nous comparons.
 
-| **Fonctionnalités natives (3)** | **React Native** | **Flutter** | **Ionic** |
-|---------------------------------|------------------|-------------|-----------|
-| Scan QR code                    | Oui              | Oui         | Oui       |
-| Lampe                           | Oui              | Oui         | Oui       |
-| Accéléromètre                   | Oui              | Oui         | Oui       |
-| Gyroscope                       | Oui              | Oui         | Oui       |
-| Géolocalisation                 | Oui              | Oui         | Oui       |
-| Compteur de pas                 | Oui              | Oui         | Oui       |
+| **Fonctionnalités natives (3)** | **Ionic** | **Native Script** | **React Native** |
+|---------------------------------|-----------|-------------------|------------------|
+| Scan QR code                    | Oui       | Oui               | Oui              |
+| Lampe                           | Oui       | Oui               | Oui              |
+| Accéléromètre                   | Oui       | Oui               | Oui              |
+| Gyroscope                       | Oui       | Oui               | Oui              |
+| Géolocalisation                 | Oui       | Oui               | Oui              |
+| Compteur de pas                 | Oui       | Oui               | Oui              |
 
-Avec cette matrice, Flutter parait être un framework parfait à utiliser. Cependant, l'équipe de développement n'a aucune connaissance de Dart, le langage de programmation de Flutter. Elle a une connaissance avancée de Javascript ainsi que des frameworks React, React Native et Ionic. Ces technologies seraient donc des choix plus adaptés pour l'équipe de développement.
-
-Concernant les fonctionnalités natives, Flutter n'est pas le plus simple à utiliser pour accéder aux fonctionnalités natives du téléphone. En effet, il faut écrire des portions de code natif pour y accéder. React Native et Ionic sont plus simples d'utilisation car ils proposent des plugins intégrés à leur moteur de rendu (Expo Go et Capacitor) pour accéder aux fonctionnalités natives du téléphone commme la géolocalisation ou le gyroscope.
+Avec ces critères, nous pouvons voir que les trois frameworks sont équivalents pour notre application. Cependant, l'équipe de développement a une préférence pour React Native. En effet, elle a une connaissance avancée de Javascript et du framework web React. Elle a également une connaissance de base de React Native. De plus, React Native est le framework le plus populaire des trois. C'est pourquoi nous allons choisir React Native pour le développement de notre application.
 
 ### Stockage de données
 Comme précisé précédemment, l'application a besoin de stocker les données de jeu pour assurer le suivi et le bon fonctionnement. Elle a besoin de retenir les données de jeu de la dernière tentative du joueur pour lui permettre de reprendre le jeu à l'étape où il s'est arrêté en scannant un QR code.
