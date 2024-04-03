@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "escape-game",
+    "slug": "escape-game",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/app-launcher.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/app-launcher.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/app-launcher.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/app-launcher.png"
+    }
+  }
+}
