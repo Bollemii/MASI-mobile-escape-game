@@ -8,7 +8,7 @@
    3. Il doit se diriger dans la cabine du capitaine.
 
 ## Contraintes
-1. L'application doit être utilisable sur les téléphones Android.
-   1. L'application doit pouvoir évoluée à terme vers les téléphones iOS.
+1. L'application doit être utilisable sur les appareils Android.
+   1. L'application doit pouvoir évoluer à terme vers les appareils iOS.
 2. L'application doit avoir accès aux fonctionnalités du téléphone.
 3. L'application doit pouvoir scanner des QR codes.
