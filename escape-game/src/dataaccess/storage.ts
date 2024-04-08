@@ -14,7 +14,6 @@ export const storage = {
     setItem: (key: string, value: string) => {
         try {
             AsyncStorage.setItem(key, value);
-            console.log(`Set ${key} in storage to ${value}`);
         } catch (error) {
             console.error(`Error while setting ${key} in storage`, error);
         }

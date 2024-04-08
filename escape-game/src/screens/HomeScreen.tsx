@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import { View, StyleSheet, Pressable, Text, TextInput } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
+import { global } from '../global';
 import { getSavedPseudo, setSavedPseudo } from '../dataaccess/playerData';
 
 export default function HomeScreen() {
+    const navigation = useNavigation();
     const [pseudo, setPseudo] = useState(getSavedPseudo() || 'Joueur');
 
     useEffect(() => {        
@@ -11,7 +14,7 @@ export default function HomeScreen() {
     }, [pseudo]);
 
     const onButtonPress = () => {
-        console.log('Start Game');
+        navigation.navigate(global.screens.qrScan);
     };
 
     return (
@@ -47,7 +50,7 @@ const styles = StyleSheet.create({
     button: {
         height: 200,
         width: 200,
-        backgroundColor: '#0D99FF',
+        backgroundColor: global.colors.blue,
         borderRadius: 100,
         justifyContent: 'center',
         alignItems: 'center',
