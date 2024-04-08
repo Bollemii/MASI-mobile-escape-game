@@ -30,7 +30,10 @@ Pour déployer l'application sur un téléphone physique, il est nécessaire d'a
 # Préparer l'environnement
 cd escape-game
 npm install
+```
 
+Pour exécuter l'application sur un téléphone physique, il faut que celui-ci soit connecté à l'ordinateur avec un câble USB et que le mode développeur soit activé sur le téléphone. Ensuite, il suffit d'exécuter les commandes suivantes.
+```bash
 # Vérifier que le téléphone est bien connecté
 adb devices
 
@@ -38,4 +41,9 @@ adb devices
 npm run android
 # iOS
 npm run ios
+```
+
+Pour exécuter l'application à l'aide de Expo Go, il suffit de lancer la commande suivante et de scanner le QR code avec l'application Expo Go.
+```bash
+npm start
 ```

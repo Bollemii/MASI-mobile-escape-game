@@ -21,7 +21,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/app-launcher.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.escapegame"
     },
     "web": {
       "favicon": "./assets/app-launcher.png"
