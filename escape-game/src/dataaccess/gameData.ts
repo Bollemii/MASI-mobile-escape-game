@@ -3,13 +3,17 @@ import Game from "../models/game";
 
 const GAME_KEY = "game";
 
-const getLastGame = () : Game | undefined => {
-    const game = storage.getItem(GAME_KEY);
-    return game ? JSON.parse(game) : undefined;
+const getLastGame = async () : Promise<Game|undefined> => {
+    return await storage.getItem(GAME_KEY).then((game) => {
+        if (game) {
+            return JSON.parse(game);
+        }
+        return undefined;
+    });
 };
 
-const setLastGame = (game: Game) => {
-    storage.setItem(GAME_KEY, JSON.stringify(game));
+const setLastGame = async (game: Game) => {
+    await storage.setItem(GAME_KEY, JSON.stringify(game));
 }
 
 export { getLastGame, setLastGame }

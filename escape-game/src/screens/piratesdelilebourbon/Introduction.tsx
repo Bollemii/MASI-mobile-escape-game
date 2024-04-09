@@ -10,6 +10,7 @@ export default function Introduction() {
     const navigation = useNavigation();
 
     function handlePress() {
+        // @ts-expect-error: navigation type is not well defined
         navigation.navigate(constants.screens.game[1]);
     }
 

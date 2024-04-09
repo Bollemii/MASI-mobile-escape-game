@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { View, StyleSheet, Pressable, Text, TextInput } from 'react-native';
+import { View, StyleSheet, Text, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { constants } from '../constants';
-import { getSavedPseudo, setSavedPseudo } from '../dataaccess/playerData';
 import Button from '../components/Button';
+import { getSavedPseudo, setSavedPseudo } from '../dataaccess/playerData';
 
 export default function HomeScreen() {
     const navigation = useNavigation();
@@ -17,6 +17,7 @@ export default function HomeScreen() {
     });
 
     const onButtonPress = () => {
+        // @ts-expect-error: navigation type is not well defined
         navigation.navigate(constants.screens.qrScan);
     };
     const onChangePseudo = (text: string) => {

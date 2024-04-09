@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet } from 'react-native';
+
 import { constants } from '../constants';
 
 interface SpeechPanelProps {

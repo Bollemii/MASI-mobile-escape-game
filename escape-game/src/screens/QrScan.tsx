@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { BarCodeScanningResult, Camera, PermissionStatus } from "expo-camera";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation } from "@react-navigation/native";
@@ -16,6 +16,7 @@ export default function QrScan() {
     
     if (!permission?.status || permission.status !== PermissionStatus.GRANTED) {
         Camera.requestCameraPermissionsAsync().then((permission) => {
+            // @ts-expect-error: permission type is managed by the Camera component
             setPermission(permission);
         });
     }
@@ -31,6 +32,7 @@ export default function QrScan() {
 
     const onBarCodeScanned = (result: BarCodeScanningResult) => {
         setScanned(true);
+        // @ts-expect-error: navigation type is not well defined
         navigation.navigate(result.data.split('\n')[0]);
     };
     const handleScan = () => {

@@ -1,5 +1,6 @@
-import { Pressable, StyleSheet, Text } from "react-native";
+import { StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+
 import { constants } from "../constants";
 import Button from "./Button";
 
@@ -12,6 +13,7 @@ export default function BackButton(props: BackButtonProps) {
     const navigation = useNavigation();
 
     const handlePress = () => {
+        // @ts-expect-error: navigation type is not well defined
         navigation.navigate(props.pageRedirect);
     }
 
