@@ -1,9 +1,18 @@
 import { StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
+import { constants } from "../../constants";
 import BackButton from "../../components/BackButton";
 import Button from "../../components/Button";
 
 
 export default function Introduction() {
+    const navigation = useNavigation();
+
+    function handlePress() {
+        navigation.navigate(constants.screens.game[1]);
+    }
+
     return (
         <View style={styles.container}>
             <BackButton text="Quitter" pageRedirect="Home"/>
@@ -16,7 +25,7 @@ export default function Introduction() {
                 <Text style={styles.text}>Que votre esprit d'aventure vous guide vers de nouveaux horizons !</Text>
                 <Text style={[styles.text, {marginTop: 50}]}>Avant de commencer votre périple à travers l'univers des pirates, veuillez noter que cette aventure nécessite l'utilisation des fonctionnalités spécifiques de votre téléphone.</Text>
             </View>
-            <Button text="Commencer" onPress={() => {}} buttonStyle={styles.button}/>
+            <Button text="Commencer" onPress={handlePress} buttonStyle={styles.button}/>
         </View>
     );
 }
