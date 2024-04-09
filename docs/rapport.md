@@ -51,5 +51,3 @@ babel-lang: french
 !include ./chapters/03-technical-analysis.md
 
 !include ./chapters/04-improvements.md
-
-# Bibliographie
