@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { constants } from "./constants";
 import HomeScreen from "./screens/HomeScreen";
 import QrScan from "./screens/QrScan";
+import Introduction from "./screens/piratesdelilebourbon/Introduction";
 import NotFound from "./screens/NotFound";
 
 const Stack = createNativeStackNavigator();
@@ -18,7 +19,7 @@ export default function Router() {
                 <Stack.Screen name={constants.screens.home} component={HomeScreen}/>
                 <Stack.Screen name={constants.screens.qrScan} component={QrScan}/>
                 <Stack.Group>
-                    <Stack.Screen name={constants.screens.game[0]} key={constants.screens.game[0]} component={NotFound}/>
+                    <Stack.Screen name={constants.screens.game[0]} key={constants.screens.game[0]} component={Introduction}/>
                     <Stack.Screen name={constants.screens.game[1]} key={constants.screens.game[1]} component={NotFound}/>
                     <Stack.Screen name={constants.screens.game[2]} key={constants.screens.game[2]} component={NotFound}/>
                     <Stack.Screen name="piratesdelilebourbon/3" key="piratesdelilebourbon/3" component={NotFound}/>
