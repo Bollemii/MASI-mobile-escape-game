@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { global } from "../global";
+import { constants } from "../constants";
+import Button from "./Button";
 
 interface BackButtonProps {
     text: string;
@@ -15,9 +16,7 @@ export default function BackButton(props: BackButtonProps) {
     }
 
     return (
-        <Pressable style={styles.container} onPress={handlePress}>
-            <Text style={styles.text}>&lsaquo; {props.text}</Text>
-        </Pressable>
+        <Button text={`< ${props.text}`} onPress={handlePress} buttonStyle={styles.container}/>
     );
 }
 
@@ -26,12 +25,9 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 40,
         left: 20,
-        backgroundColor: global.colors.blue,
+        backgroundColor: constants.colors.blue,
         paddingHorizontal: 10,
         paddingVertical: 5,
         borderRadius: 50,
     },
-    text: {
-        color: global.colors.white,
-    }
 });

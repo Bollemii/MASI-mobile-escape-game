@@ -3,12 +3,12 @@ import { storage } from "./storage";
 
 const PSEUDO_KEY = "pseudo";
 
-const getSavedPseudo = () : string | undefined => {
-    return storage.getItem(PSEUDO_KEY);
+const getSavedPseudo = async () : Promise<string|undefined> => {
+    return await storage.getItem(PSEUDO_KEY);
 };
 
-const setSavedPseudo = (pseudo: string) => {
-    storage.setItem(PSEUDO_KEY, pseudo);
+const setSavedPseudo = async (pseudo: string) => {
+    await storage.setItem(PSEUDO_KEY, pseudo);
 }
 
 export { getSavedPseudo, setSavedPseudo }

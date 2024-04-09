@@ -1,34 +1,44 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { View, StyleSheet, Pressable, Text, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { global } from '../global';
+import { constants } from '../constants';
 import { getSavedPseudo, setSavedPseudo } from '../dataaccess/playerData';
+import Button from '../components/Button';
 
 export default function HomeScreen() {
     const navigation = useNavigation();
-    const [pseudo, setPseudo] = useState(getSavedPseudo() || 'Joueur');
+    const [pseudo, setPseudo] = useState('Joueur');
 
-    useEffect(() => {        
-        setSavedPseudo(pseudo);
-    }, [pseudo]);
+    getSavedPseudo().then((savedPseudo) => {
+        if (savedPseudo) {
+            setPseudo(savedPseudo);
+        }
+    });
 
     const onButtonPress = () => {
-        navigation.navigate(global.screens.qrScan);
+        navigation.navigate(constants.screens.qrScan);
     };
+    const onChangePseudo = (text: string) => {
+        setPseudo(text);
+        setSavedPseudo(text);
+    }
 
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Escape Museum</Text>
-            <Pressable onPress={onButtonPress} style={styles.button}>
-                <Text style={styles.textButton}>Commencer une aventure</Text>
-            </Pressable>
+            <Button 
+                onPress={onButtonPress} 
+                text="Commencer une aventure" 
+                buttonStyle={styles.button} 
+                textStyle={styles.textButton}
+            />
             <View style={styles.inputContainer}>
                 <Text style={styles.textInput}>Pseudo du joueur :</Text>
                 <TextInput
                     placeholder="Entrez votre pseudo"
                     value={pseudo}
-                    onChangeText={setPseudo}
+                    onChangeText={onChangePseudo}
                     style={styles.input}
                 />
             </View>
@@ -50,13 +60,12 @@ const styles = StyleSheet.create({
     button: {
         height: 200,
         width: 200,
-        backgroundColor: global.colors.blue,
+        backgroundColor: constants.colors.blue,
         borderRadius: 100,
         justifyContent: 'center',
         alignItems: 'center',
     },
     textButton: {
-        color: 'white',
         fontSize: 20,
         textAlign: 'center',
     },
