@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "escape-game",
+    "slug": "escape-game",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/app-launcher.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/images/app-launcher.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/app-launcher.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.bollepire.escapegame"
+    },
+    "web": {
+      "favicon": "./assets/images/app-launcher.png"
+    }
+  }
+}
