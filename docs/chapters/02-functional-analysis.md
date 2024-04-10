@@ -21,21 +21,62 @@ Enfin, le dernier diagramme de cette partie présente le fonctionnement d'une é
 ![Diagramme d'activité d'une épreuve](../assets/images/diagrams/Activity-step.png){ width=50% }
 
 ## Maquettes d'écrans
+1. Icône de l'application
+
+![Icône de l'application](../assets/images/mockups/App-launcher.png){ width=50% }
+
+L'icône de l'application est l'image qui apparaît sur l'écran d'accueil du téléphone. Elle permet de lancer l'application en cliquant dessus.
+
 1. Page d'accueil
 
-2. Page de scan de QR code
+![Maquette de l'écran d'accueil](../assets/images/mockups/Home-page.jpg){ width=50% }
 
-3. Page d'introduction au jeu
+L'écran d'accueil est la première page qui apparaît lorsque l'application est lancée. Elle permet à l'utilisateur de choisir un pseudo pour jouer et de commencer le jeu.
 
-4. Première épreuve
+1. Page de scan de QR code
 
-5. Deuxième épreuve
+![Maquette de l'écran de scan de QR code](../assets/images/mockups/QR-scan.jpg)
 
-6. Troisième épreuve
+L'écran de scan de QR code est lancée après la page d'accueil. Elle permet à l'utilisateur de scanner un QR code pour commencer un jeu ou une éprouve en particulier. La maquette de cet écran montre un QR code à scanner, ce n'est qu'une représentation visuelle. Dans l'application, la page aura la caméra en plein écran avec un bouton dans le bas de l'écran pour scanner le QR code.
 
-### Composants nécessaires
-```md
-- Lister composants nécessaire (bouton, texte, image...) (sur base des maquettes)
-```
+1. Page d'introduction au jeu
 
+![Maquette de l'écran d'introduction au jeu](../assets/images/mockups/Introduction.jpg){ width=50% }
 
+Cette page d'introduction a pour objectif de présenter le jeu et son contexte au joueur. Elle est lancée après le scan du QR code de début du jeu.
+
+1. Première épreuve
+
+![Maquette de l'écran de la première épreuve](../assets/images/mockups/Step-1.jpg)
+
+La première épreuve se passe dans la cale du bateau. Les joueurs doivent illuminer la cale pour pouvoir en sortir. C'est pour cela que la première partie, à gauche, de la maquette montre la cale dans le noir. Ensuite, après que le joueur ait allumé une lumière, la cale est illuminée et le joueur peut sortir. C'est ce que montre la deuxième partie, à droite, de la maquette.
+
+1. Deuxième épreuve
+
+![Maquette de l'écran de la deuxième épreuve](../assets/images/mockups/Step-2.jpg)
+
+La deuxième épreuve se passe sur le pont du bateau. Les joueurs sont accueillis par le capitaine du bateau qui leur demande de l'aider à charger les canons pour attaquer un bateau ennemi. Les joueurs doivent charger le canon qui se trouve devant-eux. Après cela, ils vivent le combat. Cependant, pour des raison d'images violentes, ils verront un joli chat pirate à la place d'un combat. C'est ce que montre la deuxième partie de la maquette de l'écran de la deuxième épreuve. 
+
+1. Troisième épreuve
+
+![Maquette de l'écran de la troisième épreuve](../assets/images/mockups/Step-3.jpg)
+
+Pour la troisième épreuve, nous retrouvons le capitaine qui félicite et remercie le joueur pour son aide précieuse. Il lui propose de se rendre dans sa cabine pour fêter la victoire. Quand le joueur y arrive, le capitaine lui offre un verre de rhum.
+
+### Composants graphiques
+Pour réaliser ces maquettes, plusieurs éléments peuvent être rééutiliser. Voici une liste des composants nécessaires pour réaliser les maquettes d'écrans de l'application :
+- Un bouton d'action
+- Un bouton de retour
+- Un panel de texte qui contiendra les dialogues des personnages
+
+Ces composants et les écrans utiliserons des éléments graphiques tels que :
+- Du texte
+- Des images
+- Des boutons
+- Un champ d'entrée pour le pseudo
+
+Enfin, les maquettes utilisent un code couleur pour les éléments graphiques :
+- Les éléments en bleu (boutons et panel) utilisent la couleur `#1E90FF`
+  - les boutons deviennent en bleu foncé à l'appui : `#1F5D99`
+  - Les textes disposé sur un fond bleu sont en blanc : `#FFFFFF`
+- Les textes sur fond blanc sont en noir : `#000000`
