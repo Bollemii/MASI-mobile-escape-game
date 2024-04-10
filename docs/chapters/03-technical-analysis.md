@@ -34,7 +34,7 @@ Pour diriger notre choix, nous allons établir une matrice de décision avec des
 | **Critère**                 | **Hybride/Cross-plateforme** | **Natif**                              | **PWA**                       | **Web**                       |
 |-----------------------------|-----------------------------|----------------------------------------|-------------------------------|-------------------------------|
 | Multiplateforme (3)         | Oui                         | Non                                    | Androïd                       | Oui                           |
-| Fonctionnalités natives (3) | Oui                         | Oui                                    | Limité par le navigateur [^1] | Limité par le navigateur [^1] |
+| Fonctionnalités natives (3) | Oui                         | Oui                                    | Limité par le navigateur [^1] | Limité par le navigateur   |
 | Connaissances requises (2)  | Langage / framework Web     | Langage spécifique à chaque plateforme | Langage / framework Web       | Langage / framework Web       |
 | Maintenabilité (2)          | Facile                      | Pour chaque plateforme                 | Facile                        | Facile                        |
 
@@ -80,6 +80,10 @@ Le tableau qui suit vérifie que les fonctionnalités natives dont nous avons be
 
 Avec ces critères, nous pouvons voir que les trois frameworks sont équivalents pour notre application. Cependant, l'équipe de développement a une préférence pour React Native. En effet, elle a une connaissance avancée de Javascript et du framework web React. Elle a également une connaissance de base de React Native. De plus, React Native est le framework le plus populaire des trois. C'est pourquoi nous allons choisir React Native pour le développement de notre application.
 
+Comme montré dans la matrice de décision des frameworks Javascript, React Native utilise Expo Go pour l'émulation. Expo Go est une application mobile qui permet de tester les applications React Native sur un téléphone mobile. Elle permet de tester les fonctionnalités natives du téléphone comme la caméra, la géolocalisation, etc. Plus généralement, Expo Go fait partie de la suite d'outils Expo. Expo propose un ensemble de modules permettant d'utiliser les fonctionnalités natives du téléphone. Nous allons donc utiliser Expo pour le développement de notre application.
+
+Enfin, React Native peut être utilisé avec Javascript ou Typescript. Nous allons utiliser Typescript pour le développement car il permet de déviter certaines erreurs de programmation et d'offrir une meilleure lisibilité du code.
+
 ### Stockage de données
 Comme précisé précédemment, l'application a besoin de stocker les données de jeu pour assurer le suivi et le bon fonctionnement. Elle a besoin de retenir les données de jeu de la dernière tentative du joueur pour lui permettre de reprendre le jeu à l'étape où il s'est arrêté en scannant un QR code.
 
@@ -93,32 +97,69 @@ Les données à retenir sont les suivantes :
 - la dernière épreuve réussie
 - le pseudo du joueur
 
-Elles seront stockées dans un fichier JSON pour avoir une structure et une manipulation aisée dans l'application.  
+Elles seront stockées dans un système de stockage de données local sur le téléphone du joueur sous forme de clé-valeur. Comme nous avons choisi React Native pour le développement de l'application (voir la partie précédente), nous allons utiliser un système de stockage proposé par React Native. Pour cela, nous allons utiliser le module [AsyncStorage](https://docs.expo.dev/versions/latest/sdk/async-storage/) de React Native. Comme expliqué plus tôt, ce stockage se fait sous forme de clé-valeur. Cela veut dire que les données seront stockées avec une clé (une sorte d'étiquette) pour les retrouver facilement.
 
-Le pseudo du joueur sera stocké dans un fichier à part car il peut être utilisé pour plusieurs parties. Il sera enregistré dans un fichier JSON également.  
-Voici un exemple de structure de fichier JSON pour les données de jeu.  
-Un premier fichier nommé `gameData.json` :
+Ainsi, nous allons stocker les données en deux parties : les données de jeu et les données du joueur. Les données de jeu seront stockées sous la clé `game` et les données du joueur, son pseudo, sous la clé `pseudo`.
+
+Ainsi, nous pourrions représenter les données stockées comme suit :
+
 ```json
 {
-  "start": "2021-05-01T14:00:00",
-  "end": "2021-05-01T14:30:00",
-  "lastStep": 2
+  "game": {
+    "start": "2022-01-01T00:00:00",
+    "end": "2022-01-01T00:00:00",
+    "lastStep": 1
+  },
+  "pseudo": "Joueur"
 }
 ```
-
-Un second fichier nommé `playerData.json` :
-```json
-{
-  "pseudo": "JohnDoe"
-}
-```	
 
 ## Fonctionnement technique
-```md
-- Schémas séquence et activité spécifiques
-```
+### Scanneur de QR code
+Pour pouvoir scanner les QR codes, nous allons utiliser le module [Camera](https://docs.expo.dev/versions/latest/sdk/camera/) de React Native. Ce module permet d'accéder à la caméra du téléphone pour prendre des photos et des vidéos. Il permet également de scanner des QR codes.
+
+Pour réaliser la redirection vers une épreuve en fonction du QR code scanné, nous allons inscrire dans le QR code le chemin URL vers l'écran de l'épreuve. Ainsi, lorsque le joueur scanne le QR code, l'application récupère le chemin URL et redirige le joueur vers l'écran de l'épreuve correspondante.
+
+Les URL des épreuves seront construits de deux parties : le nom de l'exposition et le numéro de l'épreuve. Autrement dit, l'URL sera de la forme `/nom-de-lexposition/numero-de-lepreuve`. Par exemple, le joueur scanne le QR code de l'épreuve 1 de l'exposition "Le trésor de la Licorne", l'application récupère le chemin URL `/letresordelalicorne/1` et redirige le joueur vers l'écran de l'épreuve 1 de l'exposition "Le trésor de la Licorne".
+
+Enfin, nous allons différencier le commencement du jeu à la première épreuve. Ainsi, le QR code de début lancera l'écran d'introduction du jeu avec sa description alors que celui de la première épreuve lancera l'écran de l'épreuve. Pour différencier cela, l'identifiant de l'épreuve 0 sera réservé pour le commencement du jeu.
+
+### Illumination de la cale du bateau
+Dans la première épreuve, nous allons avoir besoin de la lampe torche pour éclairer la cale du bateau. Plus précisément, l'application doit scruter l'état de la lampe torche pour savoir si elle est allumée ou éteinte. Ainsi, l'utilisateur doit allumer la lampe torche depuis les fonctionnalités natives de son téléphone pour éclairer la cale du bateau.
+
+Un problème se pose : React Native ne propose pas de module pour écouter l'état de la lampe torche. Il existe des plugins pour manipuler la lampe torche, mais aucun pour écouter son état. 
+
+### Chargement des canons
+Dans la deuxième épreuve, le joueur doit simuler le chargement d'un canon. Pour cela, il doit réaliser le geste de tasser la poudre dans la canon à l'aide d'un outil. Le canon étant en position horizontal, le joueur doit réaliser un mouvement horizontal de va et viens pour tasser la poudre. Pour simuler ce mouvement, nous allons utiliser l'accéléromètre et l'orientation du téléphone. L'accéléromètre nous permettra de détecter les mouvements de va et viens du téléphone et l'orientation nous permettra de détecter dans quelle position se trouve le téléphone. Ainsi, le téléphone devra être en position horizontale pour simuler l'outil et l'accéléromètre devra détecter un mouvement de va et viens horizontal pour tasser la poudre. Pour ce dernier point, nous pourrons détecter que le mouvement est horizontal car l'accéléromètre se base sur les 3 axes de l'espace. Ainsi, un mouvement horizontal se traduit par une variation de l'accélération sur l'axe x. Pour réaliser cela, nous utiliserons le module [Device motion](https://docs.expo.dev/versions/latest/sdk/devicemotion/) de React Native qui inclus l'accéléromètre, l'orientation et d'autres fonctionnalités de mouvement du téléphone.
+
+### Déplacement vers la cabine du capitaine
+Pour simuler le déplacement vers la cabine du capitaine, nous avons deux choix possibles : utiliser la géolocalisation ou utiliser le podomètre
+
+La géolocalisation permet de connaître la position du téléphone dans l'espace. Cette solution permet de demander au joueur de se rendre à un point précis, par exemple, à 30 mètres au nord de sa position actuelle. Cependant, elle n'est pas précise suffisamment pour notre cas d'utilisation. En effet, la géolocalisation utilise le signal GPS qui a une précision théorique de 30 mètres. En pratique, nous utiliserions le module [Location](https://docs.expo.dev/versions/latest/sdk/location/) de React Native mais comme c'est précisé dans le point sur la précision de la géolocalisation ([documentation](https://docs.expo.dev/versions/latest/sdk/location/#accuracy)), la précision va de 3 kilomètres à une dizaine de mètres. Cette précision est insuffisante pour repérer un point précis dans un bâtiment.
+
+L'autre solution est d'utiliser le podomètre. Il permet de compter les pas du joueur. Cette solution est plus précise au niveau de la distance parcourue par le joueur. Cependant, elle ne permet pas de connaitre sa direction, c'est-à-dire qu'on ne peut pas demander au joueur de se rendre à un point précis. Ce n'est pas un problème pour notre cas d'utilisation car nous pouvons demander au joueur de se déplacer de 30 pas. Pour réaliser cette épreuve, nous allons utiliser le module [Pedometer](https://docs.expo.dev/versions/latest/sdk/pedometer/) de React Native. Ce module permet de compter les pas du joueur.
 
 ## Structure de l'application
-```md
-- Schéma de l'architecture logicielle de l'application
+La structure de l'application est divisée en plusieurs parties pour faciliter le développement et la maintenance de l'application. Nous allons diviser l'application en deux grandes parties : le dossier `src` et le dossier `assets`. Le premier contiendra tout le code source de l'application et le second contiendra les ressources (images, QR codes, etc.) utilisés dans l'application.
+
+Le dossier `assets` se divise en deux parties : `images` et `qrcodes`. Le premier contiendra toutes les images utilisées dans l'application et le second contiendra tous les QR codes des épreuves.
+
+Le dossier `src` se divise en plusieurs parties : `screens`, `components`,`dataaccess` et `models`. Le premier contiendra les différents écrans de l'application et le second contiendra les composants réutilisables utilisés dans les écrans comme les boutons. Le troisième contiendra les accès aux données de l'application, c'est là que nous enregistrerons les données de jeu et du joueur, et le dernier contiendra les modèles de données utilisés dans l'application.
+
+Des fichiers de gestion générale de l'application seront également présents à la racine du dossier `src`. Par exemple, le fichier de navigation de l'application sera à la racine du dossier `src` ou encore un fichier contenant des constantes (des couleurs par exemple) utilisées dans l'application.
+
+Ainsi, la structure de l'application sera la suivante :
+
+```
+.
+├── assets
+│   ├── images
+│   └── qrcodes
+└── src
+    ├── components
+    ├── dataaccess
+    ├── models
+    ├── screens
+    ├── constants.ts
+    └── Router.tsx
 ```
