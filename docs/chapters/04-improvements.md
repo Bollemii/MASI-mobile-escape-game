@@ -11,7 +11,7 @@ Ce changement dans le stockage des données nécessiterait de revoir la manière
 
 Une première ébauche de structure de données pour une base de données relationnelle (SQL) pourrait être la suivante :
 
-![Ebauche structure de données incluant de nouvelles expositions](../assets/images/Draft-database-include-new-games.png)
+![Ebauche structure de données incluant de nouvelles expositions](../assets/images/diagrams/Draft-database-include-new-games.png)
 
 Cette ébauche est non-contractuelle et doit être affinée pour correspondre aux besoins de l'application. Elle permet d'avoir une première idée de la structure de données nécessaire pour gérer plusieurs jeux d'évasion. Dans cette structure, on peut voir les tables `EscapeGame`, `GameStep` et `Museum` qui permettent de gérer les jeux d'évasion, les étapes de jeu et les musées respectivement. Ensemble, elles permettent de retenir les données nécessaires pour gérer plusieurs jeux d'évasion. Ensuite, les tables `Player` et `GameStepProgress` permettent de retenir les données de progression des joueurs pour chaque jeu d'évasion.
 
@@ -26,4 +26,4 @@ Pour faire un lien avec la fonctionnalité d'inclure de nouveaux jeux d'évasion
 
 Ainsi, les appareils des joueurs communiqueraient avec le serveur pour récupérer les données de jeu (fonctionnement étapes etc) et pour enregistrer et récupérer leur progression. Les échanges entre l'application et le serveur se dérouleraient comme illustré dans le diagramme suivant :
 
-![Diagramme de séquence des communications avec les données centralisées](../assets/images/Sequence-centralized-data-communications.png)
+![Diagramme de séquence des communications avec les données centralisées](../assets/images/diagrams/Sequence-centralized-data-communications.png)
