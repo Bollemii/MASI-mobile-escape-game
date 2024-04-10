@@ -2,7 +2,7 @@
 ## Cas d'utilisation
 Dans cette partie, nous allons décrire les cas d'utilisation de l'application. Cela nous permettra de comprendre les fonctionnalités que l'application doit offrir aux différents utilisateurs et acteurs.
 
-![Diagramme de cas d'utilisation](../assets/images/diagrams/Usecase.png){ width=50% }
+![Diagramme de cas d'utilisation](../assets/images/diagrams/Usecase.png){ width=70% }
 
 Dans le diagramme ci-dessus, nous pouvons observer qu'il n'y a qu'un acteur qui correspond aux utilisateurs de l'application, ceux qui joueront à l'escape game. Ces utilisateurs pourront participer au jeu d'évasion, cela nécessite (inclus) de scanner un QR code au début du jeu. Ils pourront également participer directement aux 3 étapes du jeu en scannant un QR code pour l'étape désirée mais il faut impérativement qu'ils aient réussi l'étape précédente.  
 Les utilisateurs pourront aussi modifier leur profil en changeant leur pseudo.
@@ -20,6 +20,8 @@ Enfin, le dernier diagramme de cette partie présente le fonctionnement d'une é
 
 ![Diagramme d'activité d'une épreuve](../assets/images/diagrams/Activity-step.png){ width=50% }
 
+\newpage
+
 ## Maquettes d'écrans
 1. Icône de l'application
 
@@ -27,37 +29,49 @@ Enfin, le dernier diagramme de cette partie présente le fonctionnement d'une é
 
 L'icône de l'application est l'image qui apparaît sur l'écran d'accueil du téléphone. Elle permet de lancer l'application en cliquant dessus.
 
-1. Page d'accueil
+\newpage
+
+2. Page d'accueil
 
 ![Maquette de l'écran d'accueil](../assets/images/mockups/Home-page.jpg){ width=50% }
 
 L'écran d'accueil est la première page qui apparaît lorsque l'application est lancée. Elle permet à l'utilisateur de choisir un pseudo pour jouer et de commencer le jeu.
 
-1. Page de scan de QR code
+\newpage
+
+3. Page de scan de QR code
 
 ![Maquette de l'écran de scan de QR code](../assets/images/mockups/QR-scan.jpg)
 
 L'écran de scan de QR code est lancée après la page d'accueil. Elle permet à l'utilisateur de scanner un QR code pour commencer un jeu ou une éprouve en particulier. La maquette de cet écran montre un QR code à scanner, ce n'est qu'une représentation visuelle. Dans l'application, la page aura la caméra en plein écran avec un bouton dans le bas de l'écran pour scanner le QR code.
 
-1. Page d'introduction au jeu
+\newpage
+
+4. Page d'introduction au jeu
 
 ![Maquette de l'écran d'introduction au jeu](../assets/images/mockups/Introduction.jpg){ width=50% }
 
 Cette page d'introduction a pour objectif de présenter le jeu et son contexte au joueur. Elle est lancée après le scan du QR code de début du jeu.
 
-1. Première épreuve
+\newpage
+
+5. Première épreuve
 
 ![Maquette de l'écran de la première épreuve](../assets/images/mockups/Step-1.jpg)
 
 La première épreuve se passe dans la cale du bateau. Les joueurs doivent illuminer la cale pour pouvoir en sortir. C'est pour cela que la première partie, à gauche, de la maquette montre la cale dans le noir. Ensuite, après que le joueur ait allumé une lumière, la cale est illuminée et le joueur peut sortir. C'est ce que montre la deuxième partie, à droite, de la maquette.
 
-1. Deuxième épreuve
+\newpage
+
+6. Deuxième épreuve
 
 ![Maquette de l'écran de la deuxième épreuve](../assets/images/mockups/Step-2.jpg)
 
 La deuxième épreuve se passe sur le pont du bateau. Les joueurs sont accueillis par le capitaine du bateau qui leur demande de l'aider à charger les canons pour attaquer un bateau ennemi. Les joueurs doivent charger le canon qui se trouve devant-eux. Après cela, ils vivent le combat. Cependant, pour des raison d'images violentes, ils verront un joli chat pirate à la place d'un combat. C'est ce que montre la deuxième partie de la maquette de l'écran de la deuxième épreuve. 
 
-1. Troisième épreuve
+\newpage
+
+7. Troisième épreuve
 
 ![Maquette de l'écran de la troisième épreuve](../assets/images/mockups/Step-3.jpg)
 
@@ -65,17 +79,20 @@ Pour la troisième épreuve, nous retrouvons le capitaine qui félicite et remer
 
 ### Composants graphiques
 Pour réaliser ces maquettes, plusieurs éléments peuvent être rééutiliser. Voici une liste des composants nécessaires pour réaliser les maquettes d'écrans de l'application :
+
 - Un bouton d'action
 - Un bouton de retour
 - Un panel de texte qui contiendra les dialogues des personnages
 
 Ces composants et les écrans utiliserons des éléments graphiques tels que :
+
 - Du texte
 - Des images
 - Des boutons
 - Un champ d'entrée pour le pseudo
 
 Enfin, les maquettes utilisent un code couleur pour les éléments graphiques :
+
 - Les éléments en bleu (boutons et panel) utilisent la couleur `#1E90FF`
   - les boutons deviennent en bleu foncé à l'appui : `#1F5D99`
   - Les textes disposé sur un fond bleu sont en blanc : `#FFFFFF`

@@ -5,10 +5,10 @@
 L'application a besoin de stocker les données de jeu pour assurer le suivi et le bon fonctionnement. En effet, l'application a besoin de retenir les étapes réussies par le joueur pour lui permettre de reprendre le jeu à l'étape où il s'est arrêté en scannant un QR code.  
 Les données de jeu sont les suivantes :
 
-- la date et l'heure de début de jeu  
-- la date et l'heure de fin de jeu (si le jeu est terminé)  
-- la dernière épreuve réussie  
-- le pseudo du joueur  
+- la date et l'heure de début de jeu
+- la date et l'heure de fin de jeu (si le jeu est terminé)
+- la dernière épreuve réussie
+- le pseudo du joueur
 
 L'application n'a pas de nécessité de retenir d'autres données dans son état actuel et n'a pas besoin de retenir toutes les tentatives de jeu du joueur. Pour son fonctionnement, elle n'a besoin que de la dernière tentative pour savoir si le joueur a réussi ou non le jeu et pour lui permettre de reprendre le jeu à l'étape où il s'est arrêté.  
 
@@ -16,10 +16,10 @@ L'application n'a pas de nécessité de retenir d'autres données dans son état
 L'application se base sur des fonctionnalités natives du téléphone pour offrir une expérience immersive.  
 Elle a besoin de :
 
-- la caméra pour scanner les QR codes  
-- la lampe torche pour éclairer la cale du bateau (épreuve 1)  
-- l'accéléromètre et le gyroscope pour simuler le chargement des canons (épreuve 2)  
-- la géolocalisation pour simuler le déplacement vers la cabine du capitaine (épreuve 3)  
+- la caméra pour scanner les QR codes
+- la lampe torche pour éclairer la cale du bateau (épreuve 1)
+- l'accéléromètre et le gyroscope pour simuler le chargement des canons (épreuve 2)
+- la géolocalisation pour simuler le déplacement vers la cabine du capitaine (épreuve 3)
 
 **Evolutivité / portabilité**  
 L'application doit être portable sur les deux systèmes d'exploitation mobiles les plus utilisés : Android et iOS.
@@ -144,7 +144,7 @@ La structure de l'application est divisée en plusieurs parties pour faciliter l
 
 Le dossier `assets` se divise en deux parties : `images` et `qrcodes`. Le premier contiendra toutes les images utilisées dans l'application et le second contiendra tous les QR codes des épreuves.
 
-Le dossier `src` se divise en plusieurs parties : `screens`, `components`,`dataaccess` et `models`. Le premier contiendra les différents écrans de l'application et le second contiendra les composants réutilisables utilisés dans les écrans comme les boutons. Le troisième contiendra les accès aux données de l'application, c'est là que nous enregistrerons les données de jeu et du joueur, et le dernier contiendra les modèles de données utilisés dans l'application.
+Le dossier `src` se divise en plusieurs parties : `screens`, `components`, `dataaccess` et `models`. Le premier contiendra les différents écrans de l'application et le second contiendra les composants réutilisables utilisés dans les écrans comme les boutons. Le troisième contiendra les accès aux données de l'application, c'est là que nous enregistrerons les données de jeu et du joueur, et le dernier contiendra les modèles de données utilisés dans l'application.
 
 Des fichiers de gestion générale de l'application seront également présents à la racine du dossier `src`. Par exemple, le fichier de navigation de l'application sera à la racine du dossier `src` ou encore un fichier contenant des constantes (des couleurs par exemple) utilisées dans l'application.
 
