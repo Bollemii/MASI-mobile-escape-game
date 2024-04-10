@@ -124,16 +124,20 @@ Les URL des épreuves seront construits de deux parties : le nom de l'exposition
 
 Enfin, nous allons différencier le commencement du jeu à la première épreuve. Ainsi, le QR code de début lancera l'écran d'introduction du jeu avec sa description alors que celui de la première épreuve lancera l'écran de l'épreuve. Pour différencier cela, l'identifiant de l'épreuve 0 sera réservé pour le commencement du jeu.
 
-### Lampe torche
+### Illumination de la cale du bateau
 Dans la première épreuve, nous allons avoir besoin de la lampe torche pour éclairer la cale du bateau. Plus précisément, l'application doit scruter l'état de la lampe torche pour savoir si elle est allumée ou éteinte. Ainsi, l'utilisateur doit allumer la lampe torche depuis les fonctionnalités natives de son téléphone pour éclairer la cale du bateau.
 
 Un problème se pose : React Native ne propose pas de module pour écouter l'état de la lampe torche. Il existe des plugins pour manipuler la lampe torche, mais aucun pour écouter son état. 
 
-### Accéléromètre et gyroscope
+### Chargement des canons
+Dans la deuxième épreuve, le joueur doit simuler le chargement d'un canon. Pour cela, il doit réaliser le geste de tasser la poudre dans la canon à l'aide d'un outil. Le canon étant en position horizontal, le joueur doit réaliser un mouvement horizontal de va et viens pour tasser la poudre. Pour simuler ce mouvement, nous allons utiliser l'accéléromètre et l'orientation du téléphone. L'accéléromètre nous permettra de détecter les mouvements de va et viens du téléphone et l'orientation nous permettra de détecter dans quelle position se trouve le téléphone. Ainsi, le téléphone devra être en position horizontale pour simuler l'outil et l'accéléromètre devra détecter un mouvement de va et viens horizontal pour tasser la poudre. Pour ce dernier point, nous pourrons détecter que le mouvement est horizontal car l'accéléromètre se base sur les 3 axes de l'espace. Ainsi, un mouvement horizontal se traduit par une variation de l'accélération sur l'axe x. Pour réaliser cela, nous utiliserons le module [Device motion](https://docs.expo.dev/versions/latest/sdk/devicemotion/) de React Native qui inclus l'accéléromètre, l'orientation et d'autres fonctionnalités de mouvement du téléphone.
 
+### Déplacement vers la cabine du capitaine
+Pour simuler le déplacement vers la cabine du capitaine, nous avons deux choix possibles : utiliser la géolocalisation ou utiliser le podomètre
 
-### Géolocalisation
+La géolocalisation permet de connaître la position du téléphone dans l'espace. Cette solution permet de demander au joueur de se rendre à un point précis, par exemple, à 30 mètres au nord de sa position actuelle. Cependant, elle n'est pas précise suffisamment pour notre cas d'utilisation. En effet, la géolocalisation utilise le signal GPS qui a une précision théorique de 30 mètres. En pratique, nous utiliserions le module [Location](https://docs.expo.dev/versions/latest/sdk/location/) de React Native mais comme c'est précisé dans le point sur la précision de la géolocalisation ([documentation](https://docs.expo.dev/versions/latest/sdk/location/#accuracy)), la précision va de 3 kilomètres à une dizaine de mètres. Cette précision est insuffisante pour repérer un point précis dans un bâtiment.
 
+L'autre solution est d'utiliser le podomètre. Il permet de compter les pas du joueur. Cette solution est plus précise au niveau de la distance parcourue par le joueur. Cependant, elle ne permet pas de connaitre sa direction, c'est-à-dire qu'on ne peut pas demander au joueur de se rendre à un point précis. Ce n'est pas un problème pour notre cas d'utilisation car nous pouvons demander au joueur de se déplacer de 30 pas. Pour réaliser cette épreuve, nous allons utiliser le module [Pedometer](https://docs.expo.dev/versions/latest/sdk/pedometer/) de React Native. Ce module permet de compter les pas du joueur.
 
 ## Structure de l'application
 La structure de l'application est divisée en plusieurs parties pour faciliter le développement et la maintenance de l'application. Nous allons diviser l'application en deux grandes parties : le dossier `src` et le dossier `assets`. Le premier contiendra tout le code source de l'application et le second contiendra les ressources (images, QR codes, etc.) utilisés dans l'application.
