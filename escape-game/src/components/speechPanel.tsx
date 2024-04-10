@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet } from 'react-native';
+
 import { constants } from '../constants';
 
 interface SpeechPanelProps {
@@ -22,16 +23,22 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         padding: 5,
+        display: 'flex',
+        justifyContent: 'center',
     },
     speaker: {
         color: constants.colors.white,
-        fontSize: 15,
+        fontSize: 20,
         fontWeight: 'bold',
+        textTransform: 'capitalize',
+        position: 'absolute',
+        top: 10,
+        left: 10,
     },
     text: {
-        marginTop: 5,
+        marginVertical: 'auto',
         color: constants.colors.white,
-        fontSize: 13,
+        fontSize: 14,
         textAlign: 'center',
     },
 });

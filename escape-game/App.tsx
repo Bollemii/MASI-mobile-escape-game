@@ -1,6 +1,7 @@
 import { Dimensions } from 'react-native';
-import Router from './src/Router';
+
 import { constants } from './src/constants';
+import Router from './src/Router';
 
 const possibleRatio = ["16:9", "4:3", "1:1"];
 

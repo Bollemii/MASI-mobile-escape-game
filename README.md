@@ -46,4 +46,8 @@ npm run ios
 Pour exécuter l'application à l'aide de Expo Go, il suffit de lancer la commande suivante et de scanner le QR code avec l'application Expo Go.
 ```bash
 npm start
+
+# Si ça ne fonctionne pas, il est possible de lancer l'application avec Expo Go en utilisant le tunnel
+# A l'Hénallux, c'est nécessaire
+npm start --tunnel
 ```
