@@ -4,7 +4,7 @@ import { BarCodeScanningResult, Camera } from "expo-camera";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation } from "@react-navigation/native";
 
-import { constants } from "../constants";
+import { constants, isRouteHandled } from "../constants";
 import BackButton from "../components/BackButton";
 import Button from "../components/Button";
 
@@ -15,7 +15,7 @@ export default function QrScan() {
     
     if (!permission?.granted) {
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, {marginHorizontal: 20}]}>
                 <BackButton text="Retour" pageRedirect="Home"/>
                 <Text style={{marginBottom: 30}}>"Veuillez autoriser l'accès à la caméra pour continuer"</Text>
                 <Button onPress={requestPermission} text="Autoriser la caméra"/>
@@ -25,8 +25,15 @@ export default function QrScan() {
 
     const onBarCodeScanned = (result: BarCodeScanningResult) => {
         setScanned(true);
+        const route = result.data.split('\n')[0];
+        
+        if (!isRouteHandled(route)) {
+            console.log('QR code not handled:', route);
+            return;
+        }
+
         // @ts-expect-error: navigation type is not well defined
-        navigation.navigate(result.data.split('\n')[0]);
+        navigation.navigate(route);
     };
     const handleScan = () => {
         setScanned(false);

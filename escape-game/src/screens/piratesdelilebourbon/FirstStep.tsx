@@ -24,23 +24,30 @@ const data = {
 
 export default function FirstStep () {
     const navigation = useNavigation();
-    const [pseudo, _] = usePseudo();
+    const [pseudo, __] = usePseudo();
     const [permission, requestPermission] = Camera.useCameraPermissions();
     const stateBattery = useBatteryState();
-    const game = useLastGame();
+    const [lastGame, _] = useLastGame();
 
-    if (!game) {
+    if (!lastGame) {
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, {marginHorizontal: 20}]}>
                 <BackButton text="Retour" pageRedirect="Home"/>
-                <Text>"Vous n'avez pas de partie en cours, veuillez commencer par l'introduction"</Text>
+                <Text>"Vous n'avez pas de partie en cours, veuillez en commencer une nouvelle"</Text>
+            </View>
+        );
+    } else if (lastGame.lastStep !== 0) {
+        return (
+            <View style={[styles.container, {marginHorizontal: 20}]}>
+                <BackButton text="Retour" pageRedirect="Home"/>
+                <Text>"Vous avez déjà commencé la partie, veuillez reprendre à la {lastGame.lastStep}e étape où vous vous êtes arrêté"</Text>
             </View>
         );
     }
 
     if (!permission?.granted) {
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, {marginHorizontal: 20}]}>
                 <BackButton text="Retour" pageRedirect="Home"/>
                 <Text style={{marginBottom: 30}}>"Veuillez autoriser l'accès à la caméra pour continuer"</Text>
                 <Button onPress={requestPermission} text="Autoriser la caméra"/>
@@ -49,10 +56,10 @@ export default function FirstStep () {
     }
 
     const win = () => {
-        if (!game) return;
+        if (!lastGame) return;
 
-        game.wonStep();
-        setLastGame(game).then(() => {
+        lastGame.wonStep();
+        setLastGame(lastGame).then(() => {
             // @ts-expect-error: navigation type is not well defined
             navigation.navigate(constants.screens.game[2]);
         });

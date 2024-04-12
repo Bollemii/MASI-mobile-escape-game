@@ -5,7 +5,7 @@ import { constants } from "../../constants";
 import Game from "../../models/game";
 import BackButton from "../../components/BackButton";
 import Button from "../../components/Button";
-import { setLastGame } from "../../dataaccess/gameData";
+import { setLastGame as saveLastGame } from "../../dataaccess/gameData";
 import useLastGame from "../../hooks/lastGame";
 
 const data = {
@@ -21,51 +21,54 @@ const data = {
 
 export default function Introduction() {
     const navigation = useNavigation();
-    const lastGame = useLastGame();
+    const [lastGame, setLastGame] = useLastGame();
 
-    if (lastGame?.isInProgress()) {
-        const handleContinue = () => {
-            // @ts-expect-error: navigation type is not well defined
-            navigation.navigate(constants.screens.game[lastGame.lastStep + 1]);
-        }
-        const handleNewGame = () => {
-            setLastGame();
-        }
-        return (
-            <View style={styles.container}>
-                <BackButton text="Retour" pageRedirect="Home"/>
-                <Text>"Vous avez déjà une partie en cours, voulez-vous la continuer ?"</Text>
-                <View style={styles.alreadyStarted}>
-                    <Button text="Continuer" onPress={handleContinue}/>
-                    <Button text="Nouvelle partie" onPress={handleNewGame}/>
-                </View>
-            </View>
-        );
+    const handleContinue = () => {
+        // @ts-expect-error: navigation type is not well defined
+        navigation.navigate(constants.screens.game[lastGame.lastStep + 1]);
     }
-
+    const handleNewGame = () => {
+        saveLastGame();
+        setLastGame(undefined);
+    }
     function handleStart() {
         const game = new Game();
         
-        setLastGame(game).then(() => {
+        saveLastGame(game).then(() => {
             // @ts-expect-error: navigation type is not well defined
             navigation.navigate(constants.screens.game[1]);
         });
     }
 
     return (
-        <View style={styles.container}>
-            <BackButton text="Quitter" pageRedirect="Home"/>
-            <Text style={styles.title}>Pirates de l'Ile Bourbon</Text>
-            <View style={{marginHorizontal: 20}}>
-                <Text style={[styles.text, {fontWeight: 'bold', marginBottom: 10}]}>{data.texts[0]}</Text>
-                <Text style={styles.text}>{data.texts[1]}</Text>
-                <Text style={styles.text}>{data.texts[2]}</Text>
-                <Text style={styles.text}>{data.texts[3]}</Text>
-                <Text style={styles.text}>{data.texts[4]}</Text>
-                <Text style={[styles.text, {marginTop: 50}]}>{data.texts[5]}</Text>
+        <>
+        {
+            !!lastGame && lastGame.isInProgress() ?
+            <View style={[styles.container, {marginHorizontal: 20}]}>
+                <BackButton text="Retour" pageRedirect="Home"/>
+                <Text>"Vous avez déjà une partie en cours, voulez-vous recommencer ?"</Text>
+                <View style={styles.alreadyStarted}>
+                    <Button text="Continuer" onPress={handleContinue}/>
+                    <Button text="Nouvelle partie" onPress={handleNewGame}/>
+                </View>
             </View>
-            <Button text="Commencer" onPress={handleStart} buttonStyle={styles.button}/>
-        </View>
+            :
+            <View style={styles.container}>
+                <BackButton text="Quitter" pageRedirect="Home"/>
+                <Text style={styles.title}>Pirates de l'Ile Bourbon</Text>
+                <View style={{marginHorizontal: 20}}>
+                    <Text style={[styles.text, {fontWeight: 'bold', marginBottom: 10}]}>{data.texts[0]}</Text>
+                    <Text style={styles.text}>{data.texts[1]}</Text>
+                    <Text style={styles.text}>{data.texts[2]}</Text>
+                    <Text style={styles.text}>{data.texts[3]}</Text>
+                    <Text style={styles.text}>{data.texts[4]}</Text>
+                    <Text style={[styles.text, {marginTop: 50}]}>{data.texts[5]}</Text>
+                </View>
+                <Button text="Commencer" onPress={handleStart} buttonStyle={styles.button}/>
+            </View>
+        }
+        </>
+        
     );
 }
 

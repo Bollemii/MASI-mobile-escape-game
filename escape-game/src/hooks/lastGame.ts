@@ -15,5 +15,5 @@ export default function useLastGame() {
         fetchLastGame();
     }, []);
 
-    return lastGame;
+    return [lastGame, setLastGame] as const;
 }
