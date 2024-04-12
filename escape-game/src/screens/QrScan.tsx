@@ -4,9 +4,9 @@ import { BarCodeScanningResult, Camera } from "expo-camera";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation } from "@react-navigation/native";
 
-import { constants, isRouteHandled } from "../constants";
-import BackButton from "../components/BackButton";
-import Button from "../components/Button";
+import { constants, isRouteHandled } from "@/constants";
+import BackButton from "@/components/BackButton";
+import Button from "@/components/Button";
 
 export default function QrScan() {
     const navigation = useNavigation();

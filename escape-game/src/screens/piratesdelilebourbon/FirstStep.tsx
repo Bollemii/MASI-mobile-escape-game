@@ -3,21 +3,21 @@ import { useNavigation } from "@react-navigation/native";
 import { BatteryState, useBatteryState } from "expo-battery";
 import { Camera, FlashMode } from "expo-camera";
 
-import { constants } from "../../constants";
-import BackButton from "../../components/BackButton";
-import SpeechPanel from "../../components/SpeechPanel";
-import Button from "../../components/Button";
-import { setLastGame } from "../../dataaccess/gameData";
-import usePseudo from "../../hooks/pseudo";
-import useLastGame from "../../hooks/lastGame";
+import { constants } from "@/constants";
+import BackButton from "@/components/BackButton";
+import SpeechPanel from "@/components/SpeechPanel";
+import Button from "@/components/Button";
+import { setLastGame } from "@/dataaccess/gameData";
+import usePseudo from "@/hooks/pseudo";
+import useLastGame from "@/hooks/lastGame";
 
 const data = {
     dark: {
-        image: require("../../../assets/images/piratesdelilebourbon/dark-ships-hold.png"),
+        image: require("assets/images/piratesdelilebourbon/dark-ships-hold.png"),
         text: "Où suis-je ? Il fait noir, on dirait que je suis entouré de tonneaux. Mais attendez… j’entends des voix, je devrais aller voir s’il y a des gens là-haut. Le problème, c’est qu’on n’y voit pas grand chose ici. Ah, une lampe torche ! Mais elle est déchargée... Bon, il doit bien y avoir des piles quelque part."
     },
     light: {
-        image: require("../../../assets/images/piratesdelilebourbon/light-ships-hold.png"),
+        image: require("assets/images/piratesdelilebourbon/light-ships-hold.png"),
         text: "Ok, voilà qui est mieux ! Avec ma lampe allumée, je peux enfin voir où je mets les pieds. Maintenant, il est temps de sortir de cette pièce. Pas question de rester coincé ici plus longtemps."
     }
 }
