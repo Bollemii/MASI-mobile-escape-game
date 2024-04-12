@@ -7,7 +7,9 @@ import { constants } from "../../constants";
 import BackButton from "../../components/BackButton";
 import SpeechPanel from "../../components/SpeechPanel";
 import Button from "../../components/Button";
+import { setLastGame } from "../../dataaccess/gameData";
 import usePseudo from "../../hooks/pseudo";
+import useLastGame from "../../hooks/lastGame";
 
 const data = {
     dark: {
@@ -25,6 +27,16 @@ export default function FirstStep () {
     const [pseudo, _] = usePseudo();
     const [permission, requestPermission] = Camera.useCameraPermissions();
     const stateBattery = useBatteryState();
+    const game = useLastGame();
+
+    if (!game) {
+        return (
+            <View style={styles.container}>
+                <BackButton text="Retour" pageRedirect="Home"/>
+                <Text>"Vous n'avez pas de partie en cours, veuillez commencer par l'introduction"</Text>
+            </View>
+        );
+    }
 
     if (!permission?.granted) {
         return (
@@ -37,8 +49,13 @@ export default function FirstStep () {
     }
 
     const win = () => {
-        // @ts-expect-error: navigation type is not well defined
-        navigation.navigate(constants.screens.game[2]);
+        if (!game) return;
+
+        game.wonStep();
+        setLastGame(game).then(() => {
+            // @ts-expect-error: navigation type is not well defined
+            navigation.navigate(constants.screens.game[2]);
+        });
     }
 
     return (

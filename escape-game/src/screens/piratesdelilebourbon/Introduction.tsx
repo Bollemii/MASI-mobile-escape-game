@@ -2,11 +2,14 @@ import { StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { constants } from "../../constants";
+import Game from "../../models/game";
 import BackButton from "../../components/BackButton";
 import Button from "../../components/Button";
+import { setLastGame } from "../../dataaccess/gameData";
+import useLastGame from "../../hooks/lastGame";
 
 const data = {
-    text : [
+    texts : [
         "Bienvenue à bord, moussaillon !",
         "Vous voilà plongé dans l’univers impitoyable des pirates, à bord du navire “Le Victorieux”.",
         "Votre mission ? Survivre, résoudre des énigmes et échapper à ce monde de corsaires et de trésors maudits.",
@@ -18,12 +21,35 @@ const data = {
 
 export default function Introduction() {
     const navigation = useNavigation();
+    const lastGame = useLastGame();
 
-    // @TODO Save the state of the game
+    if (lastGame?.isInProgress()) {
+        const handleContinue = () => {
+            // @ts-expect-error: navigation type is not well defined
+            navigation.navigate(constants.screens.game[lastGame.lastStep + 1]);
+        }
+        const handleNewGame = () => {
+            setLastGame();
+        }
+        return (
+            <View style={styles.container}>
+                <BackButton text="Retour" pageRedirect="Home"/>
+                <Text>"Vous avez déjà une partie en cours, voulez-vous la continuer ?"</Text>
+                <View style={styles.alreadyStarted}>
+                    <Button text="Continuer" onPress={handleContinue}/>
+                    <Button text="Nouvelle partie" onPress={handleNewGame}/>
+                </View>
+            </View>
+        );
+    }
 
-    function handlePress() {
-        // @ts-expect-error: navigation type is not well defined
-        navigation.navigate(constants.screens.game[1]);
+    function handleStart() {
+        const game = new Game();
+        
+        setLastGame(game).then(() => {
+            // @ts-expect-error: navigation type is not well defined
+            navigation.navigate(constants.screens.game[1]);
+        });
     }
 
     return (
@@ -31,14 +57,14 @@ export default function Introduction() {
             <BackButton text="Quitter" pageRedirect="Home"/>
             <Text style={styles.title}>Pirates de l'Ile Bourbon</Text>
             <View style={{marginHorizontal: 20}}>
-                <Text style={[styles.text, {fontWeight: 'bold', marginBottom: 10}]}>{data.text[0]}</Text>
-                <Text style={styles.text}>{data.text[1]}</Text>
-                <Text style={styles.text}>{data.text[2]}</Text>
-                <Text style={styles.text}>{data.text[3]}</Text>
-                <Text style={styles.text}>{data.text[4]}</Text>
-                <Text style={[styles.text, {marginTop: 50}]}>{data.text[5]}</Text>
+                <Text style={[styles.text, {fontWeight: 'bold', marginBottom: 10}]}>{data.texts[0]}</Text>
+                <Text style={styles.text}>{data.texts[1]}</Text>
+                <Text style={styles.text}>{data.texts[2]}</Text>
+                <Text style={styles.text}>{data.texts[3]}</Text>
+                <Text style={styles.text}>{data.texts[4]}</Text>
+                <Text style={[styles.text, {marginTop: 50}]}>{data.texts[5]}</Text>
             </View>
-            <Button text="Commencer" onPress={handlePress} buttonStyle={styles.button}/>
+            <Button text="Commencer" onPress={handleStart} buttonStyle={styles.button}/>
         </View>
     );
 }
@@ -65,5 +91,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 30,
-    }
+    },
+    alreadyStarted: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: '70%',
+        marginTop: 30,
+    },
 });
