@@ -1,13 +1,11 @@
-import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { addBatteryStateListener } from "expo-battery";
-import { Camera, PermissionStatus, FlashMode } from "expo-camera";
+import { BatteryState, useBatteryState } from "expo-battery";
+import { Camera, FlashMode } from "expo-camera";
 
-import { constants } from "../../constants";
 import BackButton from "../../components/BackButton";
 import SpeechPanel from "../../components/SpeechPanel";
-import { getSavedPseudo } from "../../dataaccess/playerData";
+import Button from "../../components/Button";
+import usePseudo from "../../hooks/pseudo";
 
 const data = {
     dark: {
@@ -21,42 +19,34 @@ const data = {
 }
 
 export default function FirstStep () {
-    const navigation = useNavigation()
-    const [pseudo, setPseudo] = useState("")
-    getSavedPseudo().then((pseudo) => setPseudo(pseudo || "Joueur"))
-    const [lightOn, setLightOn] = useState(false)
+    const [pseudo, _] = usePseudo();
+    const [permission, requestPermission] = Camera.useCameraPermissions();
+    const stateBattery = useBatteryState();
 
-    const batteryListener = addBatteryStateListener(({ batteryState }) => {
-        const isCharging = batteryState === 2
-        if (isCharging !== lightOn) {
-            setLightOn(batteryState === 2)
-        }
-    })
-
-    useEffect(() => {
-        return () => {            
-            batteryListener.remove()
-        }
-    }, [])
-
-    const win = () => {
-        // @TODO Save the state of the game
-
-        // @ts-expect-error: navigation type is not well defined
-        navigation.navigate(constants.screens.game[2])
+    if (!permission?.granted) {
+        return (
+            <View style={styles.container}>
+                <BackButton text="Retour" pageRedirect="Home"/>
+                <Text style={{marginBottom: 30}}>"Veuillez autoriser l'accès à la caméra pour continuer"</Text>
+                <Button onPress={requestPermission} text="Autoriser la caméra"/>
+            </View>
+        );
     }
 
     return (
         <View>
-            <Camera flashMode={lightOn ? FlashMode.torch : FlashMode.off}/>
             <Image
-                source={lightOn ? data.light.image : data.dark.image}
+                source={stateBattery === BatteryState.CHARGING ? data.light.image : data.dark.image}
                 style={styles.image}
             />
             <BackButton text="Quitter" pageRedirect="Home"/>
             <SpeechPanel 
                 speaker={pseudo}
-                text={lightOn ? data.light.text : data.dark.text}
+                text={stateBattery === BatteryState.CHARGING ? data.light.text : data.dark.text}
+            />
+            <Camera
+                flashMode={stateBattery === BatteryState.CHARGING ? FlashMode.torch : FlashMode.off}
+                style={styles.camera}
             />
         </View>
     );
@@ -67,6 +57,11 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    camera: {
+        width: 1,
+        height: 1,
+        position: 'absolute',
     },
     image: {
         width: '100%',

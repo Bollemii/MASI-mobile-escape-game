@@ -1,20 +1,14 @@
-import { useState } from 'react';
 import { View, StyleSheet, Text, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { constants } from '../constants';
 import Button from '../components/Button';
-import { getSavedPseudo, setSavedPseudo } from '../dataaccess/playerData';
+import { setSavedPseudo } from '../dataaccess/playerData';
+import usePseudo from '../hooks/pseudo';
 
 export default function HomeScreen() {
     const navigation = useNavigation();
-    const [pseudo, setPseudo] = useState('Joueur');
-
-    getSavedPseudo().then((savedPseudo) => {
-        if (savedPseudo) {
-            setPseudo(savedPseudo);
-        }
-    });
+    const [pseudo, setPseudo] = usePseudo();
 
     const onButtonPress = () => {
         // @ts-expect-error: navigation type is not well defined

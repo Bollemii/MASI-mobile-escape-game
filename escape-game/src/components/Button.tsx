@@ -10,10 +10,12 @@ interface ButtonProps {
 }
 
 export default function Button(props: ButtonProps) {
+    const buttonStyle = props.buttonStyle || styles.defaultButton;
+
     return (
         <Pressable 
             onPress={props.onPress}
-            style={(state) => state.pressed ? [props.buttonStyle, styles.buttonPressed] : [props.buttonStyle, styles.button]}
+            style={(state) => state.pressed ? [buttonStyle, styles.buttonPressed] : [buttonStyle, styles.button]}
         >
             <Text style={[props.textStyle, styles.textButton]}>{props.text}</Text>
         </Pressable>
@@ -21,6 +23,13 @@ export default function Button(props: ButtonProps) {
 }
 
 const styles = StyleSheet.create({
+    defaultButton: {
+        height: 30,
+        alignItems: 'center',
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        borderRadius: 50,
+    },
     button: {
         backgroundColor: constants.colors.blue,
     },
