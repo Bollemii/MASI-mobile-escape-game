@@ -49,11 +49,11 @@ export default function FirstStep () {
                     style={styles.camera}
                 />
             )}
+            <BackButton text="Quitter" pageRedirect="Home"/>
             <Image
                 source={stateBattery === BatteryState.CHARGING ? data.light.image : data.dark.image}
                 style={styles.image}
             />
-            <BackButton text="Quitter" pageRedirect="Home"/>
             {stateBattery === BatteryState.CHARGING && (
                 <Pressable onPress={win} style={styles.winPressable}/>
             )}
@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: '100%',
+        zIndex: -1,
     },
     winPressable: {
         // Transparent pressable on the exit
