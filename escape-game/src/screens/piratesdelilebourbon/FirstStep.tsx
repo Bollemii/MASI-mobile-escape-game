@@ -6,7 +6,8 @@ import { Camera, FlashMode } from "expo-camera";
 import { constants } from "@/constants";
 import BackButton from "@/components/BackButton";
 import SpeechPanel from "@/components/SpeechPanel";
-import Button from "@/components/Button";
+import StepNotAccess from "@/components/StepNotAccess";
+import RequestCameraPermission from "@/components/RequestCameraPermission";
 import { setLastGame } from "@/dataaccess/gameData";
 import usePseudo from "@/hooks/pseudo";
 import useLastGame from "@/hooks/lastGame";
@@ -29,29 +30,15 @@ export default function FirstStep () {
     const stateBattery = useBatteryState();
     const [lastGame, _] = useLastGame();
 
-    if (!lastGame) {
+    if (!lastGame || lastGame.lastStep !== 0) {
         return (
-            <View style={[styles.container, {marginHorizontal: 20}]}>
-                <BackButton text="Retour" pageRedirect="Home"/>
-                <Text>"Vous n'avez pas de partie en cours, veuillez en commencer une nouvelle"</Text>
-            </View>
-        );
-    } else if (lastGame.lastStep !== 0) {
-        return (
-            <View style={[styles.container, {marginHorizontal: 20}]}>
-                <BackButton text="Retour" pageRedirect="Home"/>
-                <Text>"Vous avez déjà commencé la partie, veuillez reprendre à la {lastGame.lastStep}e étape où vous vous êtes arrêté"</Text>
-            </View>
-        );
+            <StepNotAccess step={0} game={lastGame}/>
+        )
     }
 
     if (!permission?.granted) {
         return (
-            <View style={[styles.container, {marginHorizontal: 20}]}>
-                <BackButton text="Retour" pageRedirect="Home"/>
-                <Text style={{marginBottom: 30}}>"Veuillez autoriser l'accès à la caméra pour continuer"</Text>
-                <Button onPress={requestPermission} text="Autoriser la caméra"/>
-            </View>
+            <RequestCameraPermission requestPermission={requestPermission}/>
         );
     }
 

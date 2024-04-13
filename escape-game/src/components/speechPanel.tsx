@@ -6,6 +6,7 @@ interface SpeechPanelProps {
     speaker?: string;
     text: string;
 }
+
 export default function SpeechPanel(props: SpeechPanelProps) {
     return (
         <View style={styles.container}>
@@ -18,7 +19,7 @@ export default function SpeechPanel(props: SpeechPanelProps) {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        height: '25%',
+        height: '21%',
         backgroundColor: constants.colors.blue,
         position: 'absolute',
         bottom: 0,
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textTransform: 'capitalize',
         position: 'absolute',
-        top: 10,
+        top: 5,
         left: 10,
     },
     text: {

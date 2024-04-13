@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { BarCodeScanningResult, Camera } from "expo-camera";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation } from "@react-navigation/native";
@@ -8,6 +8,7 @@ import { constants } from "@/constants";
 import { isRouteHandled } from "@/utils/router";
 import BackButton from "@/components/BackButton";
 import Button from "@/components/Button";
+import RequestCameraPermission from "@/components/RequestCameraPermission";
 
 export default function QrScan() {
     const navigation = useNavigation();
@@ -16,11 +17,7 @@ export default function QrScan() {
     
     if (!permission?.granted) {
         return (
-            <View style={[styles.container, {marginHorizontal: 20}]}>
-                <BackButton text="Retour" pageRedirect="Home"/>
-                <Text style={{marginBottom: 30}}>"Veuillez autoriser l'accès à la caméra pour continuer"</Text>
-                <Button onPress={requestPermission} text="Autoriser la caméra"/>
-            </View>
+            <RequestCameraPermission requestPermission={requestPermission}/>
         );
     }
 
