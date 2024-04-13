@@ -13,7 +13,7 @@ import RequestCameraPermission from "@/components/RequestCameraPermission";
 export default function QrScan() {
     const navigation = useNavigation();
     const [permission, requestPermission] = Camera.useCameraPermissions();
-    const [scanned, setScanned] = useState(false);
+    const [wantScanned, setWantScanned] = useState(false);
     
     if (!permission?.granted) {
         return (
@@ -22,7 +22,9 @@ export default function QrScan() {
     }
 
     const onBarCodeScanned = (result: BarCodeScanningResult) => {
-        setScanned(true);
+        console.log('QR code scanned:', result.data);
+        
+        setWantScanned(false);
         const route = result.data.split('\n')[0];
         
         if (!isRouteHandled(route)) {
@@ -34,7 +36,7 @@ export default function QrScan() {
         navigation.navigate(route);
     };
     const handleScan = () => {
-        setScanned(false);
+        setWantScanned(true);
     };
 
     return (
@@ -44,7 +46,7 @@ export default function QrScan() {
                 barCodeScannerSettings={{
                     barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
                 }}
-                onBarCodeScanned={scanned ? undefined : onBarCodeScanned}
+                onBarCodeScanned={wantScanned ? onBarCodeScanned : undefined}
                 ratio={constants.options.windowRatio}
             />
             <BackButton text="Retour" pageRedirect="Home"/>
