@@ -4,7 +4,8 @@ import { BarCodeScanningResult, Camera } from "expo-camera";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation } from "@react-navigation/native";
 
-import { constants, isRouteHandled } from "@/constants";
+import { constants } from "@/constants";
+import { isRouteHandled } from "@/utils/router";
 import BackButton from "@/components/BackButton";
 import Button from "@/components/Button";
 
