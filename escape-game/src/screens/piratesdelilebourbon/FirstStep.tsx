@@ -3,32 +3,51 @@ import { useNavigation } from "@react-navigation/native";
 import { BatteryState, useBatteryState } from "expo-battery";
 import { Camera, FlashMode } from "expo-camera";
 
-import { constants } from "../../constants";
-import BackButton from "../../components/BackButton";
-import SpeechPanel from "../../components/SpeechPanel";
-import Button from "../../components/Button";
-import usePseudo from "../../hooks/pseudo";
+import { constants } from "@/constants";
+import BackButton from "@/components/BackButton";
+import SpeechPanel from "@/components/SpeechPanel";
+import Button from "@/components/Button";
+import { setLastGame } from "@/dataaccess/gameData";
+import usePseudo from "@/hooks/pseudo";
+import useLastGame from "@/hooks/lastGame";
 
 const data = {
     dark: {
-        image: require("../../../assets/images/piratesdelilebourbon/dark-ships-hold.png"),
+        image: require("assets/images/piratesdelilebourbon/dark-ships-hold.png"),
         text: "Où suis-je ? Il fait noir, on dirait que je suis entouré de tonneaux. Mais attendez… j’entends des voix, je devrais aller voir s’il y a des gens là-haut. Le problème, c’est qu’on n’y voit pas grand chose ici. Ah, une lampe torche ! Mais elle est déchargée... Bon, il doit bien y avoir des piles quelque part."
     },
     light: {
-        image: require("../../../assets/images/piratesdelilebourbon/light-ships-hold.png"),
+        image: require("assets/images/piratesdelilebourbon/light-ships-hold.png"),
         text: "Ok, voilà qui est mieux ! Avec ma lampe allumée, je peux enfin voir où je mets les pieds. Maintenant, il est temps de sortir de cette pièce. Pas question de rester coincé ici plus longtemps."
     }
 }
 
 export default function FirstStep () {
     const navigation = useNavigation();
-    const [pseudo, _] = usePseudo();
+    const [pseudo, __] = usePseudo();
     const [permission, requestPermission] = Camera.useCameraPermissions();
     const stateBattery = useBatteryState();
+    const [lastGame, _] = useLastGame();
+
+    if (!lastGame) {
+        return (
+            <View style={[styles.container, {marginHorizontal: 20}]}>
+                <BackButton text="Retour" pageRedirect="Home"/>
+                <Text>"Vous n'avez pas de partie en cours, veuillez en commencer une nouvelle"</Text>
+            </View>
+        );
+    } else if (lastGame.lastStep !== 0) {
+        return (
+            <View style={[styles.container, {marginHorizontal: 20}]}>
+                <BackButton text="Retour" pageRedirect="Home"/>
+                <Text>"Vous avez déjà commencé la partie, veuillez reprendre à la {lastGame.lastStep}e étape où vous vous êtes arrêté"</Text>
+            </View>
+        );
+    }
 
     if (!permission?.granted) {
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, {marginHorizontal: 20}]}>
                 <BackButton text="Retour" pageRedirect="Home"/>
                 <Text style={{marginBottom: 30}}>"Veuillez autoriser l'accès à la caméra pour continuer"</Text>
                 <Button onPress={requestPermission} text="Autoriser la caméra"/>
@@ -37,8 +56,13 @@ export default function FirstStep () {
     }
 
     const win = () => {
-        // @ts-expect-error: navigation type is not well defined
-        navigation.navigate(constants.screens.game[2]);
+        if (!lastGame) return;
+
+        lastGame.wonStep();
+        setLastGame(lastGame).then(() => {
+            // @ts-expect-error: navigation type is not well defined
+            navigation.navigate(constants.screens.game[2]);
+        });
     }
 
     return (

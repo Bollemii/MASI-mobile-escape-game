@@ -1,10 +1,10 @@
 import { View, StyleSheet, Text, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { constants } from '../constants';
-import Button from '../components/Button';
-import { setSavedPseudo } from '../dataaccess/playerData';
-import usePseudo from '../hooks/pseudo';
+import { constants } from '@/constants';
+import Button from '@/components/Button';
+import { setSavedPseudo } from '@/dataaccess/playerData';
+import usePseudo from '@/hooks/pseudo';
 
 export default function HomeScreen() {
     const navigation = useNavigation();

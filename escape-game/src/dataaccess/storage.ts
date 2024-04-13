@@ -15,4 +15,11 @@ export const storage = {
             console.error(`Error while setting ${key} in storage`, error);
         }
     },
+    removeItem: async (key: string) => {
+        try {
+            await AsyncStorage.removeItem(key);
+        } catch (error) {
+            console.error(`Error while removing ${key} from storage`, error);
+        }
+    }
 };

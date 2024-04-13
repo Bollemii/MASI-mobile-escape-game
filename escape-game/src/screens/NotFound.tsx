@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import BackButton from '../components/BackButton';
+import BackButton from '@/components/BackButton';
 
 export default function NotFound() {
     return (

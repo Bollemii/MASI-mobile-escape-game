@@ -150,22 +150,33 @@ La structure de l'application est divisée en plusieurs parties pour faciliter l
 
 Le dossier `assets` se divise en deux parties : `images` et `qrcodes`. Le premier contiendra toutes les images utilisées dans l'application et le second contiendra tous les QR codes des épreuves.
 
-Le dossier `src` se divise en plusieurs parties : `screens`, `components`, `dataaccess` et `models`. Le premier contiendra les différents écrans de l'application et le second contiendra les composants réutilisables utilisés dans les écrans comme les boutons. Le troisième contiendra les accès aux données de l'application, c'est là que nous enregistrerons les données de jeu et du joueur, et le dernier contiendra les modèles de données utilisés dans l'application.
+Le dossier `src` se divise en plusieurs parties.
+
+1. `components` : Ce dossier contiendra les composants réutilisables utilisés dans les écrans comme les boutons.
+2. `dataaccess` : Ce fossier contiendra les accès aux données de l'application, c'est là que nous enregistrerons les données de jeu et du joueur.
+3. `hooks` : Ce dossier contiendra les hooks[^2] personnalisés utilisés dans l'application.
+4. `models` : Ce dossier contiendra les modèles de données utilisés dans l'application.
+5. `screens` : Ce dossier contiendra les différents écrans de l'application.
+6. `utils` : Ce dossier contiendra les fonctions utilitaires utilisées dans l'application.
+
+[^2]: Les hooks sont des fonctions qui permettent d'utiliser des variables d'état et de suivre le cycle de vie d'un composant fonctionnel.
 
 Des fichiers de gestion générale de l'application seront également présents à la racine du dossier `src`. Par exemple, le fichier de navigation de l'application sera à la racine du dossier `src` ou encore un fichier contenant des constantes (des couleurs par exemple) utilisées dans l'application.
 
 Ainsi, la structure de l'application sera la suivante :
 
 ```
-.
-├── assets
-│   ├── images
-│   └── qrcodes
-└── src
-    ├── components
-    ├── dataaccess
-    ├── models
-    ├── screens
+./
+├── assets/
+│   ├── images/
+│   └── qrcodes/
+└── src/
+    ├── components/
+    ├── dataaccess/
+    ├── hooks/
+    ├── models/
+    ├── screens/
+    ├── utils/
     ├── constants.ts
     └── Router.tsx
 ```
