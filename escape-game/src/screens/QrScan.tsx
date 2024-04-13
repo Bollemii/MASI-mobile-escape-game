@@ -22,8 +22,6 @@ export default function QrScan() {
     }
 
     const onBarCodeScanned = (result: BarCodeScanningResult) => {
-        console.log('QR code scanned:', result.data);
-        
         setWantScanned(false);
         const route = result.data.split('\n')[0];
         
