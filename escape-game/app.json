@@ -26,6 +26,12 @@
     },
     "web": {
       "favicon": "./assets/images/app-launcher.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0c72b7bc-6e67-479a-8cee-b2523ac3f3fd"
+      }
+    },
+    "owner": "bollemi"
   }
 }

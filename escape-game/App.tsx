@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, StatusBar } from 'react-native';
 
 import { constants } from './src/constants';
 import { getRatio } from './src/utils/window';
@@ -10,6 +10,9 @@ export default function App() {
     constants.options.windowRatio = getRatio(windowOptions.width, windowOptions.height);
     
     return (
-        <Router/>
+        <>
+            <StatusBar hidden={true}/>
+            <Router/>
+        </>
     );
 }
