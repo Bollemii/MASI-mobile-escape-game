@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
+import { routes } from "@/router/routes";
 import Game from "@/models/game";
 import BackButton from "./BackButton";
 
@@ -24,7 +25,7 @@ export default function StepNotAccess(props: StepNotAccessProps) {
 
     return (
         <View style={styles.container}>
-            <BackButton text="Retour" pageRedirect="Home"/>
+            <BackButton text="Retour" pageRedirect={routes.home}/>
             {text}
         </View>
     );

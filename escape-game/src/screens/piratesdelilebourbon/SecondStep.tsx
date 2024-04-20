@@ -2,13 +2,14 @@ import { useState } from "react";
 import { Image, Pressable, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { constants } from "@/constants";
+import { routes } from "@/router/routes";
 import BackButton from "@/components/BackButton";
-import SpeechPanel from "@/components/SpeechPanel";
+import SpeechPanel from "@/components/SspeechPanel";
 import StepNotAccess from "@/components/StepNotAccess";
 import { saveLastGame } from "@/dataaccess/gameData";
 import useLastGame from "@/hooks/lastGame";
 import useAccelerometer from "@/hooks/accelerometer";
+import BackgroundImage from "@/components/BackgroundImage";
 
 const data = {
     image: require("assets/images/piratesdelilebourbon/boat-deck-captain.png"),
@@ -47,18 +48,15 @@ export default function SecondStep() {
             saveLastGame(lastGame).then(() => {
                 hitCount = 0;
                 // @ts-expect-error: navigation type is not well defined
-                navigation.navigate(`${constants.screens.game[2]}/fight`);
+                navigation.navigate(`${routes.game[2]}/fight`);
             });
         }
     }
 
     return (
         <Pressable style={{flex: 1}} onPress={handlePress}>
-            <BackButton text="Quitter" pageRedirect={constants.screens.home}/>
-            <Image
-                source={data.image}
-                style={styles.image}
-            />
+            <BackButton text="Quitter" pageRedirect={routes.home}/>
+            <BackgroundImage source={data.image}/>
             <SpeechPanel 
                 speaker={"Capitaine"}
                 text={data.texts[iText]}
@@ -72,9 +70,5 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-    },
-    image: {
-        width: "100%",
-        zIndex: -1,
     },
 });

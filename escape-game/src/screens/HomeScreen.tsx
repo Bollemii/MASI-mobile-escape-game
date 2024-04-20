@@ -1,7 +1,8 @@
 import { View, StyleSheet, Text, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { constants } from '@/constants';
+import { routes } from '@/router/routes';
+import { defaultStyles } from '@/defaultStyles';
 import Button from '@/components/Button';
 import { savePseudo } from '@/dataaccess/playerData';
 import usePseudo from '@/hooks/pseudo';
@@ -12,7 +13,7 @@ export default function HomeScreen() {
 
     const onButtonPress = () => {
         // @ts-expect-error: navigation type is not well defined
-        navigation.navigate(constants.screens.qrScan);
+        navigation.navigate(routes.qrScan);
     };
     const onChangePseudo = (text: string) => {
         setPseudo(text);
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     button: {
         height: 200,
         width: 200,
-        backgroundColor: constants.colors.blue,
+        backgroundColor: defaultStyles.colors.blue,
         borderRadius: 100,
         justifyContent: 'center',
         alignItems: 'center',
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     input: {
         height: 40,
         width: '100%',
-        borderColor: 'gray',
+        borderColor: defaultStyles.colors.black,
         borderWidth: 1,
         borderRadius: 5,
         paddingLeft: 10,

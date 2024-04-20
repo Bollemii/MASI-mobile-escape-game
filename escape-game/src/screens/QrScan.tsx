@@ -5,6 +5,8 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation } from "@react-navigation/native";
 
 import { constants } from "@/constants";
+import { defaultStyles } from "@/defaultStyles";
+import { routes } from "@/router/routes";
 import { isRouteHandled } from "@/utils/router";
 import BackButton from "@/components/BackButton";
 import Button from "@/components/Button";
@@ -48,13 +50,13 @@ export default function QrScan() {
                     barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
                 }}
                 onBarCodeScanned={automaticScan || wantScanned ? onBarCodeScanned : undefined}
-                ratio={constants.options.windowRatio}
+                ratio={constants.window.ratio}
             />
-            <BackButton text="Retour" pageRedirect="Home"/>
+            <BackButton text="Retour" pageRedirect={routes.home}/>
             <Button
                 text="Scanner un QR code" 
                 onPress={handleScan} 
-                buttonStyle={styles.button} 
+                buttonStyle={styles.button}
                 textStyle={styles.textButton}
             />
         </View>
@@ -71,17 +73,15 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         position: 'absolute',
-        bottom: 0,
     },
     button: {
         position: 'absolute',
         bottom: 20,
-        backgroundColor: constants.colors.blue,
+        backgroundColor: defaultStyles.colors.blue,
         padding: 15,
         borderRadius: 10,
     },
     textButton: {
-        color: 'white',
         fontSize: 15,
     },
 });

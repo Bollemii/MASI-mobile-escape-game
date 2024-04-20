@@ -2,7 +2,7 @@ import { Text } from "react-native";
 import { NavigationContainer, useNavigationContainerRef } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { constants } from "@/constants";
+import { routes } from "@/router/routes";
 import HomeScreen from "@/screens/HomeScreen";
 import QrScan from "@/screens/QrScan";
 import Introduction from "@/screens/piratesdelilebourbon/Introduction";
@@ -20,7 +20,7 @@ export default function Router() {
     const handleError = (error: any) => {
         console.log("Unhandled routing action", error);
         // @ts-expect-error: navigation type is not well defined
-        navigationRef.navigate(constants.screens.notFound);
+        navigationRef.navigate(routes.notFound);
     };
 
     return (
@@ -29,17 +29,17 @@ export default function Router() {
             ref={navigationRef}
             onUnhandledAction={handleError}
         >
-            <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={constants.screens.home}>
-                <Stack.Screen name={constants.screens.home} component={HomeScreen}/>
-                <Stack.Screen name={constants.screens.qrScan} component={QrScan}/>
+            <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={routes.home}>
+                <Stack.Screen name={routes.home} component={HomeScreen}/>
+                <Stack.Screen name={routes.qrScan} component={QrScan}/>
                 <Stack.Group>
-                    <Stack.Screen name={constants.screens.game[0]} key={constants.screens.game[0]} component={Introduction}/>
-                    <Stack.Screen name={constants.screens.game[1]} key={constants.screens.game[1]} component={FirstStep}/>
-                    <Stack.Screen name={constants.screens.game[2]} key={constants.screens.game[2]} component={SecondStep}/>
-                    <Stack.Screen name={`${constants.screens.game[2]}/fight`} key={`${constants.screens.game[2]}/fight`} component={SecondStepFight}/>
-                    <Stack.Screen name={constants.screens.game[3]} key={constants.screens.game[3]} component={NotFound}/>
+                    <Stack.Screen name={routes.game[0]} key={routes.game[0]} component={Introduction}/>
+                    <Stack.Screen name={routes.game[1]} key={routes.game[1]} component={FirstStep}/>
+                    <Stack.Screen name={routes.game[2]} key={routes.game[2]} component={SecondStep}/>
+                    <Stack.Screen name={`${routes.game[2]}/fight`} key={`${routes.game[2]}/fight`} component={SecondStepFight}/>
+                    <Stack.Screen name={routes.game[3]} key={routes.game[3]} component={NotFound}/>
                 </Stack.Group>
-                <Stack.Screen name={constants.screens.notFound} component={NotFound}/>
+                <Stack.Screen name={routes.notFound} component={NotFound}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

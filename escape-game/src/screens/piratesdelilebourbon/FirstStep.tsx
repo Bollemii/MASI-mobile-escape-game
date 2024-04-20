@@ -3,14 +3,15 @@ import { useNavigation } from "@react-navigation/native";
 import { BatteryState, useBatteryState } from "expo-battery";
 import { Camera, FlashMode } from "expo-camera";
 
-import { constants } from "@/constants";
+import { routes } from "@/router/routes";
 import BackButton from "@/components/BackButton";
-import SpeechPanel from "@/components/SpeechPanel";
+import SpeechPanel from "@/components/SspeechPanel";
 import StepNotAccess from "@/components/StepNotAccess";
 import RequestCameraPermission from "@/components/RequestCameraPermission";
 import { saveLastGame } from "@/dataaccess/gameData";
 import usePseudo from "@/hooks/pseudo";
 import useLastGame from "@/hooks/lastGame";
+import BackgroundImage from "@/components/BackgroundImage";
 
 const data = {
     dark: {
@@ -48,7 +49,7 @@ export default function FirstStep () {
         lastGame.wonStep();
         saveLastGame(lastGame).then(() => {
             // @ts-expect-error: navigation type is not well defined
-            navigation.navigate(constants.screens.game[2]);
+            navigation.navigate(routes.game[2]);
         });
     }
 
@@ -60,10 +61,9 @@ export default function FirstStep () {
                     style={styles.camera}
                 />
             )}
-            <BackButton text="Quitter" pageRedirect={constants.screens.home}/>
-            <Image
+            <BackButton text="Quitter" pageRedirect={routes.home}/>
+            <BackgroundImage
                 source={stateBattery === BatteryState.CHARGING ? data.light.image : data.dark.image}
-                style={styles.image}
             />
             {stateBattery === BatteryState.CHARGING && (
                 <Pressable onPress={win} style={styles.winPressable}/>
@@ -88,11 +88,6 @@ const styles = StyleSheet.create({
         height: 1,
         // Positioned absolute to be visually hidden
         position: 'absolute',
-    },
-    image: {
-        width: '100%',
-        height: '100%',
-        zIndex: -1,
     },
     winPressable: {
         // Transparent pressable on the exit

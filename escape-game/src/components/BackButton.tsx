@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { constants } from "../constants";
+import { defaultStyles } from "@/defaultStyles";
 import Button from "./Button";
 
 interface BackButtonProps {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         height: 30,
         width: 80,
         alignItems: 'center',
-        backgroundColor: constants.colors.blue,
+        backgroundColor: defaultStyles.colors.blue,
         paddingHorizontal: 10,
         paddingVertical: 5,
         borderRadius: 50,

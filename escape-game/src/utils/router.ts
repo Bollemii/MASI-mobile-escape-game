@@ -1,4 +1,4 @@
-import { constants } from "@/constants";
+import { routes } from "@/router/routes";
 
 export function isRouteHandled (route: string) : boolean {
     function isInArray(value: string, list: any[] | object) {
@@ -14,5 +14,5 @@ export function isRouteHandled (route: string) : boolean {
         return false;
     }
 
-    return isInArray(route, constants.screens);
+    return isInArray(route, routes);
 }
