@@ -60,7 +60,7 @@ export default function FirstStep () {
                     style={styles.camera}
                 />
             )}
-            <BackButton text="Quitter" pageRedirect="Home"/>
+            <BackButton text="Quitter" pageRedirect={constants.screens.home}/>
             <Image
                 source={stateBattery === BatteryState.CHARGING ? data.light.image : data.dark.image}
                 style={styles.image}

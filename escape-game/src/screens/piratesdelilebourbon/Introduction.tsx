@@ -31,6 +31,20 @@ export default function Introduction() {
         saveLastGame();
         setLastGame(undefined);
     }
+
+    if (!!lastGame && lastGame.isInProgress()) {
+        return (
+            <View style={[styles.container, {marginHorizontal: 20}]}>
+                <BackButton text="Retour" pageRedirect={constants.screens.home}/>
+                <Text>"Vous avez déjà une partie en cours, voulez-vous recommencer ?"</Text>
+                <View style={styles.alreadyStarted}>
+                    <Button text="Continuer" onPress={handleContinue}/>
+                    <Button text="Nouvelle partie" onPress={handleNewGame}/>
+                </View>
+            </View>
+        )
+    }
+
     function handleStart() {
         const game = new Game();
         
@@ -41,34 +55,19 @@ export default function Introduction() {
     }
 
     return (
-        <>
-        {
-            !!lastGame && lastGame.isInProgress() ?
-            <View style={[styles.container, {marginHorizontal: 20}]}>
-                <BackButton text="Retour" pageRedirect="Home"/>
-                <Text>"Vous avez déjà une partie en cours, voulez-vous recommencer ?"</Text>
-                <View style={styles.alreadyStarted}>
-                    <Button text="Continuer" onPress={handleContinue}/>
-                    <Button text="Nouvelle partie" onPress={handleNewGame}/>
-                </View>
+        <View style={styles.container}>
+            <BackButton text="Quitter" pageRedirect={constants.screens.home}/>
+            <Text style={styles.title}>Pirates de l'Ile Bourbon</Text>
+            <View style={{marginHorizontal: 20}}>
+                <Text style={[styles.text, {fontWeight: 'bold', marginBottom: 10}]}>{data.texts[0]}</Text>
+                <Text style={styles.text}>{data.texts[1]}</Text>
+                <Text style={styles.text}>{data.texts[2]}</Text>
+                <Text style={styles.text}>{data.texts[3]}</Text>
+                <Text style={styles.text}>{data.texts[4]}</Text>
+                <Text style={[styles.text, {marginTop: 50}]}>{data.texts[5]}</Text>
             </View>
-            :
-            <View style={styles.container}>
-                <BackButton text="Quitter" pageRedirect="Home"/>
-                <Text style={styles.title}>Pirates de l'Ile Bourbon</Text>
-                <View style={{marginHorizontal: 20}}>
-                    <Text style={[styles.text, {fontWeight: 'bold', marginBottom: 10}]}>{data.texts[0]}</Text>
-                    <Text style={styles.text}>{data.texts[1]}</Text>
-                    <Text style={styles.text}>{data.texts[2]}</Text>
-                    <Text style={styles.text}>{data.texts[3]}</Text>
-                    <Text style={styles.text}>{data.texts[4]}</Text>
-                    <Text style={[styles.text, {marginTop: 50}]}>{data.texts[5]}</Text>
-                </View>
-                <Button text="Commencer" onPress={handleStart} buttonStyle={styles.button}/>
-            </View>
-        }
-        </>
-        
+            <Button text="Commencer" onPress={handleStart} buttonStyle={styles.button}/>
+        </View>
     );
 }
 
