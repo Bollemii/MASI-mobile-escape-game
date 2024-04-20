@@ -10,9 +10,6 @@ cache:
   paths:
     - .npm
 
-stages:
-  - build
-
 before_script:
   - npm ci --cache .npm
 

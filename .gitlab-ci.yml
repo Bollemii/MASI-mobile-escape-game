@@ -1,5 +1,9 @@
 # .gitlab-ci.yml
 
+stages:
+  - build
+  - deploy
+
 include:
   - '/docs/.gitlab-ci.yml'
   - '/escape-game/.gitlab-ci.yml'
