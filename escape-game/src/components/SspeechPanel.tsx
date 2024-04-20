@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native';
 
-import { constants } from '../constants';
+import { defaultStyles } from '@/defaultStyles';
 
 interface SpeechPanelProps {
     speaker?: string;
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '21%',
-        backgroundColor: constants.colors.blue,
+        backgroundColor: defaultStyles.colors.blue,
         position: 'absolute',
         bottom: 0,
         padding: 5,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     speaker: {
-        color: constants.colors.white,
+        color: defaultStyles.colors.white,
         fontSize: 20,
         fontWeight: 'bold',
         textTransform: 'capitalize',
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     },
     text: {
         marginVertical: 'auto',
-        color: constants.colors.white,
+        color: defaultStyles.colors.white,
         fontSize: 14,
         textAlign: 'center',
     },

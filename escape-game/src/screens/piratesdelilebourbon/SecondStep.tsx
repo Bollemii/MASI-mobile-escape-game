@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Image, Pressable, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { constants } from "@/constants";
+import { routes } from "@/router/routes";
 import BackButton from "@/components/BackButton";
-import SpeechPanel from "@/components/SpeechPanel";
+import SpeechPanel from "@/components/SspeechPanel";
 import StepNotAccess from "@/components/StepNotAccess";
 import { saveLastGame } from "@/dataaccess/gameData";
 import useLastGame from "@/hooks/lastGame";
@@ -47,14 +47,14 @@ export default function SecondStep() {
             saveLastGame(lastGame).then(() => {
                 hitCount = 0;
                 // @ts-expect-error: navigation type is not well defined
-                navigation.navigate(`${constants.screens.game[2]}/fight`);
+                navigation.navigate(`${routes.game[2]}/fight`);
             });
         }
     }
 
     return (
         <Pressable style={{flex: 1}} onPress={handlePress}>
-            <BackButton text="Quitter" pageRedirect={constants.screens.home}/>
+            <BackButton text="Quitter" pageRedirect={routes.home}/>
             <Image
                 source={data.image}
                 style={styles.image}

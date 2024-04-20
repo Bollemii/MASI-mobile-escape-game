@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native';
 
+import { routes } from '@/router/routes';
 import BackButton from '@/components/BackButton';
 
 export default function NotFound() {
     return (
         <View style={styles.container}>
-            <BackButton text="Retour" pageRedirect="Home"/>
+            <BackButton text="Retour" pageRedirect={routes.home}/>
             <Text>Not Found</Text>
         </View>
     );

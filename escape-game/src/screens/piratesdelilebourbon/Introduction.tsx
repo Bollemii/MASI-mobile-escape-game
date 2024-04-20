@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { constants } from "@/constants";
+import { routes } from "@/router/routes";
 import Game from "@/models/game";
 import BackButton from "@/components/BackButton";
 import Button from "@/components/Button";
@@ -25,7 +25,7 @@ export default function Introduction() {
 
     const handleContinue = () => {
         // @ts-expect-error: navigation type is not well defined
-        navigation.navigate(constants.screens.game[lastGame.lastStep + 1]);
+        navigation.navigate(routes.game[lastGame.lastStep + 1]);
     }
     const handleNewGame = () => {
         saveLastGame();
@@ -35,7 +35,7 @@ export default function Introduction() {
     if (!!lastGame && lastGame.isInProgress()) {
         return (
             <View style={[styles.container, {marginHorizontal: 20}]}>
-                <BackButton text="Retour" pageRedirect={constants.screens.home}/>
+                <BackButton text="Retour" pageRedirect={routes.home}/>
                 <Text>"Vous avez déjà une partie en cours, voulez-vous recommencer ?"</Text>
                 <View style={styles.alreadyStarted}>
                     <Button text="Continuer" onPress={handleContinue}/>
@@ -50,13 +50,13 @@ export default function Introduction() {
         
         saveLastGame(game).then(() => {
             // @ts-expect-error: navigation type is not well defined
-            navigation.navigate(constants.screens.game[1]);
+            navigation.navigate(routes.game[1]);
         });
     }
 
     return (
         <View style={styles.container}>
-            <BackButton text="Quitter" pageRedirect={constants.screens.home}/>
+            <BackButton text="Quitter" pageRedirect={routes.home}/>
             <Text style={styles.title}>Pirates de l'Ile Bourbon</Text>
             <View style={{marginHorizontal: 20}}>
                 <Text style={[styles.text, {fontWeight: 'bold', marginBottom: 10}]}>{data.texts[0]}</Text>

@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { constants } from "@/constants";
+import { routes } from "@/router/routes";
+import { defaultStyles } from "@/defaultStyles";
 import BackButton from "@/components/BackButton";
-import SpeechPanel from "@/components/SpeechPanel";
+import SpeechPanel from "@/components/SspeechPanel";
 
 const data = {
     image: require("assets/images/piratesdelilebourbon/pirate-cat.png"),
@@ -25,13 +26,13 @@ export default function SecondStepFight() {
             setIText(iText + 1);
         } else {
             // @ts-expect-error: navigation type is not well defined
-            navigation.navigate(constants.screens.game[3]);
+            navigation.navigate(routes.game[3]);
         }
     };
 
     return (
         <Pressable style={styles.container} onPress={handlePress}>
-            <BackButton text="Quitter" pageRedirect={constants.screens.home}/>
+            <BackButton text="Quitter" pageRedirect={routes.home}/>
             <View style={styles.disclaimer}>
                 <Text>{data.disclaimer}</Text>
             </View>
@@ -63,8 +64,8 @@ const styles = StyleSheet.create({
         top: 60,
         margin: 10,
         padding: 10,
-        backgroundColor: constants.colors.grey,
-        borderColor: constants.colors.black,
+        backgroundColor: defaultStyles.colors.grey,
+        borderColor: defaultStyles.colors.black,
         borderWidth: 3,
         borderRadius: 10,
     },

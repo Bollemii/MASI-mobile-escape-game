@@ -1,6 +1,6 @@
 import { Text, Pressable, StyleSheet } from 'react-native';
 
-import { constants } from '../constants';
+import { defaultStyles } from '@/defaultStyles';
 
 interface ButtonProps {
     text: string;
@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
     button: {
-        backgroundColor: constants.colors.blue,
+        backgroundColor: defaultStyles.colors.blue,
     },
     buttonPressed: {
-        backgroundColor: constants.colors.darkBlue,
+        backgroundColor: defaultStyles.colors.darkBlue,
     },
     textButton: {
-        color: constants.colors.white,
+        color: defaultStyles.colors.white,
     },
 });
