@@ -9,8 +9,9 @@
 stages:
   - build
   - deploy
+  - release
 
-# Docs building
+# ========================= Docs building =========================
 convert-pdf:
   stage: build
   # This stage was written by Sermeus Steven in an other project and is used here with his permission
@@ -60,20 +61,17 @@ pages:
   only:
     - main
 
-# App buiding
+# ========================= App buiding =========================
 
 eas-build:
-  stage: build
+  stage: release
   image: node:alpine
-  cache:
-    key: ${CI_COMMIT_REF_SLUG}
-    paths:
-      - .npm
   before_script:
-    - npm ci --cache .npm
+    - apk --update add git
+    - npm install -g expo-cli eas-cli
+    - npm install
   script:
-    - apk add --no-cache bash
-    - npx eas-cli build --platform all --non-interactive --no-wait
+    - eas build --platform android --profile preview --non-interactive --no-wait
   # only:
   #   - main
 
