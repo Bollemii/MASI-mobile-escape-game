@@ -11,6 +11,7 @@ import RequestCameraPermission from "@/components/RequestCameraPermission";
 import { saveLastGame } from "@/dataaccess/gameData";
 import usePseudo from "@/hooks/pseudo";
 import useLastGame from "@/hooks/lastGame";
+import BackgroundImage from "@/components/BackgroundImage";
 
 const data = {
     dark: {
@@ -61,9 +62,8 @@ export default function FirstStep () {
                 />
             )}
             <BackButton text="Quitter" pageRedirect={routes.home}/>
-            <Image
+            <BackgroundImage
                 source={stateBattery === BatteryState.CHARGING ? data.light.image : data.dark.image}
-                style={styles.image}
             />
             {stateBattery === BatteryState.CHARGING && (
                 <Pressable onPress={win} style={styles.winPressable}/>
@@ -88,11 +88,6 @@ const styles = StyleSheet.create({
         height: 1,
         // Positioned absolute to be visually hidden
         position: 'absolute',
-    },
-    image: {
-        width: '100%',
-        height: '100%',
-        zIndex: -1,
     },
     winPressable: {
         // Transparent pressable on the exit

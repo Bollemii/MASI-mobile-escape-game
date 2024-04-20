@@ -9,6 +9,7 @@ import StepNotAccess from "@/components/StepNotAccess";
 import { saveLastGame } from "@/dataaccess/gameData";
 import useLastGame from "@/hooks/lastGame";
 import useAccelerometer from "@/hooks/accelerometer";
+import BackgroundImage from "@/components/BackgroundImage";
 
 const data = {
     image: require("assets/images/piratesdelilebourbon/boat-deck-captain.png"),
@@ -55,10 +56,7 @@ export default function SecondStep() {
     return (
         <Pressable style={{flex: 1}} onPress={handlePress}>
             <BackButton text="Quitter" pageRedirect={routes.home}/>
-            <Image
-                source={data.image}
-                style={styles.image}
-            />
+            <BackgroundImage source={data.image}/>
             <SpeechPanel 
                 speaker={"Capitaine"}
                 text={data.texts[iText]}
@@ -72,9 +70,5 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-    },
-    image: {
-        width: "100%",
-        zIndex: -1,
     },
 });

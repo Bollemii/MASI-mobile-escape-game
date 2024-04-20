@@ -56,7 +56,7 @@ export default function QrScan() {
             <Button
                 text="Scanner un QR code" 
                 onPress={handleScan} 
-                buttonStyle={styles.button} 
+                buttonStyle={styles.button}
                 textStyle={styles.textButton}
             />
         </View>
@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         position: 'absolute',
-        bottom: 0,
     },
     button: {
         position: 'absolute',
@@ -83,7 +82,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     textButton: {
-        color: defaultStyles.colors.white,
         fontSize: 15,
     },
 });

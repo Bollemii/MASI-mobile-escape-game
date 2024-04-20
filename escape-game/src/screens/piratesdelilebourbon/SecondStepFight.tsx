@@ -6,6 +6,7 @@ import { routes } from "@/router/routes";
 import { defaultStyles } from "@/defaultStyles";
 import BackButton from "@/components/BackButton";
 import SpeechPanel from "@/components/SspeechPanel";
+import BackgroundImage from "@/components/BackgroundImage";
 
 const data = {
     image: require("assets/images/piratesdelilebourbon/pirate-cat.png"),
@@ -36,10 +37,7 @@ export default function SecondStepFight() {
             <View style={styles.disclaimer}>
                 <Text>{data.disclaimer}</Text>
             </View>
-            <Image
-                source={data.image}
-                style={styles.image}
-            />
+            <BackgroundImage source={data.image}/>
             <SpeechPanel
                 speaker="Pirates"
                 text={data.texts[iText]}
@@ -53,11 +51,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-    },
-    image: {
-        width: "100%",
-        height: "100%",
-        zIndex: -1,
     },
     disclaimer: {
         position: "absolute",
