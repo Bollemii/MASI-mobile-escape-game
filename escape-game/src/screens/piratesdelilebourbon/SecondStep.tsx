@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { Image, Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { routes } from "@/router/routes";
+import NotAccessed from "@/screens/NotAccessed";
 import BackButton from "@/components/BackButton";
-import SpeechPanel from "@/components/SspeechPanel";
-import StepNotAccess from "@/components/StepNotAccess";
+import SpeechPanel from "@/components/SpeechPanel";
+import BackgroundImage from "@/components/BackgroundImage";
 import { saveLastGame } from "@/dataaccess/gameData";
 import useLastGame from "@/hooks/lastGame";
 import useAccelerometer from "@/hooks/accelerometer";
-import BackgroundImage from "@/components/BackgroundImage";
 
 const data = {
     image: require("assets/images/piratesdelilebourbon/boat-deck-captain.png"),
@@ -30,7 +30,7 @@ export default function SecondStep() {
     const {y} = useAccelerometer(500);
     if (!lastGame || lastGame.lastStep !== 1) {
         return (
-            <StepNotAccess step={2} game={lastGame}/>
+            <NotAccessed step={2} game={lastGame}/>
         )
     }
 

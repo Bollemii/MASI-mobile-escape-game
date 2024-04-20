@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { routes } from "@/router/routes";
 import { defaultStyles } from "@/defaultStyles";
 import BackButton from "@/components/BackButton";
-import SpeechPanel from "@/components/SspeechPanel";
+import SpeechPanel from "@/components/SpeechPanel";
 import BackgroundImage from "@/components/BackgroundImage";
 
 const data = {

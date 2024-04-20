@@ -2,14 +2,14 @@ import { StyleSheet, Text, View } from "react-native";
 
 import { routes } from "@/router/routes";
 import Game from "@/models/game";
-import BackButton from "./BackButton";
+import BackButton from "@/components/BackButton";
 
-interface StepNotAccessProps {
+interface NotAccessedProps {
     step: number;
     game?: Game;
 }
 
-export default function StepNotAccess(props: StepNotAccessProps) {
+export default function NotAccessed(props: NotAccessedProps) {
     let text: JSX.Element;
     if (!props.game) {
         text = <Text style={styles.text}>Vous n'avez pas de partie en cours, veuillez en commencer une nouvelle</Text>
