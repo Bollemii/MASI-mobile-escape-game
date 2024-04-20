@@ -77,6 +77,7 @@ eas-test:
     - npm install -g expo-cli
     - npm install
   script:
+    - echo "Testing the app..."
     - npx tsc
     - expo-cli doctor
   only:
@@ -88,12 +89,12 @@ eas-build:
   variables:
     EAS_BUILD_PROFILE: preview
   before_script:
-    - echo "Building the app..."
-    - echo "Token - $EXPO_TOKEN"
     - cd $(pwd)/escape-game
+    - apk --update add git
     - npm install -g expo-cli eas-cli
     - npm install
   script:
+    - echo "Building the app..."
     - eas build --platform android --profile preview --non-interactive --no-wait
 # @TODO: Uncomment
   # only:
