@@ -81,7 +81,6 @@ eas-test:
   only:
     - merge_requests
   script:
-    - cd $(pwd)/escape-game
     - npx tsc
     - expo-cli doctor
 
@@ -89,7 +88,6 @@ eas-build:
   stage: release
   image: node:alpine
   script:
-    - cd $(pwd)/escape-game
     - eas build --platform android --profile preview --non-interactive --no-wait
 # @TODO: Uncomment
   # only:
