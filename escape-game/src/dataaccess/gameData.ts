@@ -12,7 +12,7 @@ const getLastGame = async () : Promise<Game|undefined> => {
     });
 };
 
-const setLastGame = async (game?: Game) => {
+const saveLastGame = async (game?: Game) => {
     if (!game) {
         await storage.removeItem(GAME_KEY);
         return;
@@ -20,4 +20,4 @@ const setLastGame = async (game?: Game) => {
     await storage.setItem(GAME_KEY, game.toJSON());
 }
 
-export { getLastGame, setLastGame }
+export { getLastGame, saveLastGame }

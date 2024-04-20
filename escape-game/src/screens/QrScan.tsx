@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { BarCodeScanningResult, Camera } from "expo-camera";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation } from "@react-navigation/native";
@@ -8,24 +8,24 @@ import { constants } from "@/constants";
 import { isRouteHandled } from "@/utils/router";
 import BackButton from "@/components/BackButton";
 import Button from "@/components/Button";
+import RequestCameraPermission from "@/components/RequestCameraPermission";
+
+// It is use only for development testing
+const automaticScan = true;
 
 export default function QrScan() {
     const navigation = useNavigation();
     const [permission, requestPermission] = Camera.useCameraPermissions();
-    const [scanned, setScanned] = useState(false);
-    
+    const [wantScanned, setWantScanned] = useState(false);
+
     if (!permission?.granted) {
         return (
-            <View style={[styles.container, {marginHorizontal: 20}]}>
-                <BackButton text="Retour" pageRedirect="Home"/>
-                <Text style={{marginBottom: 30}}>"Veuillez autoriser l'accès à la caméra pour continuer"</Text>
-                <Button onPress={requestPermission} text="Autoriser la caméra"/>
-            </View>
+            <RequestCameraPermission requestPermission={requestPermission}/>
         );
     }
 
     const onBarCodeScanned = (result: BarCodeScanningResult) => {
-        setScanned(true);
+        setWantScanned(false);
         const route = result.data.split('\n')[0];
         
         if (!isRouteHandled(route)) {
@@ -37,7 +37,7 @@ export default function QrScan() {
         navigation.navigate(route);
     };
     const handleScan = () => {
-        setScanned(false);
+        setWantScanned(true);
     };
 
     return (
@@ -47,7 +47,7 @@ export default function QrScan() {
                 barCodeScannerSettings={{
                     barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
                 }}
-                onBarCodeScanned={scanned ? undefined : onBarCodeScanned}
+                onBarCodeScanned={automaticScan || wantScanned ? onBarCodeScanned : undefined}
                 ratio={constants.options.windowRatio}
             />
             <BackButton text="Retour" pageRedirect="Home"/>

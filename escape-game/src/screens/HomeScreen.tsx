@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { constants } from '@/constants';
 import Button from '@/components/Button';
-import { setSavedPseudo } from '@/dataaccess/playerData';
+import { savePseudo } from '@/dataaccess/playerData';
 import usePseudo from '@/hooks/pseudo';
 
 export default function HomeScreen() {
@@ -16,7 +16,7 @@ export default function HomeScreen() {
     };
     const onChangePseudo = (text: string) => {
         setPseudo(text);
-        setSavedPseudo(text);
+        savePseudo(text);
     }
 
     return (

@@ -6,8 +6,9 @@ import { Camera, FlashMode } from "expo-camera";
 import { constants } from "@/constants";
 import BackButton from "@/components/BackButton";
 import SpeechPanel from "@/components/SpeechPanel";
-import Button from "@/components/Button";
-import { setLastGame } from "@/dataaccess/gameData";
+import StepNotAccess from "@/components/StepNotAccess";
+import RequestCameraPermission from "@/components/RequestCameraPermission";
+import { saveLastGame } from "@/dataaccess/gameData";
 import usePseudo from "@/hooks/pseudo";
 import useLastGame from "@/hooks/lastGame";
 
@@ -24,34 +25,20 @@ const data = {
 
 export default function FirstStep () {
     const navigation = useNavigation();
-    const [pseudo, __] = usePseudo();
-    const [permission, requestPermission] = Camera.useCameraPermissions();
-    const stateBattery = useBatteryState();
     const [lastGame, _] = useLastGame();
+    const [permission, requestPermission] = Camera.useCameraPermissions();
+    const [pseudo, __] = usePseudo();
+    const stateBattery = useBatteryState();
 
-    if (!lastGame) {
+    if (!lastGame || lastGame.lastStep !== 0) {
         return (
-            <View style={[styles.container, {marginHorizontal: 20}]}>
-                <BackButton text="Retour" pageRedirect="Home"/>
-                <Text>"Vous n'avez pas de partie en cours, veuillez en commencer une nouvelle"</Text>
-            </View>
-        );
-    } else if (lastGame.lastStep !== 0) {
-        return (
-            <View style={[styles.container, {marginHorizontal: 20}]}>
-                <BackButton text="Retour" pageRedirect="Home"/>
-                <Text>"Vous avez déjà commencé la partie, veuillez reprendre à la {lastGame.lastStep}e étape où vous vous êtes arrêté"</Text>
-            </View>
-        );
+            <StepNotAccess step={1} game={lastGame}/>
+        )
     }
 
     if (!permission?.granted) {
         return (
-            <View style={[styles.container, {marginHorizontal: 20}]}>
-                <BackButton text="Retour" pageRedirect="Home"/>
-                <Text style={{marginBottom: 30}}>"Veuillez autoriser l'accès à la caméra pour continuer"</Text>
-                <Button onPress={requestPermission} text="Autoriser la caméra"/>
-            </View>
+            <RequestCameraPermission requestPermission={requestPermission}/>
         );
     }
 
@@ -59,7 +46,7 @@ export default function FirstStep () {
         if (!lastGame) return;
 
         lastGame.wonStep();
-        setLastGame(lastGame).then(() => {
+        saveLastGame(lastGame).then(() => {
             // @ts-expect-error: navigation type is not well defined
             navigation.navigate(constants.screens.game[2]);
         });
@@ -73,7 +60,7 @@ export default function FirstStep () {
                     style={styles.camera}
                 />
             )}
-            <BackButton text="Quitter" pageRedirect="Home"/>
+            <BackButton text="Quitter" pageRedirect={constants.screens.home}/>
             <Image
                 source={stateBattery === BatteryState.CHARGING ? data.light.image : data.dark.image}
                 style={styles.image}

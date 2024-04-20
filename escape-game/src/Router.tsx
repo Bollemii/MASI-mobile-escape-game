@@ -7,6 +7,8 @@ import HomeScreen from "@/screens/HomeScreen";
 import QrScan from "@/screens/QrScan";
 import Introduction from "@/screens/piratesdelilebourbon/Introduction";
 import FirstStep from "@/screens/piratesdelilebourbon/FirstStep";
+import SecondStep from "@/screens/piratesdelilebourbon/SecondStep";
+import SecondStepFight from "@/screens/piratesdelilebourbon/SecondStepFight";
 import NotFound from "@/screens/NotFound";
 
 // Escape Game routing : piratesdelilebourbon/<step>
@@ -33,7 +35,8 @@ export default function Router() {
                 <Stack.Group>
                     <Stack.Screen name={constants.screens.game[0]} key={constants.screens.game[0]} component={Introduction}/>
                     <Stack.Screen name={constants.screens.game[1]} key={constants.screens.game[1]} component={FirstStep}/>
-                    <Stack.Screen name={constants.screens.game[2]} key={constants.screens.game[2]} component={NotFound}/>
+                    <Stack.Screen name={constants.screens.game[2]} key={constants.screens.game[2]} component={SecondStep}/>
+                    <Stack.Screen name={`${constants.screens.game[2]}/fight`} key={`${constants.screens.game[2]}/fight`} component={SecondStepFight}/>
                     <Stack.Screen name={constants.screens.game[3]} key={constants.screens.game[3]} component={NotFound}/>
                 </Stack.Group>
                 <Stack.Screen name={constants.screens.notFound} component={NotFound}/>
