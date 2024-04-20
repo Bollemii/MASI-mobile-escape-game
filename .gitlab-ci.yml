@@ -79,7 +79,7 @@ eas-test:
   script:
     - echo "Testing the app..."
     - npx tsc
-    - expo-cli doctor
+    - npx expo-doctor
   only:
     - merge_requests
 
@@ -96,7 +96,6 @@ eas-build:
   script:
     - echo "Building the app..."
     - eas build --platform android --profile preview --non-interactive --no-wait
-# @TODO: Uncomment
-  # only:
-  #   - main
+  only:
+    - main
 
