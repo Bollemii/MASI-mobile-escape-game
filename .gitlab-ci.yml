@@ -1,2 +1,17 @@
 # .gitlab-ci.yml
-include: '/docs/.gitlab-ci.yml'
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+stages:
+  - build
+  - test
+  - deploy
+  - release
+
+include:
+  - local: '/docs/.gitlab-ci.yml'
+  - local: '/escape-game/.gitlab-ci.yml'
