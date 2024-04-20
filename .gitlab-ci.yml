@@ -1,5 +1,5 @@
 # .gitlab-ci.yml
 
 include:
-- '/docs/.gitlab-ci.yml'
-- '/escape-game/.gitlab-ci.yml'
+  - '/docs/.gitlab-ci.yml'
+  - '/escape-game/.gitlab-ci.yml'
