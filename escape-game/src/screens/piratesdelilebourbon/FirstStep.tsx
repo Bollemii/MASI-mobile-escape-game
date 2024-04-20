@@ -8,7 +8,7 @@ import BackButton from "@/components/BackButton";
 import SpeechPanel from "@/components/SpeechPanel";
 import StepNotAccess from "@/components/StepNotAccess";
 import RequestCameraPermission from "@/components/RequestCameraPermission";
-import { setLastGame } from "@/dataaccess/gameData";
+import { saveLastGame } from "@/dataaccess/gameData";
 import usePseudo from "@/hooks/pseudo";
 import useLastGame from "@/hooks/lastGame";
 
@@ -25,14 +25,14 @@ const data = {
 
 export default function FirstStep () {
     const navigation = useNavigation();
-    const [pseudo, __] = usePseudo();
-    const [permission, requestPermission] = Camera.useCameraPermissions();
-    const stateBattery = useBatteryState();
     const [lastGame, _] = useLastGame();
+    const [permission, requestPermission] = Camera.useCameraPermissions();
+    const [pseudo, __] = usePseudo();
+    const stateBattery = useBatteryState();
 
     if (!lastGame || lastGame.lastStep !== 0) {
         return (
-            <StepNotAccess step={0} game={lastGame}/>
+            <StepNotAccess step={1} game={lastGame}/>
         )
     }
 
@@ -46,7 +46,7 @@ export default function FirstStep () {
         if (!lastGame) return;
 
         lastGame.wonStep();
-        setLastGame(lastGame).then(() => {
+        saveLastGame(lastGame).then(() => {
             // @ts-expect-error: navigation type is not well defined
             navigation.navigate(constants.screens.game[2]);
         });

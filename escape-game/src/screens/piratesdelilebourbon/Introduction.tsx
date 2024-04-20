@@ -5,7 +5,7 @@ import { constants } from "@/constants";
 import Game from "@/models/game";
 import BackButton from "@/components/BackButton";
 import Button from "@/components/Button";
-import { setLastGame as saveLastGame } from "@/dataaccess/gameData";
+import { saveLastGame } from "@/dataaccess/gameData";
 import useLastGame from "@/hooks/lastGame";
 
 const data = {

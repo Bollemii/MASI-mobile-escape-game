@@ -10,11 +10,14 @@ import BackButton from "@/components/BackButton";
 import Button from "@/components/Button";
 import RequestCameraPermission from "@/components/RequestCameraPermission";
 
+// It is use only for development testing
+const automaticScan = true;
+
 export default function QrScan() {
     const navigation = useNavigation();
     const [permission, requestPermission] = Camera.useCameraPermissions();
     const [wantScanned, setWantScanned] = useState(false);
-    
+
     if (!permission?.granted) {
         return (
             <RequestCameraPermission requestPermission={requestPermission}/>
@@ -44,7 +47,7 @@ export default function QrScan() {
                 barCodeScannerSettings={{
                     barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
                 }}
-                onBarCodeScanned={wantScanned ? onBarCodeScanned : undefined}
+                onBarCodeScanned={automaticScan || wantScanned ? onBarCodeScanned : undefined}
                 ratio={constants.options.windowRatio}
             />
             <BackButton text="Retour" pageRedirect="Home"/>

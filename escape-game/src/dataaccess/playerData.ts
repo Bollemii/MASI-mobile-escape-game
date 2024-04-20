@@ -7,7 +7,7 @@ const getSavedPseudo = async () : Promise<string|undefined> => {
     return await storage.getItem(PSEUDO_KEY);
 };
 
-const setSavedPseudo = async (pseudo?: string) => {
+const savePseudo = async (pseudo?: string) => {
     if (!pseudo) {
         await storage.removeItem(PSEUDO_KEY);
         return;
@@ -15,4 +15,4 @@ const setSavedPseudo = async (pseudo?: string) => {
     await storage.setItem(PSEUDO_KEY, pseudo);
 }
 
-export { getSavedPseudo, setSavedPseudo }
+export { getSavedPseudo, savePseudo }
