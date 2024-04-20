@@ -68,25 +68,31 @@ pages:
 
 # ========================= App buiding =========================
 
-before_script:
-  - cd $(pwd)/escape-game
-  - apk --update add git
-  - npm install -g expo-cli eas-cli
-  - npm install
-
 eas-test:
   stage: test
   image: node:alpine
   allow_failure: true
-  only:
-    - merge_requests
+  before_script:
+    - cd $(pwd)/escape-game
+    - npm install -g expo-cli
+    - npm install
   script:
     - npx tsc
     - expo-cli doctor
+  only:
+    - merge_requests
 
 eas-build:
   stage: release
   image: node:alpine
+  variables:
+    EAS_BUILD_PROFILE: preview
+  before_script:
+    - echo "Building the app..."
+    - echo "Token - $EXPO_TOKEN"
+    - cd $(pwd)/escape-game
+    - npm install -g expo-cli eas-cli
+    - npm install
   script:
     - eas build --platform android --profile preview --non-interactive --no-wait
 # @TODO: Uncomment
