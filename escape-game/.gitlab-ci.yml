@@ -1,7 +1,3 @@
-stages:
-  - test
-  - release
-
 eas-test:
   stage: test
   image: node:alpine

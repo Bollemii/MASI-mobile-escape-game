@@ -1,7 +1,3 @@
-stages:
-  - build
-  - deploy
-
 convert-pdf:
   stage: build
   # This stage was written by Sermeus Steven in an other project and is used here with his permission
