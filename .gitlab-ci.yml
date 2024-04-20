@@ -1,5 +1,6 @@
 # .gitlab-ci.yml
 
+# @TODO: Uncomment
 # workflow:
 #   rules:
 #     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
@@ -9,6 +10,7 @@
 stages:
   - build
   - deploy
+  - test
   - release
 
 # ========================= Docs building =========================
@@ -27,6 +29,9 @@ convert-pdf:
   artifacts:
     paths:
       - ./rapport.pdf
+# @TODO: Remove
+  only:
+    - main
 
 convert-html:
   stage: build
@@ -63,15 +68,30 @@ pages:
 
 # ========================= App buiding =========================
 
+before_script:
+  - cd $(pwd)/escape-game
+  - apk --update add git
+  - npm install -g expo-cli eas-cli
+  - npm install
+
+eas-test:
+  stage: test
+  image: node:alpine
+  allow_failure: true
+  only:
+    - merge_requests
+  script:
+    - cd $(pwd)/escape-game
+    - npx tsc
+    - expo-cli doctor
+
 eas-build:
   stage: release
   image: node:alpine
-  before_script:
-    - apk --update add git
-    - npm install -g expo-cli eas-cli
-    - npm install
   script:
+    - cd $(pwd)/escape-game
     - eas build --platform android --profile preview --non-interactive --no-wait
+# @TODO: Uncomment
   # only:
   #   - main
 
