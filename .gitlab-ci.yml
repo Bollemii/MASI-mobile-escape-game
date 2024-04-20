@@ -4,6 +4,17 @@ stages:
   - build
   - deploy
 
-include:
-  - local: '/docs/.gitlab-ci.yml'
-  - local: '/escape-game/.gitlab-ci.yml'
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+
+before_script:
+  - npm ci --cache .npm
+
+eas-build:
+  stage: build
+  script:
+    - apk add --no-cache bash
+    - npx eas-cli build --platform all --non-interactive --no-wait
