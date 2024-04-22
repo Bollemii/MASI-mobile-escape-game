@@ -11,7 +11,8 @@ eas-test:
     - npx tsc
     - npx expo-doctor
   only:
-    - merge_requests
+    refs:
+      - merge_requests
 
 eas-build:
   stage: release
@@ -27,4 +28,7 @@ eas-build:
     - echo "Building the app..."
     - eas build --platform android --profile preview --non-interactive --no-wait
   only:
-    - main
+    refs:
+        - main
+    changes:
+      - escape-game/**

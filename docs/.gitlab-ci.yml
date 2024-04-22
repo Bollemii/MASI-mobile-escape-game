@@ -13,6 +13,9 @@ convert-pdf:
   artifacts:
     paths:
       - ./rapport.pdf
+  only:
+    changes:
+      - docs/**
 
 convert-html:
   stage: build
@@ -30,7 +33,10 @@ convert-html:
     paths:
       - rapport.html
   only:
-    - main
+    refs:
+      - main
+    changes:
+      - docs/**
 
 pages:
   stage: deploy
@@ -45,4 +51,5 @@ pages:
     paths:
       - public
   only:
-    - main
+    refs:
+      - main
