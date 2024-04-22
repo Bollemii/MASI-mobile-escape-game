@@ -17,7 +17,7 @@ export default function HomeScreen() {
     };
     const onChangePseudo = (text: string) => {
         setPseudo(text);
-        savePseudo(text);
+        savePseudo(text.trim());
     }
 
     return (

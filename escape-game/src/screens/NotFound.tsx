@@ -7,7 +7,7 @@ export default function NotFound() {
     return (
         <View style={styles.container}>
             <BackButton text="Retour" pageRedirect={routes.home}/>
-            <Text>Not Found</Text>
+            <Text>La page demandée n'existe pas.</Text>
         </View>
     );
 }

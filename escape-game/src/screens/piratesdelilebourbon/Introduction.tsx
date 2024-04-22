@@ -15,7 +15,7 @@ const data = {
         "Votre mission ? Survivre, résoudre des énigmes et échapper à ce monde de corsaires et de trésors maudits.",
         "Prêt à lever l'ancre et à vous aventurer dans l'inconnu ?",
         "Que votre esprit d'aventure vous guide vers de nouveaux horizons !",
-        "Avant de commencer votre périple à travers l'univers des pirates, veuillez noter que cette aventure nécessite l'utilisation des fonctionnalités spécifiques de votre téléphone."
+        "Avant de commencer votre périple à travers l'univers des pirates, veuillez noter que cette aventure nécessite l'utilisation des fonctionnalités de votre téléphone."
     ]
 }
 

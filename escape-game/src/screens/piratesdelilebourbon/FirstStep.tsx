@@ -1,17 +1,17 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { BatteryState, useBatteryState } from "expo-battery";
 import { Camera, FlashMode } from "expo-camera";
 
 import { routes } from "@/router/routes";
+import NotAccessed from "@/screens/NotAccessed";
 import BackButton from "@/components/BackButton";
-import SpeechPanel from "@/components/SspeechPanel";
-import StepNotAccess from "@/components/StepNotAccess";
+import SpeechPanel from "@/components/SpeechPanel";
 import RequestCameraPermission from "@/components/RequestCameraPermission";
+import BackgroundImage from "@/components/BackgroundImage";
 import { saveLastGame } from "@/dataaccess/gameData";
 import usePseudo from "@/hooks/pseudo";
 import useLastGame from "@/hooks/lastGame";
-import BackgroundImage from "@/components/BackgroundImage";
 
 const data = {
     dark: {
@@ -32,8 +32,10 @@ export default function FirstStep () {
     const stateBattery = useBatteryState();
 
     if (!lastGame || lastGame.lastStep !== 0) {
+        // We use the NotAccessed as a component because LastGame might not be loaded yet on first render
+        // A navigation take only first render into account
         return (
-            <StepNotAccess step={1} game={lastGame}/>
+            <NotAccessed step={1} game={lastGame}/>
         )
     }
 
