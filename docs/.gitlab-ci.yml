@@ -13,6 +13,9 @@ convert-pdf:
   artifacts:
     paths:
       - ./rapport.pdf
+  rules:
+    - changes: 
+        - docs/**
 
 convert-html:
   stage: build
@@ -29,8 +32,10 @@ convert-html:
   artifacts:
     paths:
       - rapport.html
-  only:
-    - main
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes: 
+        - docs/**
 
 pages:
   stage: deploy
@@ -44,5 +49,7 @@ pages:
   artifacts:
     paths:
       - public
-  only:
-    - main
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes: 
+        - docs/**
