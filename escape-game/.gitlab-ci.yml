@@ -14,7 +14,7 @@ eas-test:
     refs:
       - merge_requests
     changes:
-      - /escape-game/**
+      - escape-game/**
 
 eas-build:
   stage: release
@@ -33,4 +33,4 @@ eas-build:
     refs:
         - main
     changes:
-      - /escape-game/**
+      - escape-game/**

@@ -15,7 +15,7 @@ convert-pdf:
       - ./rapport.pdf
   only:
     changes:
-      - /docs/**
+      - docs/**
 
 convert-html:
   stage: build
@@ -54,4 +54,4 @@ pages:
     refs:
       - main
     changes:
-      - /docs/**
+      - docs/**
