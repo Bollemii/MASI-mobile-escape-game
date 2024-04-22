@@ -8,9 +8,10 @@ interface SpeechPanelProps {
 }
 
 export default function SpeechPanel(props: SpeechPanelProps) {
+    const speaker = props.speaker ? props.speaker.toLowerCase().charAt(0).toUpperCase() + props.speaker.slice(1) : undefined;
     return (
         <View style={styles.container}>
-            {props.speaker && <Text style={styles.speaker}>{props.speaker}</Text>}
+            {props.speaker && <Text style={styles.speaker}>{speaker}</Text>}
             <Text style={styles.text}>{props.text}</Text>
         </View>
     );
@@ -31,7 +32,6 @@ const styles = StyleSheet.create({
         color: defaultStyles.colors.white,
         fontSize: 20,
         fontWeight: 'bold',
-        textTransform: 'capitalize',
         position: 'absolute',
         top: 5,
         left: 10,
