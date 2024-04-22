@@ -1,6 +1,21 @@
 # Possibilités d'amélioration
+Dans cette dernière partie, nous allons évoquer quelques pistes d'amélioration pour l'application. Ces pistes sont des idées qui pourraient être implémentées pour améliorer l'expérience utilisateur ou pour ajouter des fonctionnalités supplémentaires à l'application.
+
+## Indices de jeu
+Dans l'état actuel de l'application, il se peut que certains joueurs soient bloqués à certaines étapes du jeu. Pour les aider, nous pourrions ajouter un système d'indices qui permettrait aux joueurs de demander des indices pour les aider à avancer dans le jeu. Ces indices pourraient être débloqués après un certain temps passé sur une étape. Par exemple, si un joueur est bloqué sur une étape depuis 5 minutes, il pourrait demander un indice pour l'aider à avancer.
+
+## Paramétrisation de l'application
+### Multi-langues
+Pour toucher un public plus large, il serait intéressant de permettre à l'application d'être disponible en plusieurs langues. Cela permettrait aux utilisateurs de choisir la langue dans laquelle ils souhaitent jouer. Pour cela, il faudrait ajouter un système de traduction dans l'application qui permettrait de traduire les textes de l'application dans différentes langues.
+
+### Audio
+Pour les personnes malvoyantes, il serait intéressant d'ajouter un système audio qui permettrait de lire les textes à haute voix. Cela permettrait aux personnes malvoyantes de jouer à l'application sans avoir besoin de lire les textes à l'écran.
+
+### Accessibilité
+Toujours dans un objectif d'inclusion, il serait intéressant de se pencher sur l'accessibilité de l'application. Cela pourrait passer par l'ajout d'un paramètre qui permettrait de modifier la taille des textes à l'écran ou par l'ajout d'un mode sombre pour les personnes sensibles à la lumière.
+
 ## Inclure de nouvelles expositions
-Dans un objectif business, il serait intéressant de permettre à l'application d'inclure de nouvelles exposition avec leur propre jeu d'évasion et d'autres musées. Cela permettrait de diversifier l'offre et de proposer des jeux d'évasion différents dans chaque musée dans une même application.
+Dans un objectif plus business, il serait intéressant de permettre à l'application d'inclure de nouvelles expositions avec leur propre jeu d'évasion et d'autres musées. Cela permettrait de diversifier l'offre et de proposer des jeux d'évasion différents dans chaque musée rassemblés dans une même application.
 
 Cette fonctionnalité nécessiterait un travail de développement considérable par rapport à ce qui est initiallement prévu mais elle amènerait une plus-value énorme à l'application.
 
