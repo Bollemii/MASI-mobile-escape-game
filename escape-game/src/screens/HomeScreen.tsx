@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, TextInput } from 'react-native';
+import { View, StyleSheet, Text, TextInput, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { routes } from '@/router/routes';
@@ -6,6 +6,10 @@ import { defaultStyles } from '@/defaultStyles';
 import Button from '@/components/Button';
 import { savePseudo } from '@/dataaccess/playerData';
 import usePseudo from '@/hooks/pseudo';
+
+const data = {
+    image: require('assets/images/app-background.jpg'),
+}
 
 export default function HomeScreen() {
     const navigation = useNavigation();
@@ -21,16 +25,10 @@ export default function HomeScreen() {
     }
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Escape Museum</Text>
-            <Button 
-                onPress={onButtonPress} 
-                text="Commencer une aventure" 
-                buttonStyle={styles.button} 
-                textStyle={styles.textButton}
-            />
+        <ImageBackground source={data.image} style={styles.container}>
+            <Text style={styles.title}>{"Escape\nMuseum"}</Text>
             <View style={styles.inputContainer}>
-                <Text style={styles.textInput}>Pseudo du joueur :</Text>
+                <Text style={styles.textInput}>Votre pseudo</Text>
                 <TextInput
                     placeholder="Entrez votre pseudo"
                     value={pseudo}
@@ -38,7 +36,13 @@ export default function HomeScreen() {
                     style={styles.input}
                 />
             </View>
-        </View>
+            <Button 
+                onPress={onButtonPress} 
+                text="Commencer\nvotre aventure" 
+                buttonStyle={styles.button} 
+                textStyle={styles.textButton}
+            />
+        </ImageBackground>
     );
 };
 
@@ -49,33 +53,42 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title: {
-        fontSize: 30,
+        marginTop: 50,
+        fontSize: 45,
         fontWeight: 'bold',
-        marginBottom: 50,
+        textAlign: 'center',
+        color: defaultStyles.colors.white,
+        textShadowColor: defaultStyles.colors.black,
+        textShadowRadius: 20,
     },
     button: {
-        height: 200,
-        width: 200,
-        backgroundColor: defaultStyles.colors.blue,
+        height: 180,
+        width: 180,
         borderRadius: 100,
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: 50,
     },
     textButton: {
         fontSize: 20,
         textAlign: 'center',
+        lineHeight: 30,
+        fontWeight: 'bold',
+        color: defaultStyles.colors.white,
     },
     inputContainer: {
         width: '80%',
         alignItems: 'flex-start'
     },
     textInput: {
-        marginBottom: 10,
+        marginBottom: 5,
+        color: defaultStyles.colors.white,
+        fontWeight: 'bold',
     },
     input: {
-        height: 40,
+        height: 50,
         width: '100%',
-        borderColor: defaultStyles.colors.black,
+        backgroundColor: defaultStyles.colors.white,
         borderWidth: 1,
         borderRadius: 5,
         paddingLeft: 10,

@@ -83,5 +83,6 @@ const styles = StyleSheet.create({
     },
     textButton: {
         fontSize: 15,
+        color: defaultStyles.colors.white,
     },
 });

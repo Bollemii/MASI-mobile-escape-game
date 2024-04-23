@@ -1,14 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
+import { defaultStyles } from "@/defaultStyles";
 import { routes } from "@/router/routes";
 import Game from "@/models/game";
 import BackButton from "@/components/BackButton";
 import Button from "@/components/Button";
+import NextButton from "@/components/NextButton";
 import { saveLastGame } from "@/dataaccess/gameData";
 import useLastGame from "@/hooks/lastGame";
 
 const data = {
+    image: require('assets/images/piratesdelilebourbon/boat.jpg'),
     texts : [
         "Bienvenue à bord, moussaillon !",
         "Vous voilà plongé dans l’univers impitoyable des pirates, à bord du navire “Le Victorieux”.",
@@ -34,7 +37,7 @@ export default function Introduction() {
 
     if (!!lastGame && lastGame.isInProgress()) {
         return (
-            <View style={[styles.container, {marginHorizontal: 20}]}>
+            <View style={styles.container}>
                 <BackButton text="Retour" pageRedirect={routes.home}/>
                 <Text>"Vous avez déjà une partie en cours, voulez-vous recommencer ?"</Text>
                 <View style={styles.alreadyStarted}>
@@ -55,19 +58,19 @@ export default function Introduction() {
     }
 
     return (
-        <View style={styles.container}>
+        <ImageBackground source={data.image} style={styles.container}>
             <BackButton text="Quitter" pageRedirect={routes.home}/>
-            <Text style={styles.title}>Pirates de l'Ile Bourbon</Text>
-            <View style={{marginHorizontal: 20}}>
-                <Text style={[styles.text, {fontWeight: 'bold', marginBottom: 10}]}>{data.texts[0]}</Text>
+            <Text style={styles.title}>{"Pirates de\nl'Ile Bourbon"}</Text>
+            <View>
+                <Text style={[styles.text, {fontWeight: 'bold', marginBottom: 10, fontSize: 20}]}>{data.texts[0]}</Text>
                 <Text style={styles.text}>{data.texts[1]}</Text>
                 <Text style={styles.text}>{data.texts[2]}</Text>
                 <Text style={styles.text}>{data.texts[3]}</Text>
                 <Text style={styles.text}>{data.texts[4]}</Text>
-                <Text style={[styles.text, {marginTop: 50}]}>{data.texts[5]}</Text>
+                <Text style={[styles.text, {marginTop: 25}]}>{data.texts[5]}</Text>
             </View>
-            <Button text="Commencer" onPress={handleStart} buttonStyle={styles.button}/>
-        </View>
+            <NextButton text="Commencer" onPress={handleStart} theme="blue"/>
+        </ImageBackground>
     );
 }
 
@@ -76,23 +79,19 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
+        padding: 30,
     },
     title: {
-        fontSize: 30,
-        marginBottom: 50,
+        alignSelf: 'flex-start',
+        fontWeight: 'bold',
+        fontSize: 40,
+        color: defaultStyles.colors.white,
+        marginBottom: 22,
     },
     text: {
-        textAlign: 'justify',
+        fontSize: 18,
+        color: defaultStyles.colors.white,
         marginBottom: 5,
-    },
-    button: {
-        position: 'absolute',
-        bottom: 30,
-        width: '70%',
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 30,
     },
     alreadyStarted: {
         display: 'flex',

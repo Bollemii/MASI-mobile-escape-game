@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
 import { defaultStyles } from '@/defaultStyles';
 
@@ -12,7 +12,11 @@ export default function SpeechPanel(props: SpeechPanelProps) {
     return (
         <View style={styles.container}>
             {props.speaker && <Text style={styles.speaker}>{speaker}</Text>}
-            <Text style={styles.text}>{props.text}</Text>
+            <ScrollView>
+                <Text style={styles.text}>{props.text}</Text>
+                {/* Empty Text to add space at end of scroll */} 
+                <Text></Text>
+            </ScrollView>
         </View>
     );
 }
@@ -20,11 +24,12 @@ export default function SpeechPanel(props: SpeechPanelProps) {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        height: '21%',
+        height: '30%',
         backgroundColor: defaultStyles.colors.blue,
         position: 'absolute',
         bottom: 0,
-        padding: 5,
+        paddingHorizontal: 30,
+        paddingVertical: 15,
         display: 'flex',
         justifyContent: 'center',
     },
@@ -32,14 +37,11 @@ const styles = StyleSheet.create({
         color: defaultStyles.colors.white,
         fontSize: 20,
         fontWeight: 'bold',
-        position: 'absolute',
-        top: 5,
-        left: 10,
+        marginBottom: 15,
     },
     text: {
-        marginVertical: 'auto',
         color: defaultStyles.colors.white,
-        fontSize: 14,
-        textAlign: 'center',
+        fontSize: 16,
+        lineHeight: 20,
     },
 });
