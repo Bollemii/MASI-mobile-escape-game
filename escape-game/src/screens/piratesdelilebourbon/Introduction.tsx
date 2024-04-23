@@ -1,6 +1,7 @@
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
+import { defaultStyles } from "@/defaultStyles";
 import { routes } from "@/router/routes";
 import Game from "@/models/game";
 import BackButton from "@/components/BackButton";
@@ -59,14 +60,14 @@ export default function Introduction() {
     return (
         <ImageBackground source={data.image} style={styles.container}>
             <BackButton text="Quitter" pageRedirect={routes.home}/>
-            <Text style={styles.title}>Pirates de l'Ile Bourbon</Text>
-            <View style={{marginHorizontal: 20}}>
-                <Text style={[styles.text, {fontWeight: 'bold', marginBottom: 10}]}>{data.texts[0]}</Text>
+            <Text style={styles.title}>{"Pirates de\nl'Ile Bourbon"}</Text>
+            <View>
+                <Text style={[styles.text, {fontWeight: 'bold', marginBottom: 10, fontSize: 20}]}>{data.texts[0]}</Text>
                 <Text style={styles.text}>{data.texts[1]}</Text>
                 <Text style={styles.text}>{data.texts[2]}</Text>
                 <Text style={styles.text}>{data.texts[3]}</Text>
                 <Text style={styles.text}>{data.texts[4]}</Text>
-                <Text style={[styles.text, {marginTop: 50}]}>{data.texts[5]}</Text>
+                <Text style={[styles.text, {marginTop: 25}]}>{data.texts[5]}</Text>
             </View>
             <NextButton text="Commencer" onPress={handleStart} theme="blue"/>
         </ImageBackground>
@@ -78,13 +79,18 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
+        padding: 30,
     },
     title: {
-        fontSize: 30,
-        marginBottom: 50,
+        alignSelf: 'flex-start',
+        fontWeight: 'bold',
+        fontSize: 40,
+        color: defaultStyles.colors.white,
+        marginBottom: 22,
     },
     text: {
-        textAlign: 'justify',
+        fontSize: 18,
+        color: defaultStyles.colors.white,
         marginBottom: 5,
     },
     alreadyStarted: {
