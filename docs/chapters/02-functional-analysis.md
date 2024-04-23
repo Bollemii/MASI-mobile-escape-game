@@ -81,6 +81,14 @@ La deuxième épreuve se passe sur le pont du bateau. Les joueurs sont accueilli
 
 Pour la troisième épreuve, nous retrouvons le capitaine qui félicite et remercie le joueur pour son aide précieuse. Il lui propose de se rendre dans sa cabine pour fêter la victoire. Quand le joueur y arrive, le capitaine lui offre un verre de rhum.
 
+8. Page de fin de jeu
+
+![Maquette de l'écran de fin de jeu](../assets/images/mockups/End-game.jpg){ width=50% }
+
+La page de fin de jeu est la dernière page qui apparaît lorsque le joueur a terminé le jeu. Elle le félicite pour sa victoire et lui propose de revenir à l'écran d'accueil.
+
+\newpage
+
 ### Composants graphiques
 Pour réaliser ces maquettes, plusieurs éléments peuvent être rééutiliser. Voici une liste des composants nécessaires pour réaliser les maquettes d'écrans de l'application :
 
