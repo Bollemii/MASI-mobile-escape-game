@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, TextInput } from 'react-native';
+import { View, StyleSheet, Text, TextInput, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { routes } from '@/router/routes';
@@ -6,6 +6,10 @@ import { defaultStyles } from '@/defaultStyles';
 import Button from '@/components/Button';
 import { savePseudo } from '@/dataaccess/playerData';
 import usePseudo from '@/hooks/pseudo';
+
+const data = {
+    image: require('assets/images/app-background.jpg'),
+}
 
 export default function HomeScreen() {
     const navigation = useNavigation();
@@ -21,7 +25,7 @@ export default function HomeScreen() {
     }
 
     return (
-        <View style={styles.container}>
+        <ImageBackground source={data.image} style={styles.container}>
             <Text style={styles.title}>Escape Museum</Text>
             <Button 
                 onPress={onButtonPress} 
@@ -38,7 +42,7 @@ export default function HomeScreen() {
                     style={styles.input}
                 />
             </View>
-        </View>
+        </ImageBackground>
     );
 };
 

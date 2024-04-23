@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { ImageBackground, Pressable, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { routes } from "@/router/routes";
 import NotAccessed from "@/screens/NotAccessed";
 import BackButton from "@/components/BackButton";
 import SpeechPanel from "@/components/SpeechPanel";
-import BackgroundImage from "@/components/BackgroundImage";
 import { saveLastGame } from "@/dataaccess/gameData";
 import useLastGame from "@/hooks/lastGame";
 import useAccelerometer from "@/hooks/accelerometer";
@@ -54,21 +53,20 @@ export default function SecondStep() {
     }
 
     return (
-        <Pressable style={{flex: 1}} onPress={handlePress}>
-            <BackButton text="Quitter" pageRedirect={routes.home}/>
-            <BackgroundImage source={data.image}/>
-            <SpeechPanel 
-                speaker={"Capitaine"}
-                text={data.texts[iText]}
-            />
-        </Pressable>
+        <ImageBackground source={data.image} style={styles.container}>
+            <Pressable style={styles.container} onPress={handlePress}>
+                <BackButton text="Quitter" pageRedirect={routes.home}/>
+                <SpeechPanel 
+                    speaker={"Capitaine"}
+                    text={data.texts[iText]}
+                />
+            </Pressable>
+        </ImageBackground>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
     },
 });

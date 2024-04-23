@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { ImageBackground, Pressable, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { routes } from "@/router/routes";
 import { defaultStyles } from "@/defaultStyles";
 import BackButton from "@/components/BackButton";
 import SpeechPanel from "@/components/SpeechPanel";
-import BackgroundImage from "@/components/BackgroundImage";
 
 const data = {
     image: require("assets/images/piratesdelilebourbon/pirate-cat.png"),
@@ -32,25 +31,24 @@ export default function SecondStepFight() {
     };
 
     return (
-        <Pressable style={styles.container} onPress={handlePress}>
-            <BackButton text="Quitter" pageRedirect={routes.home}/>
-            <View style={styles.disclaimer}>
-                <Text>{data.disclaimer}</Text>
-            </View>
-            <BackgroundImage source={data.image}/>
-            <SpeechPanel
-                speaker="Pirates"
-                text={data.texts[iText]}
-            />
-        </Pressable>
+        <ImageBackground source={data.image} style={styles.container}>
+            <Pressable style={styles.container} onPress={handlePress}>
+                <BackButton text="Quitter" pageRedirect={routes.home}/>
+                <View style={styles.disclaimer}>
+                    <Text>{data.disclaimer}</Text>
+                </View>
+                <SpeechPanel
+                    speaker="Pirates"
+                    text={data.texts[iText]}
+                />
+            </Pressable>
+        </ImageBackground>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
     },
     disclaimer: {
         position: "absolute",

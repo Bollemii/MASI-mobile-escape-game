@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { routes } from "@/router/routes";
@@ -9,6 +9,7 @@ import { saveLastGame } from "@/dataaccess/gameData";
 import useLastGame from "@/hooks/lastGame";
 
 const data = {
+    image: require('assets/images/piratesdelilebourbon/boat.jpg'),
     texts : [
         "Bienvenue à bord, moussaillon !",
         "Vous voilà plongé dans l’univers impitoyable des pirates, à bord du navire “Le Victorieux”.",
@@ -34,7 +35,7 @@ export default function Introduction() {
 
     if (!!lastGame && lastGame.isInProgress()) {
         return (
-            <View style={[styles.container, {marginHorizontal: 20}]}>
+            <View style={styles.container}>
                 <BackButton text="Retour" pageRedirect={routes.home}/>
                 <Text>"Vous avez déjà une partie en cours, voulez-vous recommencer ?"</Text>
                 <View style={styles.alreadyStarted}>
@@ -55,7 +56,7 @@ export default function Introduction() {
     }
 
     return (
-        <View style={styles.container}>
+        <ImageBackground source={data.image} style={styles.container}>
             <BackButton text="Quitter" pageRedirect={routes.home}/>
             <Text style={styles.title}>Pirates de l'Ile Bourbon</Text>
             <View style={{marginHorizontal: 20}}>
@@ -67,7 +68,7 @@ export default function Introduction() {
                 <Text style={[styles.text, {marginTop: 50}]}>{data.texts[5]}</Text>
             </View>
             <Button text="Commencer" onPress={handleStart} buttonStyle={styles.button}/>
-        </View>
+        </ImageBackground>
     );
 }
 
