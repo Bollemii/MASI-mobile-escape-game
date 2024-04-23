@@ -11,13 +11,14 @@ interface ButtonProps {
 
 export default function Button(props: ButtonProps) {
     const buttonStyle = props.buttonStyle || styles.defaultButton;
-
+    const text = props.text.replace('\\n', '\n');
+    
     return (
         <Pressable 
             onPress={props.onPress}
             style={(state) => state.pressed ? [buttonStyle, styles.buttonPressed] : [buttonStyle, styles.button]}
         >
-            <Text style={[props.textStyle, styles.textButton]}>{props.text}</Text>
+            <Text style={[props.textStyle, styles.textButton]}>{text}</Text>
         </Pressable>
     );
 }
