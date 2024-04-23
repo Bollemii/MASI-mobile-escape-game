@@ -35,7 +35,7 @@ export default function Router() {
                 <Stack.Group>
                     <Stack.Screen name={routes.game[0]} key={routes.game[0]} component={Introduction}/>
                     <Stack.Screen name={routes.game[1]} key={routes.game[1]} component={FirstStep}/>
-                    <Stack.Screen name={routes.game[2]} key={routes.game[2]} component={SecondStep}/>
+                    <Stack.Screen name={routes.game[2]} key={routes.game[2]} component={SecondStepFight}/>
                     <Stack.Screen name={`${routes.game[2]}/fight`} key={`${routes.game[2]}/fight`} component={SecondStepFight}/>
                     <Stack.Screen name={routes.game[3]} key={routes.game[3]} component={NotFound}/>
                 </Stack.Group>

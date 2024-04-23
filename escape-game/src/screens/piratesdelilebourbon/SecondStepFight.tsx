@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { ImageBackground, Pressable, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faCat } from "@fortawesome/free-solid-svg-icons";
 
 import { defaultStyles } from "@/defaultStyles";
 import { routes } from "@/router/routes";
@@ -38,8 +40,15 @@ export default function SecondStepFight() {
         <ImageBackground source={data.image} style={styles.container}>
             <Pressable style={[styles.container, {alignItems: 'center'}]} onPress={handlePress}>
                 <BackButton text="Quitter" pageRedirect={routes.home}/>
-                <View style={styles.disclaimer}>
-                    <Text>{data.disclaimer}</Text>
+                <View style={styles.disclaimerContainer}>
+                    <View style={styles.disclaimerIcon}>
+                        <FontAwesomeIcon
+                            icon={faCat}
+                            size={45}
+                            color={defaultStyles.colors.darkgrey}
+                        />
+                    </View>
+                    <Text style={styles.disclaimer}>{data.disclaimer}</Text>
                 </View>
                 <SpeechPanel
                     speaker="Pirates"
@@ -58,14 +67,21 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    disclaimer: {
+    disclaimerContainer: {
         position: "absolute",
         top: 60,
         margin: 10,
-        padding: 10,
+        padding: 12,
         backgroundColor: defaultStyles.colors.grey,
-        borderColor: defaultStyles.colors.black,
-        borderWidth: 3,
         borderRadius: 10,
+        flexDirection: "row",
+        alignItems: "center",
+        width: "90%",
+    },
+    disclaimerIcon: {
+        width: 60,
+    },
+    disclaimer: {
+        width: "80%",
     },
 });

@@ -4,6 +4,7 @@ export const defaultStyles = {
         darkBlue: "#1F5D99",
         black: "#000000",
         white: "#FFFFFF",
-        grey: '#D9D9D9'
+        grey: '#D9D9D9',
+        darkgrey: '#4A4747',
     },
 };
