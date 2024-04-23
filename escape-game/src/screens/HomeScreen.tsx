@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         lineHeight: 30,
         fontWeight: 'bold',
+        color: defaultStyles.colors.white,
     },
     inputContainer: {
         width: '80%',

@@ -1,4 +1,4 @@
-import { ImageBackground, Pressable, StyleSheet, View } from "react-native";
+import { ImageBackground, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { BatteryState, useBatteryState } from "expo-battery";
 import { Camera, FlashMode } from "expo-camera";
@@ -8,6 +8,7 @@ import NotAccessed from "@/screens/NotAccessed";
 import BackButton from "@/components/BackButton";
 import SpeechPanel from "@/components/SpeechPanel";
 import RequestCameraPermission from "@/components/RequestCameraPermission";
+import NextButton from "@/components/NextButton";
 import { saveLastGame } from "@/dataaccess/gameData";
 import usePseudo from "@/hooks/pseudo";
 import useLastGame from "@/hooks/lastGame";
@@ -54,29 +55,38 @@ export default function FirstStep () {
         });
     }
 
-    return (
-        <ImageBackground source={stateBattery === BatteryState.CHARGING ? data.light.image : data.dark.image} style={styles.container}>
-            <BackButton text="Quitter" pageRedirect={routes.home}/>
-            {stateBattery === BatteryState.CHARGING && (
-                <Pressable onPress={win} style={styles.winPressable}/>
-            )}
-            <SpeechPanel 
-                speaker={pseudo}
-                text={stateBattery === BatteryState.CHARGING ? data.light.text : data.dark.text}
-            />
-            {stateBattery === BatteryState.CHARGING && (
+    if (stateBattery === BatteryState.CHARGING) {
+        return (
+            <ImageBackground source={data.light.image} style={styles.container}>
                 <Camera
                     flashMode={FlashMode.torch}
                     style={styles.camera}
                 />
-            )}
-        </ImageBackground>
-    );
+                <BackButton text="Quitter" pageRedirect={routes.home}/>
+                <SpeechPanel 
+                    speaker={pseudo}
+                    text={data.light.text}
+                />
+                <NextButton text="Épreuve suivante" onPress={win} theme="white"/>
+            </ImageBackground>
+        );
+    } else {
+        return (
+            <ImageBackground source={data.dark.image} style={styles.container}>
+                <BackButton text="Quitter" pageRedirect={routes.home}/>
+                <SpeechPanel 
+                    speaker={pseudo}
+                    text={data.dark.text}
+                />
+            </ImageBackground>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        alignItems: 'center',
     },
     camera: {
         // Hidden camera but it still needs to be displayed to work
@@ -84,13 +94,5 @@ const styles = StyleSheet.create({
         height: 1,
         // Positioned absolute to be visually hidden
         position: 'absolute',
-    },
-    winPressable: {
-        // Transparent pressable on the exit
-        position: 'absolute',
-        top: 250,
-        left: 130,
-        right: 130,
-        bottom: 400,
     },
 });

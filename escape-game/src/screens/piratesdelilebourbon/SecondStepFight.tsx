@@ -2,10 +2,11 @@ import { useState } from "react";
 import { ImageBackground, Pressable, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { routes } from "@/router/routes";
 import { defaultStyles } from "@/defaultStyles";
+import { routes } from "@/router/routes";
 import BackButton from "@/components/BackButton";
 import SpeechPanel from "@/components/SpeechPanel";
+import NextButton from "@/components/NextButton";
 
 const data = {
     image: require("assets/images/piratesdelilebourbon/pirate-cat.png"),
@@ -20,19 +21,22 @@ const data = {
 export default function SecondStepFight() {
     const navigation = useNavigation();
     const [iText, setIText] = useState(0);
-
+    
     const handlePress = () => {
         if (iText < data.texts.length - 1) {
             setIText(iText + 1);
-        } else {
+        }
+    };
+    const handleNext = () => {
+        if (iText === data.texts.length - 1) {
             // @ts-expect-error: navigation type is not well defined
             navigation.navigate(routes.game[3]);
         }
-    };
+    }
 
     return (
         <ImageBackground source={data.image} style={styles.container}>
-            <Pressable style={styles.container} onPress={handlePress}>
+            <Pressable style={[styles.container, {alignItems: 'center'}]} onPress={handlePress}>
                 <BackButton text="Quitter" pageRedirect={routes.home}/>
                 <View style={styles.disclaimer}>
                     <Text>{data.disclaimer}</Text>
@@ -41,6 +45,10 @@ export default function SecondStepFight() {
                     speaker="Pirates"
                     text={data.texts[iText]}
                 />
+                {
+                    iText === data.texts.length - 1 &&
+                    <NextButton text="Étape suivante" onPress={handleNext} theme="white"/>
+                }
             </Pressable>
         </ImageBackground>
     );

@@ -5,6 +5,7 @@ import { routes } from "@/router/routes";
 import Game from "@/models/game";
 import BackButton from "@/components/BackButton";
 import Button from "@/components/Button";
+import NextButton from "@/components/NextButton";
 import { saveLastGame } from "@/dataaccess/gameData";
 import useLastGame from "@/hooks/lastGame";
 
@@ -67,7 +68,7 @@ export default function Introduction() {
                 <Text style={styles.text}>{data.texts[4]}</Text>
                 <Text style={[styles.text, {marginTop: 50}]}>{data.texts[5]}</Text>
             </View>
-            <Button text="Commencer" onPress={handleStart} buttonStyle={styles.button}/>
+            <NextButton text="Commencer" onPress={handleStart} theme="blue"/>
         </ImageBackground>
     );
 }
@@ -85,15 +86,6 @@ const styles = StyleSheet.create({
     text: {
         textAlign: 'justify',
         marginBottom: 5,
-    },
-    button: {
-        position: 'absolute',
-        bottom: 30,
-        width: '70%',
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 30,
     },
     alreadyStarted: {
         display: 'flex',
