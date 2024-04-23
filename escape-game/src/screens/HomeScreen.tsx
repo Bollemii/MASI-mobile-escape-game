@@ -59,12 +59,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: defaultStyles.colors.white,
         textShadowColor: defaultStyles.colors.black,
-        textShadowRadius: 10,
+        textShadowRadius: 20,
     },
     button: {
         height: 180,
         width: 180,
-        backgroundColor: defaultStyles.colors.blue,
         borderRadius: 100,
         justifyContent: 'center',
         alignItems: 'center',
