@@ -12,8 +12,9 @@ export default function SpeechPanel(props: SpeechPanelProps) {
     return (
         <View style={styles.container}>
             {props.speaker && <Text style={styles.speaker}>{speaker}</Text>}
-            <ScrollView style={styles.textContainer}>
+            <ScrollView>
                 <Text style={styles.text}>{props.text}</Text>
+                {/* Empty Text to add space at end of scroll */} 
                 <Text></Text>
             </ScrollView>
         </View>
@@ -27,7 +28,8 @@ const styles = StyleSheet.create({
         backgroundColor: defaultStyles.colors.blue,
         position: 'absolute',
         bottom: 0,
-        padding: 10,
+        paddingHorizontal: 30,
+        paddingVertical: 15,
         display: 'flex',
         justifyContent: 'center',
     },
@@ -35,13 +37,7 @@ const styles = StyleSheet.create({
         color: defaultStyles.colors.white,
         fontSize: 20,
         fontWeight: 'bold',
-        top: 5,
-        left: 10,
-    },
-    textContainer: {
-        width: '100%',
-        height: '100%',
-        padding: 10,
+        marginBottom: 15,
     },
     text: {
         color: defaultStyles.colors.white,
