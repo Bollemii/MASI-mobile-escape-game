@@ -62,20 +62,14 @@ export default class Game {
     }
 
     wonStep() {
-        if (this.lastStep === Game.MAX_STEP) {
-            throw new Error("All steps have already been completed");
-        }
         this.lastStep++;
-    }
-
-    endGame() {
-        if (this.endDate !== undefined) {
-            throw new Error("Game already ended");
+        if (this.lastStep === Game.MAX_STEP) {
+            if (this.endDate === undefined) {
+                this.endDate = new Date();
+            } else {
+                throw new Error("All steps have already been completed");
+            }
         }
-        if (this.lastStep !== Game.MAX_STEP) {
-            throw new Error("All steps must be completed before ending the game");
-        }
-        this.endDate = new Date();
     }
 
     isInProgress() : boolean {

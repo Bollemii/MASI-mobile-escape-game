@@ -5,6 +5,7 @@ import { defaultStyles } from '@/defaultStyles';
 interface SpeechPanelProps {
     speaker?: string;
     text: string;
+    more?: boolean;
 }
 
 export default function SpeechPanel(props: SpeechPanelProps) {
@@ -14,9 +15,10 @@ export default function SpeechPanel(props: SpeechPanelProps) {
             {props.speaker && <Text style={styles.speaker}>{speaker}</Text>}
             <ScrollView>
                 <Text style={styles.text}>{props.text}</Text>
-                {/* Empty Text to add space at end of scroll */} 
+                {/*If no more, display empty text to add space for scroll*/}
                 <Text></Text>
             </ScrollView>
+            {props.more && <Text style={styles.more}>Suivant...</Text>}
         </View>
     );
 }
@@ -43,5 +45,12 @@ const styles = StyleSheet.create({
         color: defaultStyles.colors.white,
         fontSize: 16,
         lineHeight: 20,
+    },
+    more: {
+        color: defaultStyles.colors.white,
+        fontSize: 16,
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
     },
 });

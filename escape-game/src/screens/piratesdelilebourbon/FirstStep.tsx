@@ -14,11 +14,11 @@ import usePseudo from "@/hooks/pseudo";
 import useLastGame from "@/hooks/lastGame";
 
 const data = {
-    dark: {
+    before: {
         image: require("assets/images/piratesdelilebourbon/dark-ships-hold.png"),
         text: "Où suis-je ? Il fait noir, on dirait que je suis entouré de tonneaux. Mais attendez… j’entends des voix, je devrais aller voir s’il y a des gens là-haut. Le problème, c’est qu’on n’y voit pas grand chose ici. Ah, une lampe torche ! Mais elle est déchargée... Bon, il doit bien y avoir des piles quelque part."
     },
-    light: {
+    after: {
         image: require("assets/images/piratesdelilebourbon/light-ships-hold.png"),
         text: "Ok, voilà qui est mieux ! Avec ma lampe allumée, je peux enfin voir où je mets les pieds. Maintenant, il est temps de sortir de cette pièce. Pas question de rester coincé ici plus longtemps."
     }
@@ -45,7 +45,7 @@ export default function FirstStep () {
         );
     }
 
-    const win = () => {
+    const handleNext = () => {
         if (!lastGame) return;
 
         lastGame.wonStep();
@@ -55,9 +55,19 @@ export default function FirstStep () {
         });
     }
 
-    if (stateBattery === BatteryState.CHARGING) {
+    if (stateBattery !== BatteryState.CHARGING) {
         return (
-            <ImageBackground source={data.light.image} style={styles.container}>
+            <ImageBackground source={data.before.image} style={styles.container}>
+                <BackButton text="Quitter" pageRedirect={routes.home}/>
+                <SpeechPanel 
+                    speaker={pseudo}
+                    text={data.before.text}
+                />
+            </ImageBackground>
+        );
+    } else {
+        return (
+            <ImageBackground source={data.after.image} style={styles.container}>
                 <Camera
                     flashMode={FlashMode.torch}
                     style={styles.camera}
@@ -65,19 +75,9 @@ export default function FirstStep () {
                 <BackButton text="Quitter" pageRedirect={routes.home}/>
                 <SpeechPanel 
                     speaker={pseudo}
-                    text={data.light.text}
+                    text={data.after.text}
                 />
-                <NextButton text="Épreuve suivante" onPress={win} theme="white"/>
-            </ImageBackground>
-        );
-    } else {
-        return (
-            <ImageBackground source={data.dark.image} style={styles.container}>
-                <BackButton text="Quitter" pageRedirect={routes.home}/>
-                <SpeechPanel 
-                    speaker={pseudo}
-                    text={data.dark.text}
-                />
+                <NextButton text="Épreuve suivante" onPress={handleNext} theme="white"/>
             </ImageBackground>
         );
     }
