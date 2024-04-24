@@ -17,7 +17,7 @@ const data = {
         "Nous avons besoin de toutes les mains disponibles pour cette attaque. Préparez-vous à l'action, car nous n'avons pas de temps à perdre. Les voiles sont gonflées par le vent et le Nossa Senhora do Cabo est à notre portée. Il est temps de montrer de quel bois nous nous chauffons !",
         "Prenez cette baguette et tassez d'un mouvement horizontal la poudre de ce canon. Nous avons besoin de chaque canon prêt à cracher le feu lorsque nous atteindrons le Nossa Senhora do Cabo.",
     ],
-    accelerometerThreshold: 10,
+    accelerometerThreshold: 8,
     hitCount: 3,
 };
 
@@ -27,6 +27,7 @@ export default function SecondStep() {
     const [lastGame, _] = useLastGame();
     const [iText, setIText] = useState(0);
     const {y} = useAccelerometer(500);
+
     if (!lastGame || lastGame.lastStep !== 1) {
         return (
             <NotAccessed step={2} game={lastGame}/>

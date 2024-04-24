@@ -9,6 +9,7 @@ import Introduction from "@/screens/piratesdelilebourbon/Introduction";
 import FirstStep from "@/screens/piratesdelilebourbon/FirstStep";
 import SecondStep from "@/screens/piratesdelilebourbon/SecondStep";
 import SecondStepFight from "@/screens/piratesdelilebourbon/SecondStepFight";
+import ThirdStep from "@/screens/piratesdelilebourbon/ThirdStep";
 import NotFound from "@/screens/NotFound";
 
 // Escape Game routing : piratesdelilebourbon/<step>
@@ -37,7 +38,7 @@ export default function Router() {
                     <Stack.Screen name={routes.game[1]} key={routes.game[1]} component={FirstStep}/>
                     <Stack.Screen name={routes.game[2]} key={routes.game[2]} component={SecondStep}/>
                     <Stack.Screen name={`${routes.game[2]}/fight`} key={`${routes.game[2]}/fight`} component={SecondStepFight}/>
-                    <Stack.Screen name={routes.game[3]} key={routes.game[3]} component={NotFound}/>
+                    <Stack.Screen name={routes.game[3]} key={routes.game[3]} component={ThirdStep}/>
                 </Stack.Group>
                 <Stack.Screen name={routes.notFound} component={NotFound}/>
             </Stack.Navigator>

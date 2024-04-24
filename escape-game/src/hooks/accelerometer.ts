@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { DeviceMotion, DeviceMotionMeasurement } from "expo-sensors";
-import { Subscription } from "expo-battery";
+import { Subscription } from 'expo-modules-core';
 
 export default function useAccelerometer(interval: number = 1000) {
     const [data, setData] = useState<DeviceMotionMeasurement>();
