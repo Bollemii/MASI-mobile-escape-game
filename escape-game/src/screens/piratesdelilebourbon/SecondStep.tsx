@@ -16,6 +16,8 @@ import useLastGame from "@/hooks/lastGame";
 import useAccelerometer from "@/hooks/accelerometer";
 
 const data = {
+    accelerometerThreshold: 8,
+    hitCount: 3,
     before: {
         image: require("assets/images/piratesdelilebourbon/boat-deck-captain.png"),
         texts: [
@@ -23,8 +25,6 @@ const data = {
             "Nous avons besoin de toutes les mains disponibles pour cette attaque. Préparez-vous à l'action, car nous n'avons pas de temps à perdre. Les voiles sont gonflées par le vent et le Nossa Senhora do Cabo est à notre portée. Il est temps de montrer de quel bois nous nous chauffons !",
             "Prenez cette baguette et tassez d'un mouvement horizontal la poudre de ce canon. Nous avons besoin de chaque canon prêt à cracher le feu lorsque nous atteindrons le Nossa Senhora do Cabo.",
         ],
-        accelerometerThreshold: 8,
-        hitCount: 3,
     },
     after: {
         image: require("assets/images/piratesdelilebourbon/pirate-cat.png"),
@@ -47,7 +47,7 @@ export default function SecondStep() {
         )
     }
     
-    if (hitCount < data.before.hitCount) {
+    if (hitCount < data.hitCount) {
         return (
             <SecondStepBefore hitSetter={setHitCount} hitCount={hitCount}/>
         );
@@ -68,7 +68,7 @@ function SecondStepBefore({ hitSetter, hitCount } : { hitSetter: (value: number)
         }
     };
 
-    if (iText >= data.before.texts.length -1 && Math.abs(y) > data.before.accelerometerThreshold) {
+    if (iText >= data.before.texts.length -1 && Math.abs(y) > data.accelerometerThreshold) {
         // We use Y axe to detect horizontal movement
         hitSetter(hitCount + 1);
     }
@@ -80,6 +80,7 @@ function SecondStepBefore({ hitSetter, hitCount } : { hitSetter: (value: number)
                 <SpeechPanel 
                     speaker={"Capitaine"}
                     text={data.before.texts[iText]}
+                    more={iText < data.before.texts.length - 1}
                 />
             </Pressable>
         </ImageBackground>
@@ -123,6 +124,7 @@ function SecondStepAfter({lastGame} : {lastGame: Game}) {
                 <SpeechPanel
                     speaker="Pirates"
                     text={data.after.texts[iText]}
+                    more={iText < data.after.texts.length - 1}
                 />
                 {
                     iText === data.after.texts.length - 1 &&

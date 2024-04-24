@@ -11,7 +11,7 @@ interface NotAccessedProps {
 
 export default function NotAccessed(props: NotAccessedProps) {
     let text: JSX.Element;
-    if (!props.game) {
+    if (!props.game || props.game.isFinished()) {
         text = <Text style={styles.text}>Vous n'avez pas de partie en cours, veuillez en commencer une nouvelle.</Text>
     } else {
         if (props.game.lastStep >= props.step) {
