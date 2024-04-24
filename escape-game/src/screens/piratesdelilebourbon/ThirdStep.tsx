@@ -15,7 +15,7 @@ const data = {
         image: require("assets/images/piratesdelilebourbon/boat-deck-captain.png"),
         text: "Bravo, moussaillon ! Ton courage et ta bravoure ont été décisifs dans notre victoire aujourd'hui. Viens avec moi dans ma cabine. Nous allons célébrer cette victoire comme il se doit, avec un bon rhum et des histoires de mer à partager."
     },
-    step: 30,
+    step: 15,
     after: {
         image: require("assets/images/piratesdelilebourbon/captain-cabin.png"),
         text: "Ah, voilà notre héros ! Bienvenue dans mon humble demeure, moussaillon. Prends place, prends place. Tu as bien mérité un moment de repos après cette bataille acharnée. À notre victoire ! Et à l'esprit indomptable de l'équipage du 'Victorieux' !"
