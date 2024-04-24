@@ -71,7 +71,9 @@ La première épreuve se passe dans la cale du bateau. Les joueurs doivent illum
 
 ![Maquette de l'écran de la deuxième épreuve](../assets/images/mockups/Step-2.jpg)
 
-La deuxième épreuve se passe sur le pont du bateau. Les joueurs sont accueillis par le capitaine du bateau qui leur demande de l'aider à charger les canons pour attaquer un bateau ennemi. Les joueurs doivent charger le canon qui se trouve devant-eux. Après cela, ils vivent le combat. Cependant, pour des raison d'images violentes, ils verront un joli chat pirate à la place d'un combat. C'est ce que montre la deuxième partie de la maquette de l'écran de la deuxième épreuve. 
+La deuxième épreuve se passe sur le pont du bateau. Les joueurs sont accueillis par le capitaine du bateau qui leur demande de l'aider à charger les canons pour attaquer un bateau ennemi. Les joueurs doivent charger le canon qui se trouve devant-eux. Après cela, ils vivent le combat. Cependant, pour des raison d'images violentes, ils verront un joli chat pirate à la place d'un combat. C'est ce que montre la deuxième partie de la maquette de l'écran de la deuxième épreuve.
+
+Il est intéressant de remarquer que les premiers dialogues ont une mention "Suivant..." en bas à droite. Cela indique au joueur qu'il y a un dialogue après celui-ci.
 
 \newpage
 
@@ -81,11 +83,21 @@ La deuxième épreuve se passe sur le pont du bateau. Les joueurs sont accueilli
 
 Pour la troisième épreuve, nous retrouvons le capitaine qui félicite et remercie le joueur pour son aide précieuse. Il lui propose de se rendre dans sa cabine pour fêter la victoire. Quand le joueur y arrive, le capitaine lui offre un verre de rhum.
 
+\newpage
+
 8. Page de fin de jeu
 
 ![Maquette de l'écran de fin de jeu](../assets/images/mockups/End-game.jpg){ width=50% }
 
 La page de fin de jeu est la dernière page qui apparaît lorsque le joueur a terminé le jeu. Elle le félicite pour sa victoire et lui propose de revenir à l'écran d'accueil.
+
+\newpage
+
+9. Page non trouvée
+
+![Maquette de l'écran de page non trouvée](../assets/images/mockups/Not-found.jpg){ width=50% }
+
+La page non trouvée est une page qui apparaît lorsque l'utilisateur tente d'accéder à une page qui n'existe pas. Elle lui propose de revenir à l'écran d'accueil.
 
 \newpage
 
