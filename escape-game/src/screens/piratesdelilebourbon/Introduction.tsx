@@ -9,6 +9,7 @@ import Button from "@/components/Button";
 import NextButton from "@/components/NextButton";
 import { saveLastGame } from "@/dataaccess/gameData";
 import useLastGame from "@/hooks/lastGame";
+import NotAccessed from "../NotAccessed";
 
 const data = {
     image: require('assets/images/piratesdelilebourbon/boat.jpg'),
@@ -30,22 +31,13 @@ export default function Introduction() {
         // @ts-expect-error: navigation type is not well defined
         navigation.navigate(routes.game[lastGame.lastStep + 1]);
     }
-    const handleNewGame = () => {
+    const handleRestart = () => {
         saveLastGame();
         setLastGame(undefined);
     }
 
     if (!!lastGame && lastGame.isInProgress()) {
-        return (
-            <View style={styles.container}>
-                <BackButton text="Retour" pageRedirect={routes.home}/>
-                <Text>"Vous avez déjà une partie en cours, voulez-vous recommencer ?"</Text>
-                <View style={styles.alreadyStarted}>
-                    <Button text="Continuer" onPress={handleContinue}/>
-                    <Button text="Nouvelle partie" onPress={handleNewGame}/>
-                </View>
-            </View>
-        )
+        return <NotAccessed currentStep={0} game={lastGame} backgroundImage={data.image} restartFunctions={{handleContinue, handleRestart}}/>
     }
 
     function handleStart() {
@@ -92,12 +84,5 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: defaultStyles.colors.white,
         marginBottom: 5,
-    },
-    alreadyStarted: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        width: '70%',
-        marginTop: 30,
     },
 });

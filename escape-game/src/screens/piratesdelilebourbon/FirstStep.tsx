@@ -14,6 +14,7 @@ import usePseudo from "@/hooks/pseudo";
 import useLastGame from "@/hooks/lastGame";
 
 const data = {
+    notAccessedImage: require('assets/images/piratesdelilebourbon/boat.jpg'),
     before: {
         image: require("assets/images/piratesdelilebourbon/dark-ships-hold.png"),
         text: "Où suis-je ? Il fait noir, on dirait que je suis entouré de tonneaux. Mais attendez… j’entends des voix, je devrais aller voir s’il y a des gens là-haut. Le problème, c’est qu’on n’y voit pas grand chose ici. Ah, une lampe torche ! Mais elle est déchargée... Bon, il doit bien y avoir des piles quelque part."
@@ -35,7 +36,7 @@ export default function FirstStep () {
         // We use the NotAccessed as a component because LastGame might not be loaded yet on first render
         // A navigation take only first render into account
         return (
-            <NotAccessed step={1} game={lastGame}/>
+            <NotAccessed currentStep={1} game={lastGame} backgroundImage={data.notAccessedImage}/>
         )
     }
 
