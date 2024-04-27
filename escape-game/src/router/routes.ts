@@ -7,5 +7,4 @@ export const routes = {
         "piratesdelilebourbon/2",
         "piratesdelilebourbon/3",
     ],
-    notFound: "*",
 };
