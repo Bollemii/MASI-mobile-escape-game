@@ -45,7 +45,7 @@ L'écran d'accueil est la première page qui apparaît lorsque l'application est
 
 3. Page de scan de QR code
 
-![Maquette de l'écran de scan de QR code](../assets/images/mockups/QR-scan.jpg)
+![Maquette de l'écran de scan de QR code](../assets/images/mockups/QR-scan.jpg){ width=50% }
 
 L'écran de scan de QR code est lancée après la page d'accueil. Elle permet à l'utilisateur de scanner un QR code pour commencer un jeu ou une éprouve en particulier. La maquette de cet écran montre un QR code à scanner, ce n'est qu'une représentation visuelle. Dans l'application, la page aura la caméra en plein écran avec un bouton dans le bas de l'écran pour scanner le QR code.
 
@@ -93,7 +93,15 @@ La page de fin de jeu est la dernière page qui apparaît lorsque le joueur a te
 
 \newpage
 
-9. Page non trouvée
+9. Page de pas d'accès
+
+![Maquette de l'écran de pas d'accès](../assets/images/mockups/Not-accessed.jpg)
+
+La page de pas d'accès est une page qui apparaît lorsque l'utilisateur tente d'accéder à une étape pour laquelle il n'y a pas accès. Elle lui propose de revenir à l'écran d'accueil. La deuxième partie de la maquette correspond à l'écran lorsqu'il veut commencer une partie alors qu'il en a déjà une en cours. Il peut choisir de continuer la partie en cours ou de commencer une nouvelle partie.
+
+\newpage
+
+1.  Page non trouvée
 
 ![Maquette de l'écran de page non trouvée](../assets/images/mockups/Not-found.jpg){ width=50% }
 
