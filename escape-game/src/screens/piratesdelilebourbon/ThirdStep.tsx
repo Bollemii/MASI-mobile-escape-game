@@ -12,6 +12,7 @@ import NotAccessed from "../NotAccessed";
 
 const data = {
     step: 20,
+    notAccessedImage: require('assets/images/piratesdelilebourbon/boat.jpg'),
     before: {
         image: require("assets/images/piratesdelilebourbon/boat-deck-captain.png"),
         text: "Bravo, moussaillon ! Ton courage et ta bravoure ont été décisifs dans notre victoire aujourd'hui. Viens avec moi dans ma cabine, elle se trouve à 20 pas d'ici. Nous allons célébrer cette victoire comme il se doit, avec un bon rhum et des histoires de mer à partager."
@@ -29,7 +30,7 @@ export default function ThirdStep() {
 
     if (!lastGame || lastGame.lastStep !== 2) {
         return (
-            <NotAccessed step={3} game={lastGame}/>
+            <NotAccessed currentStep={3} game={lastGame} backgroundImage={data.notAccessedImage}/>
         )
     }
 

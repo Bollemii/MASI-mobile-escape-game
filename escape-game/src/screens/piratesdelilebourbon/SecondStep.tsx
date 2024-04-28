@@ -18,6 +18,7 @@ import useAccelerometer from "@/hooks/accelerometer";
 const data = {
     accelerometerThreshold: 8,
     hitCount: 3,
+    notAccessedImage: require('assets/images/piratesdelilebourbon/boat.jpg'),
     before: {
         image: require("assets/images/piratesdelilebourbon/boat-deck-captain.png"),
         texts: [
@@ -43,7 +44,7 @@ export default function SecondStep() {
 
     if (!lastGame || lastGame.lastStep !== 1) {
         return (
-            <NotAccessed step={2} game={lastGame}/>
+            <NotAccessed currentStep={2} game={lastGame} backgroundImage={data.notAccessedImage}/>
         )
     }
     

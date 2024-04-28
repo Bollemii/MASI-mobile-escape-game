@@ -10,10 +10,6 @@ eas-test:
     - echo "Testing the app..."
     - npx tsc
     - npx expo-doctor
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
-      changes: 
-        - escape-game/**
 
 eas-build:
   stage: release
@@ -30,5 +26,3 @@ eas-build:
     - eas build --platform android --profile preview --non-interactive --no-wait
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      changes: 
-        - escape-game/**
