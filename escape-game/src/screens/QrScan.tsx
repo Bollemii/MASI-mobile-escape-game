@@ -13,7 +13,7 @@ import Button from "@/components/Button";
 import RequestCameraPermission from "@/components/RequestCameraPermission";
 
 // It is use only for development testing
-const automaticScan = true;
+const automaticScan = false;
 
 export default function QrScan() {
     const navigation = useNavigation();
