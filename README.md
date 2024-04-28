@@ -38,16 +38,16 @@ Pour exécuter l'application sur un téléphone physique, il faut que celui-ci s
 adb devices
 
 # Android
-npm run android
+npx expo start --android
 # iOS
-npm run ios
+npm expo start --ios
 ```
 
 Pour exécuter l'application à l'aide de Expo Go, il suffit de lancer la commande suivante et de scanner le QR code avec l'application Expo Go.
 ```bash
-npm start
+npx expo start
 
 # Si ça ne fonctionne pas, il est possible de lancer l'application avec Expo Go en utilisant le tunnel
 # A l'Hénallux, c'est nécessaire
-npm start --tunnel
+npx expo start --tunnel
 ```

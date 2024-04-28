@@ -145,6 +145,17 @@ La géolocalisation permet de connaître la position du téléphone dans l'espac
 
 L'autre solution est d'utiliser le podomètre. Il permet de compter les pas du joueur. Cette solution est plus précise au niveau de la distance parcourue par le joueur. Cependant, elle ne permet pas de connaitre sa direction, c'est-à-dire qu'on ne peut pas demander au joueur de se rendre à un point précis. Ce n'est pas un problème pour notre cas d'utilisation car nous pouvons demander au joueur de se déplacer de 30 pas. Pour réaliser cette épreuve, nous allons utiliser le module [Pedometer](https://docs.expo.dev/versions/latest/sdk/pedometer/) de React Native. Ce module permet de compter les pas du joueur.
 
+En résumé, voici une matrice de décision pour choisir entre la géolocalisation et le podomètre :
+
+| **Critères**                      | **Géolocalisation**  | **Podomètre**                 |
+|-----------------------------------|----------------------|-------------------------------|
+| Précision (3)                     | 3 km à 10 m          | 1 m (= 1 pas)                 |
+| Direction (2)                     | Oui                  | Non                           |
+| Adapté à l'usage en intérieur (3) | Non                  | Oui                           |
+| Triche (1)                        | Difficile            | Facile (secouer le téléphone) |
+
+Avec cette matrice de décision, nous pouvons voir que le podomètre est plus adapté à notre cas d'utilisation. En effet, il est plus précis et il est adapté à l'usage en intérieur. Cela est important car l'application sera utilisée dans un musée. Nous allons donc utiliser le podomètre pour simuler le déplacement vers la cabine du capitaine en demandant au joueur de se déplacer d'un certain nombre de pas.
+
 ## Structure de l'application
 La structure de l'application est divisée en plusieurs parties pour faciliter le développement et la maintenance de l'application. Nous allons diviser l'application en deux grandes parties : le dossier `src` et le dossier `assets`. Le premier contiendra tout le code source de l'application et le second contiendra les ressources (images, QR codes, etc.) utilisés dans l'application.
 
@@ -152,16 +163,21 @@ Le dossier `assets` se divise en deux parties : `images` et `qrcodes`. Le premie
 
 Le dossier `src` se divise en plusieurs parties.
 
-1. `components` : Ce dossier contiendra les composants réutilisables utilisés dans les écrans comme les boutons.
-2. `dataaccess` : Ce fossier contiendra les accès aux données de l'application, c'est là que nous enregistrerons les données de jeu et du joueur.
-3. `hooks` : Ce dossier contiendra les hooks[^2] personnalisés utilisés dans l'application.
-4. `models` : Ce dossier contiendra les modèles de données utilisés dans l'application.
-5. `screens` : Ce dossier contiendra les différents écrans de l'application.
-6. `utils` : Ce dossier contiendra les fonctions utilitaires utilisées dans l'application.
+1. `router` : Ce dossier contiendra le fichier de navigation de l'application et la liste des routes de l'application.
+2. `screens` : Ce dossier contiendra les différents écrans de l'application.
+3. `components` : Ce dossier contiendra les composants réutilisables utilisés dans les écrans comme les boutons.
+4. `hooks` : Ce dossier contiendra les hooks[^2] personnalisés utilisés dans l'application.
+5. `models` : Ce dossier contiendra les modèles de données utilisés dans l'application.
+6. `dataaccess` : Ce fossier contiendra les accès aux données de l'application, c'est là que nous enregistrerons les données de jeu et du joueur.
+7. `utils` : Ce dossier contiendra les fonctions utilitaires utilisées dans l'application.
 
 [^2]: Les hooks sont des fonctions qui permettent d'utiliser des variables d'état et de suivre le cycle de vie d'un composant fonctionnel.
 
-Des fichiers de gestion générale de l'application seront également présents à la racine du dossier `src`. Par exemple, le fichier de navigation de l'application sera à la racine du dossier `src` ou encore un fichier contenant des constantes (des couleurs par exemple) utilisées dans l'application.
+Des fichiers de gestion générale de l'application seront également présents à la racine du dossier `src`. Ces fichiers sont les suivants :
+1. `constants.ts` : Ce fichier contiendra les constantes de l'application au niveau de l'appareil (taille de l'écran, etc.).
+2. `defaultStyles.ts` : Ce fichier contiendra les styles par défaut de l'application (couleurs, polices, etc.).
+
+Enfin, le fichier `App.tsx` à la racine du projet contiendra le point d'entrée de l'application. C'est ce fichier qui sera exécuté au lancement de l'application.
 
 Ainsi, la structure de l'application sera la suivante :
 
@@ -170,13 +186,15 @@ Ainsi, la structure de l'application sera la suivante :
 ├── assets/
 │   ├── images/
 │   └── qrcodes/
-└── src/
-    ├── components/
-    ├── dataaccess/
-    ├── hooks/
-    ├── models/
-    ├── screens/
-    ├── utils/
-    ├── constants.ts
-    └── Router.tsx
+├── src/
+│   ├── components/
+│   ├── dataaccess/
+│   ├── hooks/
+│   ├── models/
+│   ├── router/
+│   ├── screens/
+│   ├── utils/
+│   ├── constants.ts
+│   └── defaultStyles.ts
+└── App.tsx
 ```
