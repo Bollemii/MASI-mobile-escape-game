@@ -4,10 +4,22 @@ Dans cette partie, nous allons décrire les cas d'utilisation de l'application. 
 
 ![Diagramme de cas d'utilisation](../assets/images/diagrams/Usecase.png){ width=70% }
 
-Dans le diagramme ci-dessus, nous pouvons observer qu'il n'y a qu'un acteur qui correspond aux utilisateurs de l'application, ceux qui joueront à l'escape game. Ces utilisateurs pourront participer au jeu d'évasion, cela nécessite (inclus) de scanner un QR code au début du jeu. Ils pourront également participer directement aux 3 étapes du jeu en scannant un QR code pour l'étape désirée mais il faut impérativement qu'ils aient réussi l'étape précédente.  
-Les utilisateurs pourront aussi modifier leur pseudo.
+Dans le diagramme ci-dessus, nous pouvons observer qu'il n'y a qu'un acteur qui correspond aux utilisateurs de l'application, ceux qui joueront à l'escape game. Ces utilisateurs pourront participer au jeu d'évasion, cela nécessite (inclus) de scanner un QR code au début du jeu. Ils pourront également participer directement aux 3 étapes du jeu en scannant un QR code pour l'étape désirée. Toutefois, il faut impérativement qu'ils aient réussi l'étape précédente.  
+Les utilisateurs pourront aussi modifier leur pseudo avant de jouer.
 
 ## Fonctionnement général
+La suite de cette partie présente le fonctionnement général de l'application. Nous allons décrire comment les épreuves du jeu d'évasion se déroulent au sein de l'application.
+
+### Diagramme d'états
+La succession des épreuves nécessite que les joueurs aient réussi l'épreuve précédente pour accéder à l'épreuve suivante. Pour cela, nous devons comprendre que chaque épreuve passe par plusieurs états au cours de son déroulement. Ces états sont les suivants :
+
+![Diagramme d'états des épreuves](../assets/images/diagrams/States-step.png)
+
+Dans le diagramme ci-dessus, nous pouvons observer que chaque épreuve commence à l'état `Bloquée`. Cela signifie que les joueurs ne peuvent pas accéder à l'épreuve tant qu'ils n'ont pas réussi l'épreuve précédente. Une fois l'épreuve débloquée, les joueurs peuvent y accéder et commencer à jouer. L'épreuve passe ainsi à l'état `En cours`. Les joueurs peuvent jouer à l'épreuve jusqu'à ce qu'ils trouvent la solution. Une fois la solution trouvée, l'épreuve passe à l'état `Réussie`. Les joueurs peuvent alors passer à l'épreuve suivante s'il y en a une ou terminer le jeu s'ils ont réussi la dernière épreuve.
+
+### Diagrammes d'activité
+Pour mieux comprendre le déroulé du jeu d'évasion, nous avons réalisé plusieurs diagrammes d'activité. Ces diagrammes permettent de visualiser le fonctionnement du jeu dans son ensemble et de chaque épreuve en particulier.
+
 ![Diagramme d'activité du jeu complet](../assets/images/diagrams/Activity-full-game.png){ width=50% }
 
 Tout d'abord, le diagramme ci-dessus présente le fonctionnement du jeu d'évasion dans son ensemble. Les joueurs commencent par scanner le QR code de début du jeu à l'entrée du musée. S'ils ont déjà tenté le jeu sans l'avoir terminé, l'application leur propose de continuer le jeu à l'étape où ils se sont arrêtés. Ils peuvent également choisir de recommencer le jeu depuis le début. Le jeu, au complet, est composé de 3 étapes. Les joueurs doivent réussir chaque étape pour passer à l'étape suivante. Tant qu'ils n'ont pas réussi une étape, ils ne peuvent pas passer à l'étape suivante. Une fois les 3 étapes réussies, le jeu est terminé.

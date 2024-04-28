@@ -82,7 +82,7 @@ Avec ces critères, nous pouvons voir que les trois frameworks sont équivalents
 
 Comme montré dans la matrice de décision des frameworks Javascript, React Native utilise Expo Go pour l'émulation. Expo Go est une application mobile qui permet de tester les applications React Native sur un téléphone mobile. Elle permet de tester les fonctionnalités natives du téléphone comme la caméra, la géolocalisation, etc. Plus généralement, Expo Go fait partie de la suite d'outils Expo. Expo propose un ensemble de modules permettant d'utiliser les fonctionnalités natives du téléphone. Nous allons donc utiliser Expo pour le développement de notre application.
 
-Enfin, React Native peut être utilisé avec Javascript ou Typescript. Nous allons utiliser Typescript pour le développement car il permet de déviter certaines erreurs de programmation et d'offrir une meilleure lisibilité du code.
+Enfin, React Native peut être utilisé avec Javascript ou Typescript. Nous allons utiliser Typescript pour le développement car il permet d'éviter certaines erreurs de programmation et d'offrir une meilleure lisibilité du code.
 
 ### Stockage de données
 Comme précisé précédemment, l'application a besoin de stocker les données de jeu pour assurer le suivi et le bon fonctionnement. Elle a besoin de retenir les données de jeu de la dernière tentative du joueur pour lui permettre de reprendre le jeu à l'étape où il s'est arrêté en scannant un QR code.
