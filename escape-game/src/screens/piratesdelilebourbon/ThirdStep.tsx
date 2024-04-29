@@ -9,6 +9,7 @@ import { saveLastGame } from "@/dataaccess/gameData";
 import useLastGame from "@/hooks/lastGame";
 import usePedometer from "@/hooks/pedometer";
 import NotAccessed from "../NotAccessed";
+import EndPage from "@/screens/EndGame";
 
 const data = {
     step: 20,
@@ -42,7 +43,7 @@ export default function ThirdStep() {
             // @TODO : Redirect to end game screen
 
             // @ts-expect-error: navigation type is not well defined
-            navigation.navigate(routes.home);
+            navigation.navigate(routes.end);
         });
     }
 

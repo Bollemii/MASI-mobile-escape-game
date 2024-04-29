@@ -10,6 +10,7 @@ import FirstStep from "@/screens/piratesdelilebourbon/FirstStep";
 import SecondStep from "@/screens/piratesdelilebourbon/SecondStep";
 import ThirdStep from "@/screens/piratesdelilebourbon/ThirdStep";
 import NotFound from "@/screens/NotFound";
+import EndPage from "@/screens/EndGame";
 
 // Escape Game routing : piratesdelilebourbon/<step>
 
@@ -39,6 +40,7 @@ export default function Router() {
                     <Stack.Screen name={routes.game[3]} key={routes.game[3]} component={ThirdStep}/>
                 </Stack.Group>
                 <Stack.Screen name="*" component={NotFound}/>
+                <Stack.Screen name={routes.end} component={EndPage}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
