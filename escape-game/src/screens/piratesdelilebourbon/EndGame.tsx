@@ -58,6 +58,5 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 18,
         color: defaultStyles.colors.white,
-        marginBottom: 5,
     },
 });
