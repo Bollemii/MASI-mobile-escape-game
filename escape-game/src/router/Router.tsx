@@ -10,7 +10,7 @@ import FirstStep from "@/screens/piratesdelilebourbon/FirstStep";
 import SecondStep from "@/screens/piratesdelilebourbon/SecondStep";
 import ThirdStep from "@/screens/piratesdelilebourbon/ThirdStep";
 import NotFound from "@/screens/NotFound";
-import EndPage from "@/screens/EndGame";
+import EndPage from "@/screens/piratesdelilebourbon/EndGame";
 
 // Escape Game routing : piratesdelilebourbon/<step>
 

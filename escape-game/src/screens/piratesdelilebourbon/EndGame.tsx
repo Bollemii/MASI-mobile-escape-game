@@ -15,26 +15,24 @@ const data = {
     ]
 }
 
-export default function HomeScreen() {
+export default function EndGame() {
     const navigation = useNavigation();
 
-    const onButtonPress = () => {
+    const handleNext = () => {
         // @ts-expect-error: navigation type is not well defined
         navigation.navigate(routes.home);
     };
 
     return (
         <ImageBackground source={data.image} style={styles.container}>
-            <Text style={styles.title}>{}</Text>
             <View>
                 <Text style={[styles.text, {fontWeight: 'bold', marginBottom: 10, fontSize: 20}]}>{data.texts[0]}</Text>
                 <Text style={styles.text}>{data.texts[1]}</Text>
                 <Text style={styles.text}>{data.texts[2]}</Text>
                 <Text style={styles.text}>{data.texts[3]}</Text>
-                <Text style={[styles.text, {marginTop: 25}]}>{data.texts[4]}</Text>
             </View>
             <NextButton 
-                onPress={onButtonPress}
+                onPress={handleNext}
                 text="Retour à la page d’accueil" 
                 theme="blue"
             />
