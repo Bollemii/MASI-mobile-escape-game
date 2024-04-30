@@ -10,7 +10,6 @@ import useLastGame from "@/hooks/lastGame";
 import usePedometer from "@/hooks/pedometer";
 import NotAccessed from "../NotAccessed";
 
-
 const data = {
     step: 20,
     notAccessedImage: require('assets/images/piratesdelilebourbon/boat.jpg'),
@@ -40,8 +39,6 @@ export default function ThirdStep() {
 
         lastGame.wonStep();
         saveLastGame(lastGame).then(() => {
-            // @TODO : Redirect to end game screen
-
             // @ts-expect-error: navigation type is not well defined
             navigation.navigate(routes.end);
         });

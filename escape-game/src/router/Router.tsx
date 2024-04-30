@@ -40,7 +40,7 @@ export default function Router() {
                     <Stack.Screen name={routes.game[3]} key={routes.game[3]} component={ThirdStep}/>
                 </Stack.Group>
                 <Stack.Screen name="*" component={NotFound}/>
-                <Stack.Screen name={routes.end} component={EndPage}/>
+                <Stack.Screen name={routes.game.end} component={EndPage}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

@@ -20,7 +20,7 @@ export default function EndGame() {
 
     const handleNext = () => {
         // @ts-expect-error: navigation type is not well defined
-        navigation.navigate(routes.home);
+        navigation.navigate(routes.game.home);
     };
 
     return (
@@ -47,13 +47,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         padding: 30,
-    },
-    title: {
-        alignSelf: 'flex-start',
-        fontWeight: 'bold',
-        fontSize: 40,
-        color: defaultStyles.colors.white,
-        marginBottom: 22,
     },
     text: {
         fontSize: 18,
