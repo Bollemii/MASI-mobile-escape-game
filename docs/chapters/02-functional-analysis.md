@@ -39,6 +39,9 @@ Enfin, les trois diagrammes suivants présentent le fonctionnement de chaque ép
 \newpage
 
 ## Maquettes d'écrans
+### Présentation des maquettes
+Pour mieux visualiser les écrans de l'application, nous avons réalisé des maquettes. Ces maquettes permettent de fixer les visuels des écrans et de comprendre comment ils sont organisés et comment les utilisateurs peuvent interagir avec eux.
+
 1. Icône de l'application
 
 ![Icône de l'application](../assets/images/mockups/App-launcher.png){ width=30% }
@@ -89,7 +92,7 @@ Il est intéressant de remarquer que les premiers dialogues ont une mention "Sui
 
 \newpage
 
-1. Troisième épreuve
+7. Troisième épreuve
 
 ![Maquette de l'écran de la troisième épreuve](../assets/images/mockups/Step-3.jpg)
 
@@ -97,7 +100,7 @@ Pour la troisième épreuve, le joueur retrouve le capitaine qui le félicite et
 
 \newpage
 
-1. Page de fin de jeu
+8. Page de fin de jeu
 
 ![Maquette de l'écran de fin de jeu](../assets/images/mockups/End-game.jpg){ width=50% }
 
@@ -113,13 +116,24 @@ La page d'accès refusé est une page qui apparaît lorsque l'utilisateur tente 
 
 \newpage
 
-1.  Page non trouvée
+10. Page non trouvée
 
 ![Maquette de l'écran de page non trouvée](../assets/images/mockups/Not-found.jpg){ width=50% }
 
 La page non trouvée est une page qui apparaît lorsque l'utilisateur tente d'accéder à une page qui n'existe pas dans l'application. Elle lui propose de revenir à l'écran d'accueil.
 
 \newpage
+
+### Navigation entre les écrans
+Les maquettes d'écrans présentées ci-dessus permettent de visualiser les différentes pages de l'application. Pour naviguer entre ces écrans, nous avons réalisé un diagramme de navigation. Ce diagramme permet de comprendre comment les utilisateurs peuvent passer d'un écran à un autre.
+
+![Diagramme de navigation entre les écrans](../assets/images/diagrams/Mockups-navigation.png){ width=70% }
+
+Dans ce diagramme, nous pouvons observer que l'utilisateur commence par l'icône de l'application qui le mène à l'écran d'accueil. De là, il peut scanner un QR code pour commencer le jeu ou une épreuve en particulier. S'il n'a pas accès à l'épreuve, il est redirigé vers l'écran d'accès refusé. Sinon, il peut commencer l'épreuve. En réussissant l'épreuve, il peut passer à l'épreuve suivante jusqu'à la dernière. Une fois le jeu terminé, il est redirigé vers l'écran de fin de jeu qui lui permet de revenir à l'écran d'accueil.
+
+Dans ce diagramme, les flèches indiquent le sens de navigation entre les écrans. Les flèches en noir indiquent les chemins normaux de navigation. Les flèches en bleu indiquent les chemins de retour et les flèches en rouge indiquent les chemins d'accès refusé.
+
+La page non trouvée n'est pas reliée aux autres écrans car elle n'est pas accessible depuis l'application. Elle est affichée uniquement lorsque l'utilisateur tente d'accéder à une page qui n'existe pas.
 
 ### Composants graphiques
 Pour réaliser ces maquettes, plusieurs éléments peuvent être rééutilisés. Voici une liste, non-exhaustive, des composants nécessaires pour réaliser les maquettes d'écrans de l'application :
