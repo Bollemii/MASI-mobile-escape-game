@@ -14,4 +14,4 @@ export default function usePseudo(defaultStr = "Joueur") {
     }, []);
 
     return [pseudo, setPseudo] as const;
-}
+};

@@ -21,22 +21,19 @@ export default function QrScan() {
     const [wantScanned, setWantScanned] = useState(false);
 
     if (!permission?.granted) {
-        return (
-            <RequestCameraPermission requestPermission={requestPermission}/>
-        );
+        return <RequestCameraPermission requestPermission={requestPermission}/>;
     }
 
     const onBarCodeScanned = (result: BarCodeScanningResult) => {
         setWantScanned(false);
         const route = result.data.split('\n')[0];
         
-        if (!isRouteHandled(route)) {
+        if (isRouteHandled(route)) {
+            // @ts-expect-error: navigation type is not well defined
+            navigation.navigate(route);
+        } else {
             console.log('QR code not handled:', route);
-            return;
         }
-
-        // @ts-expect-error: navigation type is not well defined
-        navigation.navigate(route);
     };
     const handleScan = () => {
         setWantScanned(true);
@@ -61,7 +58,7 @@ export default function QrScan() {
             />
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {

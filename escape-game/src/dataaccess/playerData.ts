@@ -13,6 +13,6 @@ const savePseudo = async (pseudo?: string) => {
         return;
     }
     await storage.setItem(PSEUDO_KEY, pseudo.trim());
-}
+};
 
-export { getSavedPseudo, savePseudo }
+export { getSavedPseudo, savePseudo };

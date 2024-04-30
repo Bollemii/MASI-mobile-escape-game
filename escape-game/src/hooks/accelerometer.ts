@@ -16,4 +16,4 @@ export default function useAccelerometer(interval: number = 1000) {
     }, []);
 
     return data?.acceleration || {x: 0, y: 0, z: 0};
-}
+};

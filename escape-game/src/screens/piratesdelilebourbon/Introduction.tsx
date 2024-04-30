@@ -5,7 +5,6 @@ import { defaultStyles } from "@/defaultStyles";
 import { routes } from "@/router/routes";
 import Game from "@/models/game";
 import BackButton from "@/components/BackButton";
-import Button from "@/components/Button";
 import NextButton from "@/components/NextButton";
 import { saveLastGame } from "@/dataaccess/gameData";
 import useLastGame from "@/hooks/lastGame";
@@ -20,8 +19,8 @@ const data = {
         "Prêt à lever l'ancre et à vous aventurer dans l'inconnu ?",
         "Que votre esprit d'aventure vous guide vers de nouveaux horizons !",
         "Avant de commencer votre périple à travers l'univers des pirates, veuillez noter que cette aventure nécessite l'utilisation des fonctionnalités de votre téléphone."
-    ]
-}
+    ],
+};
 
 export default function Introduction() {
     const navigation = useNavigation();
@@ -30,14 +29,14 @@ export default function Introduction() {
     const handleContinue = () => {
         // @ts-expect-error: navigation type is not well defined
         navigation.navigate(routes.game[lastGame.lastStep + 1]);
-    }
+    };
     const handleRestart = () => {
         saveLastGame();
         setLastGame(undefined);
-    }
+    };
 
     if (!!lastGame && lastGame.isInProgress()) {
-        return <NotAccessed currentStep={0} game={lastGame} backgroundImage={data.image} restartFunctions={{handleContinue, handleRestart}}/>
+        return <NotAccessed currentStep={0} game={lastGame} backgroundImage={data.image} restartFunctions={{handleContinue, handleRestart}}/>;
     }
 
     function handleStart() {
@@ -47,7 +46,7 @@ export default function Introduction() {
             // @ts-expect-error: navigation type is not well defined
             navigation.navigate(routes.game[1]);
         });
-    }
+    };
 
     return (
         <ImageBackground source={data.image} style={styles.container}>
@@ -64,7 +63,7 @@ export default function Introduction() {
             <NextButton text="Commencer" onPress={handleStart} theme="blue"/>
         </ImageBackground>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {

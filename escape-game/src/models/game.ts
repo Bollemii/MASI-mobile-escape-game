@@ -9,7 +9,7 @@ export default class Game {
         this.startDate = startDate;
         this.endDate = endDate;
         this.lastStep = lastStep;
-    }
+    };
 
     get startDate() : Date {
         if (!this._startDate) {
@@ -17,7 +17,7 @@ export default class Game {
         }
 
         return this._startDate;
-    }
+    };
     set startDate(date: Date) {
         if (!date) {
             throw new Error("Start date is required");
@@ -27,11 +27,11 @@ export default class Game {
         }
 
         this._startDate = date;
-    }
+    };
 
     get endDate() : Date | undefined {
         return this._endDate;
-    }
+    };
     set endDate(date: Date | undefined) {
         if (date !== undefined && date > new Date()) {
             throw new Error("Invalid end date");
@@ -41,7 +41,7 @@ export default class Game {
         }
 
         this._endDate = date;
-    }
+    };
 
     get lastStep() : number {
         if (this._lastStep === undefined) {
@@ -49,7 +49,7 @@ export default class Game {
         }
         
         return this._lastStep;
-    }
+    };
     set lastStep(step: number) {
         if (step === undefined) {
             throw new Error("Last step is required");
@@ -59,7 +59,7 @@ export default class Game {
         }
 
         this._lastStep = step;
-    }
+    };
 
     wonStep() {
         this.lastStep++;
@@ -70,20 +70,20 @@ export default class Game {
                 throw new Error("All steps have already been completed");
             }
         }
-    }
+    };
 
     isInProgress() : boolean {
         return this.endDate === undefined && this.lastStep !== 0 && this.lastStep !== Game.MAX_STEP;
-    }
+    };
 
     isFinished() : boolean {
         return this.endDate !== undefined;
-    }
+    };
 
     static fromJSON(json: string) {
         const jsonObj = JSON.parse(json);
         return new Game(new Date(jsonObj.startDate), jsonObj.endDate ? new Date(jsonObj.endDate) : undefined, jsonObj.lastStep);
-    }
+    };
 
     toJSON() : string {
         return JSON.stringify({
@@ -91,5 +91,5 @@ export default class Game {
             endDate: this.endDate,
             lastStep: this.lastStep,
         });
-    }
+    };
 }

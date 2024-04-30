@@ -7,7 +7,7 @@ interface NextButtonProps {
     text: string;
     onPress: () => void;
     theme: 'blue' | 'white';
-}
+};
 
 export default function NextButton(props: NextButtonProps) {
     const colorButton = props.theme === 'blue' ? defaultStyles.colors.blue : defaultStyles.colors.white;
@@ -22,8 +22,8 @@ export default function NextButton(props: NextButtonProps) {
             colorPressedButton={colorPressedButton}
             textStyle={textStyle}
         />
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     button: {

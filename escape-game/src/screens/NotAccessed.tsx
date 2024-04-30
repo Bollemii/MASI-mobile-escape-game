@@ -11,23 +11,23 @@ interface NotAccessedProps {
     game?: Game;
     backgroundImage: any;
     restartFunctions?: {handleRestart: () => void, handleContinue: () => void};
-}
+};
 
 export default function NotAccessed(props: NotAccessedProps) {
     if (props.restartFunctions) {
-        return <Restart {...props}/>
+        return <Restart {...props}/>;
     }
 
     let text: string;
     if (!props.game || props.game.isFinished()) {
-        text = "Vous n'avez pas de partie en cours, veuillez en commencer une nouvelle."
+        text = "Vous n'avez pas de partie en cours, veuillez en commencer une nouvelle.";
     } else {
         if (props.game.lastStep >= props.currentStep) {
-            text = `Vous avez déjà réussi cette épreuve, veuillez reprendre à la ${props.game.lastStep+1}e étape où vous vous êtes arrêté.`
+            text = `Vous avez déjà réussi cette épreuve, veuillez reprendre à la ${props.game.lastStep+1}e étape où vous vous êtes arrêté.`;
         } else if (props.game.lastStep < props.currentStep-1) {
-            text = `Vous n'avez encore atteint cette épreuve, veuillez reprendre à la ${props.game.lastStep+1}e étape où vous vous êtes arrêté.`
+            text = `Vous n'avez encore atteint cette épreuve, veuillez reprendre à la ${props.game.lastStep+1}e étape où vous vous êtes arrêté.`;
         } else {
-            text = "Il semble qu'il y ait une erreur, veuillez prendre contact avec l'administrateur : vous devriez être à la bonne étape."
+            text = "Il semble qu'il y ait une erreur, veuillez prendre contact avec l'administrateur : vous devriez être à la bonne étape.";
         }
     }
 
@@ -54,7 +54,7 @@ function Restart(props: NotAccessedProps) {
             </View>
         </ImageBackground>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -81,5 +81,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 30,
-    }
+    },
 });

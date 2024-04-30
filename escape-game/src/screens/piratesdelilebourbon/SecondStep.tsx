@@ -35,7 +35,7 @@ const data = {
             "Qu'ils s'enfuient vers les profondeurs, car aujourd'hui, nous régnerons en maîtres des sept mers !",
         ],
         disclaimer: "Pour des raisons évidentes de violences, voici un adorable chaton ! Parce que même les pirates les plus féroces ont besoin d'une dose de mignonnerie de temps en temps.",
-    }
+    },
 };
 
 export default function SecondStep() {
@@ -43,21 +43,15 @@ export default function SecondStep() {
     const [hitCount, setHitCount] = useState(0);
 
     if (!lastGame || lastGame.lastStep !== 1) {
-        return (
-            <NotAccessed currentStep={2} game={lastGame} backgroundImage={data.notAccessedImage}/>
-        )
+        return <NotAccessed currentStep={2} game={lastGame} backgroundImage={data.notAccessedImage}/>;
     }
     
     if (hitCount < data.hitCount) {
-        return (
-            <SecondStepBefore hitSetter={setHitCount} hitCount={hitCount}/>
-        );
+        return <SecondStepBefore hitSetter={setHitCount} hitCount={hitCount}/>;
     } else {
-        return (
-            <SecondStepAfter lastGame={lastGame}/>
-        );
+        return <SecondStepAfter lastGame={lastGame}/>;
     }
-}
+};
 
 function SecondStepBefore({ hitSetter, hitCount } : { hitSetter: (value: number) => void, hitCount: number }) {
     const [iText, setIText] = useState(0);
@@ -86,7 +80,7 @@ function SecondStepBefore({ hitSetter, hitCount } : { hitSetter: (value: number)
             </Pressable>
         </ImageBackground>
     );
-}
+};
 
 function SecondStepAfter({lastGame} : {lastGame: Game}) {
     const navigation = useNavigation();
@@ -106,7 +100,7 @@ function SecondStepAfter({lastGame} : {lastGame: Game}) {
                 navigation.navigate(routes.game[3]);
             });
         }
-    }
+    };
 
     return (
         <ImageBackground source={data.after.image} style={styles.container}>
@@ -134,7 +128,7 @@ function SecondStepAfter({lastGame} : {lastGame: Game}) {
             </Pressable>
         </ImageBackground>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {

@@ -16,4 +16,4 @@ export function getRatio(width: number, height: number): string {
     }
     
     return bestRatio;
-}
+};

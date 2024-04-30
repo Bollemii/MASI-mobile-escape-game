@@ -16,4 +16,4 @@ export default function useLastGame() {
     }, []);
 
     return [lastGame, setLastGame] as const;
-}
+};

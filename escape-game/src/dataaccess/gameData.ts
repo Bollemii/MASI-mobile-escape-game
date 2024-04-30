@@ -20,4 +20,4 @@ const saveLastGame = async (game?: Game) => {
     await storage.setItem(GAME_KEY, game.toJSON());
 }
 
-export { getLastGame, saveLastGame }
+export { getLastGame, saveLastGame };

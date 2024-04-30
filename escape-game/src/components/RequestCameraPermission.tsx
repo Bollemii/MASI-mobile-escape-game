@@ -6,7 +6,7 @@ import Button from "./Button";
 
 interface RequestPermissionProps {
     requestPermission: () => void;
-}
+};
 
 export default function RequestCameraPermission(props: RequestPermissionProps) {
     return (
@@ -16,7 +16,7 @@ export default function RequestCameraPermission(props: RequestPermissionProps) {
             <Button onPress={props.requestPermission} text="Autoriser la caméra"/>
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
