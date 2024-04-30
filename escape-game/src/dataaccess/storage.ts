@@ -21,5 +21,5 @@ export const storage = {
         } catch (error) {
             console.error(`Error while removing ${key} from storage`, error);
         }
-    }
+    },
 };

@@ -22,8 +22,8 @@ const data = {
     after: {
         image: require("assets/images/piratesdelilebourbon/light-ships-hold.png"),
         text: "Ok, voilà qui est mieux ! Avec ma lampe allumée, je peux enfin voir où je mets les pieds. Maintenant, il est temps de sortir de cette pièce. Pas question de rester coincé ici plus longtemps."
-    }
-}
+    },
+};
 
 export default function FirstStep () {
     const navigation = useNavigation();
@@ -35,15 +35,11 @@ export default function FirstStep () {
     if (!lastGame || lastGame.lastStep !== 0) {
         // We use the NotAccessed as a component because LastGame might not be loaded yet on first render
         // A navigation take only first render into account
-        return (
-            <NotAccessed currentStep={1} game={lastGame} backgroundImage={data.notAccessedImage}/>
-        )
+        return <NotAccessed currentStep={1} game={lastGame} backgroundImage={data.notAccessedImage}/>;
     }
 
     if (!permission?.granted) {
-        return (
-            <RequestCameraPermission requestPermission={requestPermission}/>
-        );
+        return <RequestCameraPermission requestPermission={requestPermission}/>;
     }
 
     const handleNext = () => {
@@ -82,7 +78,7 @@ export default function FirstStep () {
             </ImageBackground>
         );
     }
-}
+};
 
 const styles = StyleSheet.create({
     container: {

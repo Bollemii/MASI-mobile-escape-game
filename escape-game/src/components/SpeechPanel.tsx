@@ -6,7 +6,7 @@ interface SpeechPanelProps {
     speaker?: string;
     text: string;
     more?: boolean;
-}
+};
 
 export default function SpeechPanel(props: SpeechPanelProps) {
     const speaker = props.speaker ? props.speaker.toLowerCase().charAt(0).toUpperCase() + props.speaker.slice(1) : undefined;
@@ -21,7 +21,7 @@ export default function SpeechPanel(props: SpeechPanelProps) {
             {props.more && <Text style={styles.more}>Suivant...</Text>}
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {

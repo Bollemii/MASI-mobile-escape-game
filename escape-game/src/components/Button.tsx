@@ -9,7 +9,7 @@ interface ButtonProps {
     colorButton?: string;
     colorPressedButton?: string;
     textStyle?: object;
-}
+};
 
 export default function Button(props: ButtonProps) {
     const buttonStyle = props.buttonStyle || styles.defaultButton;
@@ -26,7 +26,7 @@ export default function Button(props: ButtonProps) {
             <Text style={[textStyle]}>{text}</Text>
         </Pressable>
     );
-}
+};
 
 const styles = StyleSheet.create({
     defaultButton: {

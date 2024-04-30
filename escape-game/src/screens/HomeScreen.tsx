@@ -9,7 +9,7 @@ import usePseudo from '@/hooks/pseudo';
 
 const data = {
     image: require('assets/images/app-background.jpg'),
-}
+};
 
 export default function HomeScreen() {
     const navigation = useNavigation();
@@ -22,7 +22,7 @@ export default function HomeScreen() {
     const onChangePseudo = (text: string) => {
         setPseudo(text);
         savePseudo(text.trim());
-    }
+    };
 
     return (
         <ImageBackground source={data.image} style={styles.container}>

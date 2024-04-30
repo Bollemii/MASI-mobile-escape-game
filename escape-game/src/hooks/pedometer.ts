@@ -19,4 +19,4 @@ export default function usePedometer() {
     }, []);
 
     return data?.steps || 0;
-}
+};

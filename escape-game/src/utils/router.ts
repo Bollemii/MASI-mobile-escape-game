@@ -12,7 +12,7 @@ export function isRouteHandled (route: string) : boolean {
             }
         }
         return false;
-    }
+    };
 
     return isInArray(route, routes);
-}
+};

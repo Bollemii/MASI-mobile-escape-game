@@ -13,7 +13,7 @@ export default function NotFound() {
             <Text style={styles.text}>La page demandée n'existe pas.</Text>
         </ImageBackground>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {

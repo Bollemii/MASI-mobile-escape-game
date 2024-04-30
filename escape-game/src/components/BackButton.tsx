@@ -7,7 +7,7 @@ import Button from "./Button";
 interface BackButtonProps {
     text: string;
     pageRedirect: string;
-}
+};
 
 export default function BackButton(props: BackButtonProps) {
     const navigation = useNavigation();
@@ -15,12 +15,10 @@ export default function BackButton(props: BackButtonProps) {
     const handlePress = () => {
         // @ts-expect-error: navigation type is not well defined
         navigation.navigate(props.pageRedirect);
-    }
+    };
 
-    return (
-        <Button text={`< ${props.text}`} onPress={handlePress} buttonStyle={styles.container}/>
-    );
-}
+    return <Button text={`< ${props.text}`} onPress={handlePress} buttonStyle={styles.container}/>;
+};
 
 const styles = StyleSheet.create({
     container: {
