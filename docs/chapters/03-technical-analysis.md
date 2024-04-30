@@ -133,7 +133,7 @@ Pour réaliser la redirection vers une épreuve en fonction du QR code scanné, 
 
 Les URL des épreuves seront construits en deux parties : le nom de l'exposition et le numéro de l'épreuve. Autrement dit, l'URL sera sous la forme `/nom-de-lexposition/numero-de-lepreuve`. Par exemple, le joueur scanne le QR code de l'épreuve 1 de l'exposition "Le trésor de la Licorne", l'application récupère le chemin URL `/letresordelalicorne/1` et redirige le joueur vers l'écran de l'épreuve 1 de l'exposition "Le trésor de la Licorne".
 
-Enfin, nous allons différencier le commencement du jeu à la première épreuve. Ainsi, le QR code de début lancera l'écran d'introduction du jeu avec sa description alors que celui de la première épreuve lancera l'écran de l'épreuve. Pour différencier cela, l'identifiant de l'épreuve 0 sera réservé pour le commencement du jeu.
+Pour différencier le QR code de début de jeu et les QR codes des épreuves, nous allons remplacer le numéro de l'épreuve par le mot `start` pour le QR code de début de jeu. Ainsi, le QR code de début de jeu sera sous la forme `/nom-de-lexposition/start`. L'application aura également besoin d'une redirection vers la page de fin de jeu. Pour cette page, nous allons utiliser le mot `end` à la place du numéro de l'épreuve. Ainsi, le QR code de fin de jeu sera sous la forme `/nom-de-lexposition/end`.
 
 ### Illumination de la cale du bateau
 Dans la première épreuve, nous allons avoir besoin de la lampe torche pour éclairer la cale du bateau. Plus précisément, l'application doit scruter l'état de la lampe torche pour savoir si elle est allumée ou éteinte. Ainsi, l'utilisateur doit allumer la lampe torche depuis les fonctionnalités natives de son téléphone pour éclairer la cale du bateau.

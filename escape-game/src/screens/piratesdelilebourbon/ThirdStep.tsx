@@ -39,10 +39,8 @@ export default function ThirdStep() {
 
         lastGame.wonStep();
         saveLastGame(lastGame).then(() => {
-            // @TODO : Redirect to end game screen
-
             // @ts-expect-error: navigation type is not well defined
-            navigation.navigate(routes.home);
+            navigation.navigate(routes.game.end);
         });
     }
 
