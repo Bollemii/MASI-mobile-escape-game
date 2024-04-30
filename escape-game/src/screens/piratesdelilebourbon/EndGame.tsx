@@ -12,15 +12,15 @@ const data = {
         "Vous avez triomphé des défis les plus redoutables et démontré votre ingéniosité à chaque tournant. Félicitations pour avoir exploré les mystères des pirates de l'Île Bourbon et découvert les secrets du navire “Le Victorieux”.",
         "Votre courage vous a mené à la victoire, et votre nom restera gravé dans les annales des explorateurs légendaires. Continuez à explorer, à rêver et à défier les limites de l'imagination.",
         "Votre aventure ne fait que commencer !"
-    ]
-}
+    ],
+};
 
 export default function EndGame() {
     const navigation = useNavigation();
 
     const handleNext = () => {
         // @ts-expect-error: navigation type is not well defined
-        navigation.navigate(routes.game.home);
+        navigation.navigate(routes.home);
     };
 
     return (
@@ -38,7 +38,6 @@ export default function EndGame() {
             />
         </ImageBackground>
     );
-
 };
 
 const styles = StyleSheet.create({
@@ -51,5 +50,6 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 18,
         color: defaultStyles.colors.white,
+        marginBottom: 5,
     },
 });

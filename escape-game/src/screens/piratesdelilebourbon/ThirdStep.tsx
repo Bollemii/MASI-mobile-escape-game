@@ -40,7 +40,7 @@ export default function ThirdStep() {
         lastGame.wonStep();
         saveLastGame(lastGame).then(() => {
             // @ts-expect-error: navigation type is not well defined
-            navigation.navigate(routes.end);
+            navigation.navigate(routes.game.end);
         });
     }
 
