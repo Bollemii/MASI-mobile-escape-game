@@ -38,62 +38,33 @@ const data = {
     },
 };
 
+let lastHitAcceleration = 0;
 export default function SecondStep() {
+    const navigation = useNavigation();
     const [lastGame, _] = useLastGame();
+    const [iText, setIText] = useState(0);
     const [hitCount, setHitCount] = useState(0);
+    const {y} = useAccelerometer(500);
 
     if (!lastGame || lastGame.lastStep !== 1) {
         return <NotAccessed currentStep={2} game={lastGame} backgroundImage={data.notAccessedImage}/>;
     }
-    
-    if (hitCount < data.hitCount) {
-        return <SecondStepBefore hitSetter={setHitCount} hitCount={hitCount}/>;
-    } else {
-        return <SecondStepAfter lastGame={lastGame}/>;
-    }
-};
-
-function SecondStepBefore({ hitSetter, hitCount } : { hitSetter: (value: number) => void, hitCount: number }) {
-    const [iText, setIText] = useState(0);
-    const {y} = useAccelerometer(500);
 
     const handlePress = () => {
-        if (iText < data.before.texts.length - 1) {
-            setIText(iText + 1);
+        if (hitCount < data.hitCount) {
+            // Before
+            if (iText < data.before.texts.length - 1) {
+                setIText(iText + 1);
+            }
+        } else {
+            // After
+            if (iText-(data.before.texts.length-1) < data.after.texts.length - 1) {
+                setIText(iText + 1);
+            }
         }
     };
-
-    if (iText >= data.before.texts.length -1 && Math.abs(y) > data.accelerometerThreshold) {
-        // We use Y axe to detect horizontal movement
-        hitSetter(hitCount + 1);
-    }
-
-    return (
-        <ImageBackground source={data.before.image} style={styles.container}>
-            <Pressable style={styles.container} onPress={handlePress}>
-                <BackButton text="Quitter" pageRedirect={routes.home}/>
-                <SpeechPanel 
-                    speaker={"Capitaine"}
-                    text={data.before.texts[iText]}
-                    more={iText < data.before.texts.length - 1}
-                />
-            </Pressable>
-        </ImageBackground>
-    );
-};
-
-function SecondStepAfter({lastGame} : {lastGame: Game}) {
-    const navigation = useNavigation();
-    const [iText, setIText] = useState(0);
-
-    const handlePress = () => {
-        if (iText < data.before.texts.length - 1) {
-            setIText(iText + 1);
-        }
-    };
-
     const handleNext = () => {
-        if (iText === data.after.texts.length - 1) {
+        if (iText-(data.before.texts.length-1) === data.after.texts.length - 1) {
             lastGame.wonStep();
             saveLastGame(lastGame).then(() => {
                 // @ts-expect-error: navigation type is not well defined
@@ -102,32 +73,54 @@ function SecondStepAfter({lastGame} : {lastGame: Game}) {
         }
     };
 
-    return (
-        <ImageBackground source={data.after.image} style={styles.container}>
-            <Pressable style={[styles.container, {alignItems: 'center'}]} onPress={handlePress}>
-                <BackButton text="Quitter" pageRedirect={routes.home}/>
-                <View style={styles.disclaimerContainer}>
-                    <View style={styles.disclaimerIcon}>
-                        <FontAwesomeIcon
-                            icon={faCat}
-                            size={45}
-                            color={defaultStyles.colors.darkgrey}
-                        />
+    // We use Y axe to detect horizontal movement
+    if (hitCount < data.hitCount && iText >= data.before.texts.length -1 && Math.abs(y) > data.accelerometerThreshold && y !== lastHitAcceleration) {
+        setHitCount(hitCount + 1);
+        // Save last hit acceleration to avoid multiple hits with refresh
+        lastHitAcceleration = y;
+    }
+
+    if (hitCount < data.hitCount) {
+        return (
+            <ImageBackground source={data.before.image} style={styles.container}>
+                <Pressable style={styles.container} onPress={handlePress}>
+                    <BackButton text="Quitter" pageRedirect={routes.home}/>
+                    <SpeechPanel 
+                        speaker={"Capitaine"}
+                        text={data.before.texts[iText]}
+                        more={iText < data.before.texts.length - 1}
+                    />
+                </Pressable>
+            </ImageBackground>
+        );
+    } else {
+        return (
+            <ImageBackground source={data.after.image} style={styles.container}>
+                <Pressable style={[styles.container, {alignItems: 'center'}]} onPress={handlePress}>
+                    <BackButton text="Quitter" pageRedirect={routes.home}/>
+                    <View style={styles.disclaimerContainer}>
+                        <View style={styles.disclaimerIcon}>
+                            <FontAwesomeIcon
+                                icon={faCat}
+                                size={45}
+                                color={defaultStyles.colors.darkgrey}
+                            />
+                        </View>
+                        <Text style={styles.disclaimer}>{data.after.disclaimer}</Text>
                     </View>
-                    <Text style={styles.disclaimer}>{data.after.disclaimer}</Text>
-                </View>
-                <SpeechPanel
-                    speaker="Pirates"
-                    text={data.after.texts[iText]}
-                    more={iText < data.after.texts.length - 1}
-                />
-                {
-                    iText === data.after.texts.length - 1 &&
-                    <NextButton text="Étape suivante" onPress={handleNext} theme="white"/>
-                }
-            </Pressable>
-        </ImageBackground>
-    );
+                    <SpeechPanel
+                        speaker="Pirates"
+                        text={data.after.texts[iText-(data.before.texts.length-1)]}
+                        more={iText-(data.before.texts.length-1) < data.after.texts.length - 1}
+                    />
+                    {
+                        iText-(data.before.texts.length-1) === data.after.texts.length - 1 &&
+                        <NextButton text="Étape suivante" onPress={handleNext} theme="white"/>
+                    }
+                </Pressable>
+            </ImageBackground>
+        );
+    }
 };
 
 const styles = StyleSheet.create({
