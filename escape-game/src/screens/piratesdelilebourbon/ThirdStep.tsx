@@ -5,10 +5,11 @@ import { routes } from "@/router/routes";
 import BackButton from "@/components/BackButton";
 import NextButton from "@/components/NextButton";
 import SpeechPanel from "@/components/SpeechPanel";
+import NotAccessed from "@/screens/NotAccessed";
 import { saveLastGame } from "@/dataaccess/gameData";
-import useLastGame from "@/hooks/lastGame";
-import usePedometer from "@/hooks/pedometer";
-import NotAccessed from "../NotAccessed";
+import useLastGame from "@/hooks/useLastGame";
+import usePedometer from "@/hooks/usePedometer";
+import usePodometerPermission from "@/hooks/usePedometerPermission";
 
 const data = {
     step: 20,
@@ -25,6 +26,7 @@ const data = {
 
 export default function ThirdStep() {
     const navigation = useNavigation();
+    const [permission, requestPermission] = usePodometerPermission();
     const step = usePedometer();
     const [lastGame, _] = useLastGame();
 
@@ -32,6 +34,10 @@ export default function ThirdStep() {
         return (
             <NotAccessed currentStep={3} game={lastGame} backgroundImage={data.notAccessedImage}/>
         )
+    }
+
+    if (!permission?.granted) {
+        requestPermission();
     }
 
     const handleNext = () => {

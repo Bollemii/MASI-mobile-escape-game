@@ -7,7 +7,7 @@ import Game from "@/models/game";
 import BackButton from "@/components/BackButton";
 import NextButton from "@/components/NextButton";
 import { saveLastGame } from "@/dataaccess/gameData";
-import useLastGame from "@/hooks/lastGame";
+import useLastGame from "@/hooks/useLastGame";
 import NotAccessed from "../NotAccessed";
 
 const data = {
