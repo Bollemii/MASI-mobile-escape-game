@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { BarCodeScanningResult, Camera } from "expo-camera";
-import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation } from "@react-navigation/native";
+import Toast from "react-native-root-toast";
 
 import { constants } from "@/constants";
 import { defaultStyles } from "@/defaultStyles";
@@ -32,6 +32,9 @@ export default function QrScan() {
             navigation.navigate(route);
         } else {
             console.log('QR code not handled:', route);
+            Toast.show('QR code non reconnu', {
+                position: Toast.positions.CENTER,
+            });
         }
     };
     const handleScan = () => {
@@ -43,7 +46,8 @@ export default function QrScan() {
             <Camera
                 style={styles.camera}
                 barCodeScannerSettings={{
-                    barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
+                    // @ts-expect-error: barCodeTypes is defined in BarCodeScanner but this package will be deprecated
+                    barCodeTypes: [256],
                 }}
                 onBarCodeScanned={automaticScan || wantScanned ? onBarCodeScanned : undefined}
                 ratio={constants.window.ratio}
