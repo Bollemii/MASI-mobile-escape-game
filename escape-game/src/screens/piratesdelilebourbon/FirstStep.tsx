@@ -7,11 +7,10 @@ import { routes } from "@/router/routes";
 import NotAccessed from "@/screens/NotAccessed";
 import BackButton from "@/components/BackButton";
 import SpeechPanel from "@/components/SpeechPanel";
-import RequestCameraPermission from "@/components/RequestCameraPermission";
 import NextButton from "@/components/NextButton";
 import { saveLastGame } from "@/dataaccess/gameData";
-import usePseudo from "@/hooks/pseudo";
-import useLastGame from "@/hooks/lastGame";
+import usePseudo from "@/hooks/usePseudo";
+import useLastGame from "@/hooks/useLastGame";
 
 const data = {
     notAccessedImage: require('assets/images/piratesdelilebourbon/boat.jpg'),
@@ -39,7 +38,7 @@ export default function FirstStep () {
     }
 
     if (!permission?.granted) {
-        return <RequestCameraPermission requestPermission={requestPermission}/>;
+        requestPermission();
     }
 
     const handleNext = () => {

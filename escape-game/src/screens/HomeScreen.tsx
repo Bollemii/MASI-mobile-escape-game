@@ -5,7 +5,7 @@ import { routes } from '@/router/routes';
 import { defaultStyles } from '@/defaultStyles';
 import Button from '@/components/Button';
 import { savePseudo } from '@/dataaccess/playerData';
-import usePseudo from '@/hooks/pseudo';
+import usePseudo from '@/hooks/usePseudo';
 
 const data = {
     image: require('assets/images/app-background.jpg'),

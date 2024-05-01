@@ -12,8 +12,9 @@ import BackButton from "@/components/BackButton";
 import SpeechPanel from "@/components/SpeechPanel";
 import NextButton from "@/components/NextButton";
 import { saveLastGame } from "@/dataaccess/gameData";
-import useLastGame from "@/hooks/lastGame";
-import useAccelerometer from "@/hooks/accelerometer";
+import useLastGame from "@/hooks/useLastGame";
+import useAccelerometer from "@/hooks/useAccelerometer";
+import useDeviceMotionPermission from "@/hooks/useDeviceMotionPermission";
 
 const data = {
     accelerometerThreshold: 8,
@@ -41,6 +42,7 @@ const data = {
 let lastHitAcceleration = 0;
 export default function SecondStep() {
     const navigation = useNavigation();
+    const [permission, requestPermission] = useDeviceMotionPermission();
     const [lastGame, _] = useLastGame();
     const [iText, setIText] = useState(0);
     const [hitCount, setHitCount] = useState(0);
@@ -48,6 +50,10 @@ export default function SecondStep() {
 
     if (!lastGame || lastGame.lastStep !== 1) {
         return <NotAccessed currentStep={2} game={lastGame} backgroundImage={data.notAccessedImage}/>;
+    }
+
+    if (!permission?.granted) {
+        requestPermission();
     }
 
     const handlePress = () => {

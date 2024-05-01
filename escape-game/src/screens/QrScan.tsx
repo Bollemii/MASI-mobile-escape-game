@@ -10,7 +10,6 @@ import { routes } from "@/router/routes";
 import { isRouteHandled } from "@/utils/router";
 import BackButton from "@/components/BackButton";
 import Button from "@/components/Button";
-import RequestCameraPermission from "@/components/RequestCameraPermission";
 
 // It is use only for development testing
 const automaticScan = false;
@@ -21,7 +20,7 @@ export default function QrScan() {
     const [wantScanned, setWantScanned] = useState(false);
 
     if (!permission?.granted) {
-        return <RequestCameraPermission requestPermission={requestPermission}/>;
+        requestPermission();
     }
 
     const onBarCodeScanned = (result: BarCodeScanningResult) => {
