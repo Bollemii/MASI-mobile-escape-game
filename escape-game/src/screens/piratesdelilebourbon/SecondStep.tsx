@@ -25,7 +25,7 @@ const data = {
         texts: [
             "Bienvenue à bord, moussaillon ! Je suis connu dans ces mers comme 'La Buse', un nom qui fait trembler nos ennemis et inspire le respect chez nos alliés. Mais ici, sur ce pont, vous pouvez simplement m'appeler 'Capitaine'.",
             "Nous avons besoin de toutes les mains disponibles pour cette attaque. Préparez-vous à l'action, car nous n'avons pas de temps à perdre. Les voiles sont gonflées par le vent et le Nossa Senhora do Cabo est à notre portée. Il est temps de montrer de quel bois nous nous chauffons !",
-            "Prenez cette baguette et tassez d'un mouvement horizontal la poudre de ce canon. Nous avons besoin de chaque canon prêt à cracher le feu lorsque nous atteindrons le Nossa Senhora do Cabo.",
+            "Prenez cet outil et tassez d'un mouvement horizontal la poudre de ce canon. Nous avons besoin de chaque canon prêt à cracher le feu lorsque nous atteindrons le Nossa Senhora do Cabo.",
         ],
     },
     after: {

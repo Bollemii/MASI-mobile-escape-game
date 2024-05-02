@@ -1,3 +1,14 @@
+# Informations générales
+Groupe 6
+
+Membres du groupe :
+- BOLLE Emilien
+- PIRE Victor
+
+Liens utiles :
+- Gitlab : https://gitlab.com/DTM-Henallux/MASI/etudiants/bolle-emilien/mobile-escape-game
+- Figma : https://www.figma.com/file/qRPFIBP1ofHVQL4dNBUzLs/Escape-Game-mockups
+
 # Présentation
 Cette application, conçue par Escape Museum, a été spécialement développée pour accompagner l'exposition temporaire "Pirates de l'île Bourbon" dans un musée. En tant que jeu d'évasion novateur, il exploite les capteurs du téléphone pour offrir une expérience immersive unique où les visiteurs doivent résoudre une série d'énigmes pour progresser.
 

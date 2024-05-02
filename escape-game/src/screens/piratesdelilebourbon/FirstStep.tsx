@@ -16,7 +16,7 @@ const data = {
     notAccessedImage: require('assets/images/piratesdelilebourbon/boat.jpg'),
     before: {
         image: require("assets/images/piratesdelilebourbon/dark-ships-hold.png"),
-        text: "Où suis-je ? Il fait noir, on dirait que je suis entouré de tonneaux. Mais attendez… j’entends des voix, je devrais aller voir s’il y a des gens là-haut. Le problème, c’est qu’on n’y voit pas grand chose ici. Ah, une lampe torche ! Mais elle est déchargée... Bon, il doit bien y avoir des piles quelque part."
+        text: "Où suis-je ? Il fait noir, on dirait que je suis entouré de tonneaux. Mais attendez… j’entends des voix, je devrais aller voir s’il y a des gens là-haut. Le problème, c’est qu’on n’y voit pas grand chose ici. Ah, une lampe torche ! Mais elle est déchargée... Bon, il doit bien y avoir un moyen de la recharger."
     },
     after: {
         image: require("assets/images/piratesdelilebourbon/light-ships-hold.png"),
