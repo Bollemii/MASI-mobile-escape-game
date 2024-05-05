@@ -3,8 +3,7 @@
 title: "Programmation des Systèmes Mobiles - Escape Museum Game"
 author:
   [
-    Bolle Emilien,
-    Pire Victor,
+    Groupe 6 - BOLLE Emilien, PIRE Victor,
   ]
 academicyear: 2023-2024
 category: MASI

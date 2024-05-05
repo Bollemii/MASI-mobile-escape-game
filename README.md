@@ -1,14 +1,14 @@
-# mobile-escape-game
+# mobile-escape-game - Groupe 6
 ## Présentation
 Cette application mobile a été développée dans le cadre du cours de Programmation des Systèmes Mobiles du Master en Architecture des Systèmes Informatiques.  
-Membres du groupe :
+Membres du groupe 6 :
 - BOLLE Emilien
 - PIRE Victor
 
 Cette application a été développée par l'entreprise Escape Museum et est utilisée dans l'exposition temporaire "Pirates de l'île Bourbon" d'un musée. C'est un jeu d'évasion qui utilise les capteurs du téléphone pour résoudre des énigmes.
 
 ## Documentation
-La documentation de l'analyse de l'application est disponible dans le dossier `docs/`. Elle est rédigée en LaTeX et Markdown et est compilée dans un [document PDF](./docs/rapport.pdf).
+La documentation de l'analyse de l'application est disponible dans le dossier `docs/`. Elle est rédigée en LaTeX et Markdown et est compilée dans un [document](https://mobile-escape-game-dtm-henallux-masi-etudiants-b-9a9572bbe0bcc3.gitlab.io/).
 
 ### Contribution
 Pour générer le PDF, il est requis d'avoir `docker` installé sur la machine. Ensuite, il suffit de se rendre dans le dossier `docs/` et d'exécuter la commande suivante.
