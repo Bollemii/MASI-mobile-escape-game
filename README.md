@@ -5,10 +5,16 @@ Membres du groupe 6 :
 - BOLLE Emilien
 - PIRE Victor
 
+Liens utiles :
+
+- Gitlab : [https://gitlab.com/DTM-Henallux/MASI/etudiants/bolle-emilien/mobile-escape-game](https://gitlab.com/DTM-Henallux/MASI/etudiants/bolle-emilien/mobile-escape-game)
+- Figma : [https://www.figma.com/file/qRPFIBP1ofHVQL4dNBUzLs/Escape-Game-mockups](https://www.figma.com/file/qRPFIBP1ofHVQL4dNBUzLs/Escape-Game-mockups)
+- Dossier d'analyse : [https://dtm-henallux.gitlab.io/MASI/etudiants/bolle-emilien/mobile-escape-game](https://dtm-henallux.gitlab.io/MASI/etudiants/bolle-emilien/mobile-escape-game)
+
 Cette application a été développée par l'entreprise Escape Museum et est utilisée dans l'exposition temporaire "Pirates de l'île Bourbon" d'un musée. C'est un jeu d'évasion qui utilise les capteurs du téléphone pour résoudre des énigmes.
 
 ## Documentation
-La documentation de l'analyse de l'application est disponible dans le dossier `docs/`. Elle est rédigée en LaTeX et Markdown et est compilée dans un [document](https://mobile-escape-game-dtm-henallux-masi-etudiants-b-9a9572bbe0bcc3.gitlab.io/).
+La documentation de l'analyse de l'application est disponible dans le dossier `docs/`. Elle est rédigée en LaTeX et Markdown et est compilée dans un [document](https://dtm-henallux.gitlab.io/MASI/etudiants/bolle-emilien/mobile-escape-game).
 
 ### Contribution
 Pour générer le PDF, il est requis d'avoir `docker` installé sur la machine. Ensuite, il suffit de se rendre dans le dossier `docs/` et d'exécuter la commande suivante.
