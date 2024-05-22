@@ -30,6 +30,11 @@ docker run --rm --volume .:/data --platform linux/amd64 mfreeze/pandoc-iesn:merm
 ```
 
 ## Application
+## Attention
+L'application a été développée avec la version 50 du SDK Expo. En mai 2024, Expo est passé à la version 51 et a introduit des changements majeurs. Cela rend cette application obsolète dans la dernière version d'Expo. Pour l'exécuter, il est nécessaire d'utiliser la version 50 d'Expo et l'application Expo Go avec la version associée à l'ancien SDK.
+
+La branche "upgrade-expo-version-to-51" a été créée pour mettre à jour l'application vers la version 51 d'Expo. Cependant, la lampe torche, utilisée dans la première épreuve de l'application, ne fonctionne pas correctement. C'est pourquoi le changement n'a pas été appliqué sur la branche principale. Il est donc possible de lancer l'application sur cette branche avec la dernière version d'Expo.
+
 ### Installation
 Pour déployer l'application sur un téléphone physique, il est nécessaire d'activer le mode développeur et le débogage USB. Ensuite, il suffit de connecter le téléphone à l'ordinateur et d'exécuter la commande suivante.
 ```bash
