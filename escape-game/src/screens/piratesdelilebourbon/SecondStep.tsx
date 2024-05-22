@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ImageBackground, Pressable, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -6,7 +6,6 @@ import { faCat } from "@fortawesome/free-solid-svg-icons";
 
 import { defaultStyles } from "@/defaultStyles";
 import { routes } from "@/router/routes";
-import Game from "@/models/game";
 import NotAccessed from "@/screens/NotAccessed";
 import BackButton from "@/components/BackButton";
 import SpeechPanel from "@/components/SpeechPanel";
@@ -48,14 +47,7 @@ export default function SecondStep() {
     const [hitCount, setHitCount] = useState(0);
     const {y} = useAccelerometer(500);
 
-    if (!lastGame || lastGame.lastStep !== 1) {
-        return <NotAccessed currentStep={2} game={lastGame} backgroundImage={data.notAccessedImage}/>;
-    }
-
-    if (!permission?.granted) {
-        requestPermission();
-    }
-
+    
     const handlePress = () => {
         if (hitCount < data.hitCount) {
             // Before
@@ -78,15 +70,24 @@ export default function SecondStep() {
             });
         }
     };
-
-    // We use Y axe to detect horizontal movement
-    if (hitCount < data.hitCount && iText >= data.before.texts.length -1 && Math.abs(y) > data.accelerometerThreshold && y !== lastHitAcceleration) {
-        setHitCount(hitCount + 1);
-        // Save last hit acceleration to avoid multiple hits with refresh
-        lastHitAcceleration = y;
-    }
-
-    if (hitCount < data.hitCount) {
+    
+    useEffect(() => {
+        if (!permission?.granted) {
+            requestPermission();
+        }
+    }, [permission]);
+    useEffect(() => {
+        // We use Y axe to detect horizontal movement
+        if (hitCount < data.hitCount && iText >= data.before.texts.length -1 && Math.abs(y) > data.accelerometerThreshold && y !== lastHitAcceleration) {
+            setHitCount(hitCount + 1);
+            // Save last hit acceleration to avoid multiple hits with refresh
+            lastHitAcceleration = y;
+        }
+    }, [y]);
+    
+    if (!lastGame || lastGame.lastStep !== 1) {
+        return <NotAccessed currentStep={2} game={lastGame} backgroundImage={data.notAccessedImage}/>;
+    } else if (hitCount < data.hitCount) {
         return (
             <ImageBackground source={data.before.image} style={styles.container}>
                 <Pressable style={styles.container} onPress={handlePress}>

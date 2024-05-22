@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 
 import { defaultStyles } from "@/defaultStyles";
@@ -14,29 +15,34 @@ interface NotAccessedProps {
 };
 
 export default function NotAccessed(props: NotAccessedProps) {
+    const [text, setText] = useState<string>("");
+
+    useEffect(() => {
+        let text: string;
+        if (!props.game || props.game.isFinished()) {
+            text = "Vous n'avez pas de partie en cours, veuillez en commencer une nouvelle.";
+        } else {
+            if (props.game.lastStep >= props.currentStep) {
+                text = `Vous avez déjà réussi cette épreuve, veuillez reprendre à la ${props.game.lastStep+1}e étape où vous vous êtes arrêté.`;
+            } else if (props.game.lastStep < props.currentStep-1) {
+                text = `Vous n'avez encore atteint cette épreuve, veuillez reprendre à la ${props.game.lastStep+1}e étape où vous vous êtes arrêté.`;
+            } else {
+                text = "Il semble qu'il y ait une erreur, veuillez prendre contact avec l'administrateur : vous devriez être à la bonne étape.";
+            }
+        }
+        setText(text);
+    }, [props.game, props.currentStep]);
+
     if (props.restartFunctions) {
         return <Restart {...props}/>;
-    }
-
-    let text: string;
-    if (!props.game || props.game.isFinished()) {
-        text = "Vous n'avez pas de partie en cours, veuillez en commencer une nouvelle.";
     } else {
-        if (props.game.lastStep >= props.currentStep) {
-            text = `Vous avez déjà réussi cette épreuve, veuillez reprendre à la ${props.game.lastStep+1}e étape où vous vous êtes arrêté.`;
-        } else if (props.game.lastStep < props.currentStep-1) {
-            text = `Vous n'avez encore atteint cette épreuve, veuillez reprendre à la ${props.game.lastStep+1}e étape où vous vous êtes arrêté.`;
-        } else {
-            text = "Il semble qu'il y ait une erreur, veuillez prendre contact avec l'administrateur : vous devriez être à la bonne étape.";
-        }
+        return (
+            <ImageBackground style={styles.container} source={props.backgroundImage}>
+                <BackButton text="Retour" pageRedirect={routes.home}/>
+                <Text style={styles.text}>{text}</Text>
+            </ImageBackground>
+        );
     }
-
-    return (
-        <ImageBackground style={styles.container} source={props.backgroundImage}>
-            <BackButton text="Retour" pageRedirect={routes.home}/>
-            <Text style={styles.text}>{text}</Text>
-        </ImageBackground>
-    );
 }
 
 function Restart(props: NotAccessedProps) {

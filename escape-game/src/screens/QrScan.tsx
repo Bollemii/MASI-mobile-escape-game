@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { BarCodeScanningResult, Camera } from "expo-camera";
+import { BarcodeScanningResult, CameraView, useCameraPermissions } from "expo-camera";
 import { useNavigation } from "@react-navigation/native";
 import Toast from "react-native-root-toast";
 
-import { constants } from "@/constants";
 import { defaultStyles } from "@/defaultStyles";
 import { routes } from "@/router/routes";
 import { isRouteHandled } from "@/utils/router";
@@ -16,14 +15,10 @@ const automaticScan = false;
 
 export default function QrScan() {
     const navigation = useNavigation();
-    const [permission, requestPermission] = Camera.useCameraPermissions();
+    const [permission, requestPermission] = useCameraPermissions();
     const [wantScanned, setWantScanned] = useState(false);
 
-    if (!permission?.granted) {
-        requestPermission();
-    }
-
-    const onBarCodeScanned = (result: BarCodeScanningResult) => {
+    const onBarCodeScanned = (result: BarcodeScanningResult) => {
         setWantScanned(false);
         const route = result.data.split('\n')[0];
         
@@ -41,17 +36,20 @@ export default function QrScan() {
         setWantScanned(true);
     };
 
+    useEffect(() => {
+        if (permission?.granted) {
+            requestPermission();
+        }
+    }, [permission]);
+
     return (
-        <View style={styles.container}>
-            <Camera
-                style={styles.camera}
-                barCodeScannerSettings={{
-                    // @ts-expect-error: barCodeTypes is defined in BarCodeScanner but this package will be deprecated
-                    barCodeTypes: [256],
-                }}
-                onBarCodeScanned={automaticScan || wantScanned ? onBarCodeScanned : undefined}
-                ratio={constants.window.ratio}
-            />
+        <CameraView
+            style={styles.camera}
+            enableTorch
+            flash="on"
+            barcodeScannerSettings={{barcodeTypes: ["qr"]}}
+            onBarcodeScanned={automaticScan || wantScanned ? onBarCodeScanned : undefined}
+        >
             <BackButton text="Retour" pageRedirect={routes.home}/>
             <Button
                 text="Scanner un QR code" 
@@ -59,20 +57,15 @@ export default function QrScan() {
                 buttonStyle={styles.button}
                 textStyle={styles.textButton}
             />
-        </View>
+        </CameraView>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
+    camera: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    camera: {
-        width: '100%',
-        height: '100%',
-        position: 'absolute',
     },
     button: {
         position: 'absolute',

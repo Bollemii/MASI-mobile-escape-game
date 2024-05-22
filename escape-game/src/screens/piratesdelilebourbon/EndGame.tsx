@@ -4,6 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import { routes } from '@/router/routes';
 import { defaultStyles } from '@/defaultStyles';
 import NextButton from "@/components/NextButton";
+import useLastGame from '@/hooks/useLastGame';
+import NotAccessed from '../NotAccessed';
 
 const data = {
     image: require('assets/images/piratesdelilebourbon/boat.jpg'),
@@ -17,27 +19,32 @@ const data = {
 
 export default function EndGame() {
     const navigation = useNavigation();
+    const [lastGame, _] = useLastGame();
 
     const handleNext = () => {
         // @ts-expect-error: navigation type is not well defined
         navigation.navigate(routes.home);
     };
 
-    return (
-        <ImageBackground source={data.image} style={styles.container}>
-            <View>
-                <Text style={[styles.text, {fontWeight: 'bold', marginBottom: 10, fontSize: 20}]}>{data.texts[0]}</Text>
-                <Text style={styles.text}>{data.texts[1]}</Text>
-                <Text style={styles.text}>{data.texts[2]}</Text>
-                <Text style={styles.text}>{data.texts[3]}</Text>
-            </View>
-            <NextButton 
-                onPress={handleNext}
-                text="Retour à la page d’accueil" 
-                theme="blue"
-            />
-        </ImageBackground>
-    );
+    if (!lastGame || !lastGame.isFinished()) {
+        return <NotAccessed currentStep={4} game={lastGame} backgroundImage={data.image}/>;
+    } else {
+        return (
+            <ImageBackground source={data.image} style={styles.container}>
+                <View>
+                    <Text style={[styles.text, {fontWeight: 'bold', marginBottom: 10, fontSize: 20}]}>{data.texts[0]}</Text>
+                    <Text style={styles.text}>{data.texts[1]}</Text>
+                    <Text style={styles.text}>{data.texts[2]}</Text>
+                    <Text style={styles.text}>{data.texts[3]}</Text>
+                </View>
+                <NextButton 
+                    onPress={handleNext}
+                    text="Retour à la page d’accueil" 
+                    theme="blue"
+                />
+            </ImageBackground>
+        );
+    }
 };
 
 const styles = StyleSheet.create({

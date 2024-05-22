@@ -13,6 +13,7 @@ export default function NextButton(props: NextButtonProps) {
     const colorButton = props.theme === 'blue' ? defaultStyles.colors.blue : defaultStyles.colors.white;
     const colorPressedButton = props.theme === 'blue' ? defaultStyles.colors.darkBlue : defaultStyles.colors.grey;
     const textStyle = props.theme === 'blue' ? {color: defaultStyles.colors.white} : {color: defaultStyles.colors.blue};
+
     return (
         <Button
             text={props.text}

@@ -34,12 +34,7 @@ export default function Introduction() {
         saveLastGame();
         setLastGame(undefined);
     };
-
-    if (!!lastGame && lastGame.isInProgress()) {
-        return <NotAccessed currentStep={0} game={lastGame} backgroundImage={data.image} restartFunctions={{handleContinue, handleRestart}}/>;
-    }
-
-    function handleStart() {
+    const handleStart = () => {
         const game = new Game();
         
         saveLastGame(game).then(() => {
@@ -48,21 +43,25 @@ export default function Introduction() {
         });
     };
 
-    return (
-        <ImageBackground source={data.image} style={styles.container}>
-            <BackButton text="Quitter" pageRedirect={routes.home}/>
-            <Text style={styles.title}>{"Pirates de\nl'Ile Bourbon"}</Text>
-            <View>
-                <Text style={[styles.text, {fontWeight: 'bold', marginBottom: 10, fontSize: 20}]}>{data.texts[0]}</Text>
-                <Text style={styles.text}>{data.texts[1]}</Text>
-                <Text style={styles.text}>{data.texts[2]}</Text>
-                <Text style={styles.text}>{data.texts[3]}</Text>
-                <Text style={styles.text}>{data.texts[4]}</Text>
-                <Text style={[styles.text, {marginTop: 25}]}>{data.texts[5]}</Text>
-            </View>
-            <NextButton text="Commencer" onPress={handleStart} theme="blue"/>
-        </ImageBackground>
-    );
+    if (!!lastGame && lastGame.isInProgress()) {
+        return <NotAccessed currentStep={0} game={lastGame} backgroundImage={data.image} restartFunctions={{handleContinue, handleRestart}}/>;
+    } else {
+        return (
+            <ImageBackground source={data.image} style={styles.container}>
+                <BackButton text="Quitter" pageRedirect={routes.home}/>
+                <Text style={styles.title}>{"Pirates de\nl'Ile Bourbon"}</Text>
+                <View>
+                    <Text style={[styles.text, {fontWeight: 'bold', marginBottom: 10, fontSize: 20}]}>{data.texts[0]}</Text>
+                    <Text style={styles.text}>{data.texts[1]}</Text>
+                    <Text style={styles.text}>{data.texts[2]}</Text>
+                    <Text style={styles.text}>{data.texts[3]}</Text>
+                    <Text style={styles.text}>{data.texts[4]}</Text>
+                    <Text style={[styles.text, {marginTop: 25}]}>{data.texts[5]}</Text>
+                </View>
+                <NextButton text="Commencer" onPress={handleStart} theme="blue"/>
+            </ImageBackground>
+        );
+    }
 };
 
 const styles = StyleSheet.create({

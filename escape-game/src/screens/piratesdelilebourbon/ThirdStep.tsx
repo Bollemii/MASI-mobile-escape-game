@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ImageBackground, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -30,19 +31,9 @@ export default function ThirdStep() {
     const step = usePedometer();
     const [lastGame, _] = useLastGame();
 
-    if (!lastGame || lastGame.lastStep !== 2) {
-        return (
-            <NotAccessed currentStep={3} game={lastGame} backgroundImage={data.notAccessedImage}/>
-        )
-    }
-
-    if (!permission?.granted) {
-        requestPermission();
-    }
-
     const handleNext = () => {
         if (!lastGame) return;
-
+        
         lastGame.wonStep();
         saveLastGame(lastGame).then(() => {
             // @ts-expect-error: navigation type is not well defined
@@ -50,7 +41,15 @@ export default function ThirdStep() {
         });
     }
 
-    if (step < data.step) {
+    useEffect(() => {
+        if (!permission?.granted) {
+            requestPermission();
+        }
+    }, [permission]);
+
+    if (!lastGame || lastGame.lastStep !== 2) {
+        return <NotAccessed currentStep={3} game={lastGame} backgroundImage={data.notAccessedImage}/>;
+    } else if (step < data.step) {
         return (
             <ImageBackground source={data.before.image} style={styles.container}>
                 <BackButton text="Quitter" pageRedirect={routes.home}/>

@@ -1,7 +1,8 @@
+import { useEffect } from "react";
 import { ImageBackground, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { BatteryState, useBatteryState } from "expo-battery";
-import { Camera, FlashMode } from "expo-camera";
+import { Camera, FlashMode } from "expo-camera/legacy";
 
 import { routes } from "@/router/routes";
 import NotAccessed from "@/screens/NotAccessed";
@@ -31,27 +32,27 @@ export default function FirstStep () {
     const [pseudo, __] = usePseudo();
     const stateBattery = useBatteryState();
 
-    if (!lastGame || lastGame.lastStep !== 0) {
-        // We use the NotAccessed as a component because LastGame might not be loaded yet on first render
-        // A navigation take only first render into account
-        return <NotAccessed currentStep={1} game={lastGame} backgroundImage={data.notAccessedImage}/>;
-    }
-
-    if (!permission?.granted) {
-        requestPermission();
-    }
-
     const handleNext = () => {
         if (!lastGame) return;
-
+        
         lastGame.wonStep();
         saveLastGame(lastGame).then(() => {
             // @ts-expect-error: navigation type is not well defined
             navigation.navigate(routes.game[2]);
         });
-    }
+    };
 
-    if (stateBattery !== BatteryState.CHARGING) {
+    useEffect(() => {
+        if (!permission?.granted) {
+            requestPermission();
+        }
+    }, [permission]);
+
+    if (!lastGame || lastGame.lastStep !== 0) {
+        // We use the NotAccessed as a component because LastGame might not be loaded yet on first render
+        // A navigation take only first render into account
+        return <NotAccessed currentStep={1} game={lastGame} backgroundImage={data.notAccessedImage}/>;
+    } else if (stateBattery !== BatteryState.CHARGING) {
         return (
             <ImageBackground source={data.before.image} style={styles.container}>
                 <BackButton text="Quitter" pageRedirect={routes.home}/>
